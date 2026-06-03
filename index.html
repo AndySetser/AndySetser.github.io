@@ -1,127 +1,974 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Andy Setser</title>
-  <link rel="stylesheet" href="style.css">
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Andy Setser — Economic Data Analyst</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #111111;
+      --ink-mid: #333333;
+      --ink-light: #666666;
+      --ink-faint: #999999;
+      --paper: #FAF9F6;
+      --paper-warm: #F2F0EA;
+      --rule: #CCCCCC;
+      --rule-light: #E5E3DC;
+      --accent: #2D5A27;
+      --accent-light: #4A7C44;
+      --accent-faint: #EBF2EA;
+      --serif: 'Playfair Display', Georgia, serif;
+      --body: 'Source Serif 4', Georgia, serif;
+      --mono: 'Space Mono', monospace;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--body);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--paper);
+      border-bottom: 2px solid var(--ink);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: 0.01em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      border-bottom: 1px solid var(--rule);
+      padding: 5rem 2rem 4rem;
+      background: var(--paper);
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 5rem;
+      align-items: end;
+    }
+    .hero-kicker {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-kicker::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 2px;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      font-size: 1.15rem;
+      color: var(--ink-mid);
+      font-style: italic;
+      max-width: 540px;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .hero-meta a {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--ink);
+      padding-bottom: 1px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .hero-meta a:hover { color: var(--accent); border-color: var(--accent); }
+
+    .hero-photo-wrap {
+      position: relative;
+    }
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 8px -8px -8px 8px;
+      border: 2px solid var(--accent);
+      z-index: 0;
+    }
+    .hero-photo {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+      filter: grayscale(15%);
+    }
+    .hero-caption {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-faint);
+      margin-top: 0.6rem;
+      text-align: right;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    section { padding: 5rem 2rem; border-bottom: 1px solid var(--rule); }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 0.75rem;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 5rem;
+    }
+    .about-body p {
+      margin-bottom: 1.2rem;
+      color: var(--ink-mid);
+      font-size: 1.05rem;
+    }
+    .about-body p:first-child { font-size: 1.15rem; color: var(--ink); }
+
+    .about-sidebar {}
+    .sidebar-block {
+      border-top: 2px solid var(--ink);
+      padding-top: 1rem;
+      margin-bottom: 2rem;
+    }
+    .sidebar-block h4 {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .sidebar-block ul { list-style: none; }
+    .sidebar-block li {
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--rule-light);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .sidebar-block li::before {
+      content: '▸';
+      color: var(--accent);
+      font-size: 0.6rem;
+    }
+
+    /* ── PROJECTS ── */
+    .projects-intro {
+      font-size: 1.05rem;
+      color: var(--ink-mid);
+      font-style: italic;
+      max-width: 680px;
+      margin-bottom: 3rem;
+      padding-left: 1.5rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border: 1px solid var(--rule);
+    }
+    .project-card {
+      padding: 2rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      position: relative;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .project-card:nth-child(3n) { border-right: none; }
+    .project-card:hover { background: var(--accent-faint); }
+
+    .project-tool {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--accent);
+      display: inline-block;
+      padding: 0.2rem 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .project-card h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.75rem;
+    }
+    .project-card p {
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      line-height: 1.6;
+      margin-bottom: 1.25rem;
+    }
+    .project-status {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .project-status.coming::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ink-faint);
+      display: inline-block;
+    }
+    .project-status.live::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+    .project-link {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+    }
+    .project-link:hover { color: var(--accent-light); }
+
+    /* ── WRITING ── */
+    .writing-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 4rem;
+    }
+    .writing-main {}
+    .writing-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 1.5rem;
+      padding: 2rem 0;
+      border-bottom: 1px solid var(--rule-light);
+      align-items: start;
+    }
+    .writing-num {
+      font-family: var(--serif);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--rule);
+      line-height: 1;
+      min-width: 2.5rem;
+    }
+    .writing-content h3 {
+      font-family: var(--serif);
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+    .writing-content h3 a {
+      color: var(--ink);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .writing-content h3 a:hover { border-color: var(--accent); color: var(--accent); }
+    .writing-meta {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 0.5rem;
+    }
+    .writing-excerpt {
+      font-size: 0.92rem;
+      color: var(--ink-mid);
+      line-height: 1.6;
+    }
+
+    .writing-sidebar {}
+    .substack-cta {
+      background: var(--accent);
+      padding: 2rem;
+      color: white;
+    }
+    .substack-cta h4 {
+      font-family: var(--serif);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      color: white;
+    }
+    .substack-cta p {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      opacity: 0.88;
+      margin-bottom: 1.5rem;
+    }
+    .substack-cta a {
+      display: inline-block;
+      background: white;
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.6rem 1.2rem;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.2s;
+    }
+    .substack-cta a:hover { background: var(--paper-warm); }
+
+    /* ── RESUME ── */
+    .resume-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .resume-col {}
+    .resume-block { margin-bottom: 2.5rem; }
+    .resume-block-title {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .resume-entry { margin-bottom: 1.5rem; }
+    .resume-entry-title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.15rem;
+    }
+    .resume-entry-org {
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      margin-bottom: 0.1rem;
+    }
+    .resume-entry-date {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      color: var(--ink-faint);
+      margin-bottom: 0.5rem;
+    }
+    .resume-entry ul {
+      padding-left: 1rem;
+      font-size: 0.88rem;
+      color: var(--ink-mid);
+      line-height: 1.65;
+    }
+    .resume-entry li { margin-bottom: 0.3rem; }
+
+    .skills-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--rule);
+      padding: 0.3rem 0.7rem;
+      color: var(--ink-mid);
+    }
+    .skill-tag.primary {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-faint);
+    }
+
+    .resume-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--ink);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      margin-top: 2rem;
+      transition: background 0.2s;
+    }
+    .resume-download:hover { background: var(--accent); }
+    .resume-download svg { width: 14px; height: 14px; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: var(--paper-warm);
+      padding: 3rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid #333;
+      margin-bottom: 1.5rem;
+    }
+    .footer-brand h3 {
+      font-family: var(--serif);
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 0.5rem;
+    }
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: #888;
+      line-height: 1.6;
+    }
+    .footer-col h4 {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 0.5rem; }
+    .footer-col a {
+      font-size: 0.88rem;
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-col a:hover { color: white; }
+    .footer-bottom {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-bottom p {
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.1em;
+      color: #555;
+    }
+
+    /* ── DIVIDER RULE ── */
+    .rule-ornament {
+      text-align: center;
+      color: var(--rule);
+      font-size: 1rem;
+      letter-spacing: 0.5rem;
+      margin: 3rem 0;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero h1 { animation: fadeUp 0.7s ease both; }
+    .hero-sub { animation: fadeUp 0.7s 0.15s ease both; }
+    .hero-meta { animation: fadeUp 0.7s 0.3s ease both; }
+    .hero-photo-wrap { animation: fadeUp 0.7s 0.1s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-photo-wrap { max-width: 280px; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card { border-right: none; }
+      .writing-grid { grid-template-columns: 1fr; }
+      .resume-layout { grid-template-columns: 1fr; }
+      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { gap: 1rem; }
+    }
+  </style>
+</head>
 <body>
 
-<div class="container">
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="#">Andy <span>Setser</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#writing">Writing</a></li>
+      <li><a href="#resume">Résumé</a></li>
+      <li><a href="mailto:andysetser@icloud.com">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <!-- HERO -->
-  <header>
-    <h1>Andy Setser</h1>
-
-    <p class="subtitle">Economics & Data Analyst</p>
-
-    <p class="tagline">
-      Turning messy economic data into structured analysis.
-    </p>
-
-    <p>
-      I study housing markets, labor productivity, and macroeconomic trends using FRED, BEA, and Census data.
-    </p>
-
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#work">Data Work</a>
-      <a href="#writing">Writing</a>
-      <a href="resume.pdf">Resume</a>
-    </nav>
-  </header>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About</h2>
-    <div class="card">
-      <p>
-        I focus on empirical economic analysis of housing affordability, wage dynamics,
-        and long-run structural changes in the U.S. economy.
-      </p>
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-kicker">Economic Development · Data Analysis · Applied Research</p>
+      <h1>Andy<br>Setser</h1>
+      <p class="hero-sub">Economist and data analyst working at the intersection of regional economic development, applied statistics, and public policy — based in the San Luis Valley, Colorado.</p>
+      <div class="hero-meta">
+        <a href="#projects">View Projects</a>
+        <a href="#writing">Read Writing</a>
+        <a href="https://substack.com/@andysetser" target="_blank">Substack ↗</a>
+        <a href="#resume">Download Résumé</a>
+      </div>
     </div>
-  </section>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo" src="IMG_2247.jpeg" alt="Andy Setser in the Colorado mountains" />
+      <p class="hero-caption">San Luis Valley, Colorado</p>
+    </div>
+  </div>
+</header>
 
-  <!-- SKILLS -->
-  <section id="skills">
-    <h2>Skills</h2>
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">§ 01</span>
+      <h2 class="section-title">About</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-body">
+        <p>I'm an economics graduate and data analyst currently working as a REDI Economic Development Analyst in Colorado's San Luis Valley — one of the most economically complex rural regions in the American West. My work sits at the boundary of applied research and policy, where good data analysis can genuinely improve people's lives.</p>
+        <p>My academic background is unconventional in the best way: I competed as an NCAA Division II cross country and track athlete at Adams State University while earning a BS in Business Economics and an MBA in Finance, both <em>Summa Cum Laude</em>. Managing 20+ hours of training weekly alongside a 4.0 GPA taught me something no classroom can — sustained performance under pressure.</p>
+        <p>My long-term goal is to work as an economist and data analyst — bringing rigorous quantitative methods to the economic policy questions that matter most: regional inequality, labor market dynamics, rural development, and climate economics. I'm building that toolkit now through work in Excel, R, Tableau, SQL, and Stata, with SAS training underway.</p>
+        <p>When I'm not working with data, I'm writing about economics and policy on Substack, exploring the mountains outside Alamosa, and thinking about what it would take to make the San Luis Valley thrive economically for the next generation.</p>
+      </div>
+      <div class="about-sidebar">
+        <div class="sidebar-block">
+          <h4>Education</h4>
+          <ul>
+            <li>MBA, Finance — Adams State (4.00)</li>
+            <li>BS, Business Economics — Adams State (3.98)</li>
+            <li>AA, Economics — Trinidad State (4.00)</li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h4>Core Tools</h4>
+          <ul>
+            <li>R · ggplot2 · tidyverse · dplyr</li>
+            <li>Excel · Power Query · PivotTables</li>
+            <li>Tableau · Data Visualization</li>
+            <li>SQL · Stata · SAS (in progress)</li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h4>Focus Areas</h4>
+          <ul>
+            <li>Regional Economic Development</li>
+            <li>Labor Force & Demographic Analysis</li>
+            <li>Policy Research & Reporting</li>
+            <li>Economic Inequality</li>
+            <li>Climate Economics</li>
+          </ul>
+        </div>
+        <div class="sidebar-block">
+          <h4>Honors</h4>
+          <ul>
+            <li>Summa Cum Laude — 3 institutions</li>
+            <li>Presidential Scholarship, Adams State</li>
+            <li>George Scott Award, Trinidad State</li>
+            <li>NCAA DII Athlete (2019–2025)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <div class="card">
-      <h3>Programming & Tools</h3>
-      <p>R · Python · SQL · Excel · GitHub</p>
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--paper-warm);">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">§ 02</span>
+      <h2 class="section-title">Data Projects</h2>
+    </div>
+    <p class="projects-intro">A growing collection of applied data analysis projects using R, Excel, and Tableau — focused on economic development, regional labor markets, and public policy. Projects link to GitHub repositories and live dashboards as they are completed.</p>
+
+    <div class="projects-grid">
+
+      <!-- R Projects -->
+      <div class="project-card">
+        <span class="project-tool">R</span>
+        <h3>San Luis Valley Labor Force Analysis</h3>
+        <p>County-level labor force participation analysis using U.S. Census Bureau microdata and ACS datasets. Includes tidyverse data wrangling and ggplot2 visualizations of employment trends across the six-county district.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tool">R</span>
+        <h3>Regional Housing Cost Burden Study</h3>
+        <p>Analysis of housing affordability across rural Colorado using HUD and ACS data. Regression modeling of cost burden against income levels, with geographic visualizations highlighting disparity across census tracts.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tool">R</span>
+        <h3>Economic Inequality Trends: A Colorado Case Study</h3>
+        <p>Time-series analysis of income inequality measures (Gini coefficient, income quintiles) across Colorado's rural and urban counties. Draws on academic work in climate and distributional economics.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <!-- Excel Projects -->
+      <div class="project-card">
+        <span class="project-tool">Excel</span>
+        <h3>CEDS Budget Reconciliation Model</h3>
+        <p>Multi-sheet grant budget model built for the Comprehensive Economic Development Strategy. Features Power Query data pulls, variance tracking, and compliance reporting dashboards used by state agency reviewers.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tool">Excel</span>
+        <h3>Enterprise Zone Economic Indicator Dashboard</h3>
+        <p>Annual reporting workbook synthesizing Enterprise Zone activity data, employment metrics, and tax credit usage into a clean, stakeholder-ready format for the Colorado Office of Economic Development.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tool">Excel</span>
+        <h3>Healthcare Revenue Pattern Analysis</h3>
+        <p>Financial analysis of billing datasets from a community health center. Applies statistical techniques to surface revenue cycle patterns and identify variance between budgeted and actual collections.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <!-- Tableau Projects -->
+      <div class="project-card">
+        <span class="project-tool">Tableau</span>
+        <h3>SLV Demographic Dashboard</h3>
+        <p>Interactive Tableau dashboard mapping population, age distribution, and migration patterns across the six-county San Luis Valley using ACS 5-year estimates. Built for regional planning committee presentations.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tool">Tableau</span>
+        <h3>Rural Colorado Economic Vitality Index</h3>
+        <p>Composite index visualization comparing economic vitality metrics — unemployment, poverty rate, median income, educational attainment — across Colorado's rural counties. Interactive filters by year and county.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tool">Tableau</span>
+        <h3>Grant Funding Flows: San Luis Valley</h3>
+        <p>Sankey and geographic visualization of federal and state grant funding flowing into the San Luis Valley, tracing sources (DOLA, EDA, USDA) through administering organizations to end programs.</p>
+        <p class="project-status coming">Coming Soon — In Development</p>
+      </div>
+
     </div>
 
-    <div class="card">
-      <h3>Econometrics</h3>
-      <p>Regression Analysis · Time Series · Forecasting · Data Cleaning</p>
+    <div class="rule-ornament">— ◆ —</div>
+    <p style="font-size:0.88rem; color:var(--ink-faint); font-style:italic; text-align:center;">Projects will link to GitHub repositories and live dashboards as they are published. Each project includes full methodology notes, data sources, and reproducible code.</p>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section id="writing">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">§ 03</span>
+      <h2 class="section-title">Writing</h2>
+    </div>
+    <div class="writing-grid">
+      <div class="writing-main">
+
+        <div class="writing-item">
+          <div class="writing-num">01</div>
+          <div class="writing-content">
+            <p class="writing-meta">Substack · Economics & Policy</p>
+            <h3><a href="https://substack.com/@andysetser" target="_blank">The Setser Letter</a></h3>
+            <p class="writing-excerpt">Writing on economic development, regional inequality, labor markets, and the political economy of rural America — with an eye toward data-driven policy. Published on Substack.</p>
+          </div>
+        </div>
+
+        <div class="writing-item">
+          <div class="writing-num">02</div>
+          <div class="writing-content">
+            <p class="writing-meta">Academic Paper · Economics</p>
+            <h3><a href="AndySetser_Paper.pdf" target="_blank">Academic Research Paper ↗</a></h3>
+            <p class="writing-excerpt">Recognized for excellence in economic writing and applied research. Topics include economic inequality, climate economics, and cost-benefit analysis methodology.</p>
+          </div>
+        </div>
+
+        <div class="writing-item">
+          <div class="writing-num">03</div>
+          <div class="writing-content">
+            <p class="writing-meta">Policy Writing · Regional Development</p>
+            <h3>CEDS Narrative Reports</h3>
+            <p class="writing-excerpt">Author of the annual Enterprise Zone narrative report for the San Luis Valley — independently synthesizing economic indicators, program activity, and compliance data into a complete analytical deliverable reviewed by state agencies.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="writing-sidebar">
+        <div class="substack-cta">
+          <h4>Read on Substack</h4>
+          <p>Essays on economics, regional development, and the data behind policy decisions that shape rural communities.</p>
+          <a href="https://substack.com/@andysetser" target="_blank">Subscribe →</a>
+        </div>
+
+        <div style="margin-top:2rem; padding:1.5rem; border:1px solid var(--rule);">
+          <h4 style="font-family:var(--mono); font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem;">Topics I Write About</h4>
+          <div class="skills-tags">
+            <span class="skill-tag primary">Regional Economics</span>
+            <span class="skill-tag primary">Rural Policy</span>
+            <span class="skill-tag">Labor Markets</span>
+            <span class="skill-tag">Climate Economics</span>
+            <span class="skill-tag">Income Inequality</span>
+            <span class="skill-tag">Economic Development</span>
+            <span class="skill-tag">Data Literacy</span>
+            <span class="skill-tag">Applied Statistics</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESUME -->
+<section id="resume" style="background:var(--paper-warm);">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">§ 04</span>
+      <h2 class="section-title">Résumé</h2>
     </div>
 
-    <div class="card">
-      <h3>Data Sources</h3>
-      <p>FRED · BEA · U.S. Census · BLS</p>
+    <div class="resume-layout">
+      <div class="resume-col">
+
+        <div class="resume-block">
+          <p class="resume-block-title">Experience</p>
+
+          <div class="resume-entry">
+            <div class="resume-entry-title">REDI Economic Development Analyst</div>
+            <div class="resume-entry-org">San Luis Valley Development Resource Group · Contractor</div>
+            <div class="resume-entry-date">Dec 2025 – Dec 2026 · Alamosa, CO</div>
+            <ul>
+              <li>Lead county-level labor force, housing, and demographic analyses using ACS and Census microdata for policy-facing reports delivered to regional and federal stakeholders.</li>
+              <li>Author annual Enterprise Zone narrative report synthesizing economic indicators, program activity, and compliance data for state agency review.</li>
+              <li>Lead data cleaning and economic analysis for the Comprehensive Economic Development Strategy (CEDS), a federally recognized five-year planning document.</li>
+              <li>Manage grant budget development and compliance reporting across DOLA, El Pomar Foundation, and CHFA funding streams.</li>
+            </ul>
+          </div>
+
+          <div class="resume-entry">
+            <div class="resume-entry-title">Data Analysis Apprenticeship</div>
+            <div class="resume-entry-org">Valley Wide Health · Unpaid</div>
+            <div class="resume-entry-date">Feb 2025 – Aug 2025 · Remote</div>
+            <ul>
+              <li>Conducted financial data collection and analysis on healthcare billing datasets, identifying revenue patterns for leadership reporting.</li>
+              <li>Produced structured monthly variance reports under professional standards with full accuracy and reproducibility review.</li>
+            </ul>
+          </div>
+
+          <div class="resume-entry">
+            <div class="resume-entry-title">Sangre de Cristo NHA Steward</div>
+            <div class="resume-entry-org">AmeriCorps Conservation Legacy</div>
+            <div class="resume-entry-date">Apr 2025 – Jul 2025 · Alamosa, CO</div>
+            <ul>
+              <li>Collected and structured datasets on historical, environmental, and economic records for stakeholder presentation to History Colorado.</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="resume-col">
+
+        <div class="resume-block">
+          <p class="resume-block-title">Education</p>
+          <div class="resume-entry">
+            <div class="resume-entry-title">MBA, Finance — Summa Cum Laude</div>
+            <div class="resume-entry-org">Adams State University</div>
+            <div class="resume-entry-date">Conferred May 2025 · GPA 4.00</div>
+          </div>
+          <div class="resume-entry">
+            <div class="resume-entry-title">BS, Business Administration, Economics — Summa Cum Laude</div>
+            <div class="resume-entry-org">Adams State University</div>
+            <div class="resume-entry-date">Conferred May 2024 · GPA 3.98</div>
+          </div>
+          <div class="resume-entry">
+            <div class="resume-entry-title">AA, Economics — Summa Cum Laude</div>
+            <div class="resume-entry-org">Trinidad State Junior College</div>
+            <div class="resume-entry-date">Conferred May 2021 · GPA 4.00</div>
+          </div>
+        </div>
+
+        <div class="resume-block">
+          <p class="resume-block-title">Technical Skills</p>
+          <div class="skills-tags" style="margin-bottom:1rem;">
+            <span class="skill-tag primary">R</span>
+            <span class="skill-tag primary">Excel</span>
+            <span class="skill-tag primary">Tableau</span>
+            <span class="skill-tag primary">SQL</span>
+            <span class="skill-tag">Stata</span>
+            <span class="skill-tag">SAS (in progress)</span>
+            <span class="skill-tag">ggplot2</span>
+            <span class="skill-tag">tidyverse</span>
+            <span class="skill-tag">Power Query</span>
+            <span class="skill-tag">Regression Analysis</span>
+            <span class="skill-tag">Survey Design</span>
+            <span class="skill-tag">Grant Compliance</span>
+          </div>
+        </div>
+
+        <div class="resume-block">
+          <p class="resume-block-title">Honors & Accomplishments</p>
+          <ul style="list-style:none; font-size:0.9rem; color:var(--ink-mid); line-height:1.8;">
+            <li>▸ Summa Cum Laude across three institutions</li>
+            <li>▸ Superior Academic Achievement — GS-7 qualification</li>
+            <li>▸ Presidential Scholarship, Adams State University</li>
+            <li>▸ George Scott Award, Trinidad State</li>
+            <li>▸ NCAA Division II Athlete, Cross Country & Track (2019–2025)</li>
+          </ul>
+        </div>
+
+        <a class="resume-download" href="AndySetser_Resume_.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Download Full Résumé (PDF)
+        </a>
+
+      </div>
     </div>
+  </div>
+</section>
 
-  </section>
-
-  <!-- DATA WORK -->
-  <section id="work">
-    <h2>Data Work</h2>
-
-    <div class="card">
-      <h3>Housing Affordability Crisis</h3>
-      <p>
-        Constructed price-to-income ratio showing long-run divergence in housing affordability.
-      </p>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <h3>Andy Setser</h3>
+      <p>Economic Development Analyst · Alamosa, Colorado<br>Aspiring Economist & Data Analyst</p>
     </div>
-
-    <div class="card">
-      <h3>Housing Regression Model</h3>
-      <p>
-        OLS model estimating relationship between home prices, income, and mortgage rates using FRED data.
-      </p>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#writing">Writing</a></li>
+        <li><a href="#resume">Résumé</a></li>
+      </ul>
     </div>
-
-    <div class="card">
-      <h3>Labor Productivity (1947–2025)</h3>
-      <p>
-        Measured GDP per hour worked using BEA and BLS labor data.
-      </p>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <ul>
+        <li><a href="mailto:andysetser@icloud.com">andysetser@icloud.com</a></li>
+        <li><a href="https://substack.com/@andysetser" target="_blank">Substack</a></li>
+        <li><a href="https://github.com/AndySetser" target="_blank">GitHub</a></li>
+        <li><a href="tel:3168339942">316-833-9942</a></li>
+      </ul>
     </div>
-
-    <div class="card">
-      <h3>Inflation vs Housing Prices</h3>
-      <p>
-        Compared CPI inflation to home price growth to evaluate real affordability pressure.
-      </p>
-    </div>
-
-  </section>
-
-  <!-- WRITING -->
-  <section id="writing">
-    <h2>Writing</h2>
-
-    <div class="card">
-      <h3>Substack</h3>
-      <p>
-        Essays on housing markets, macroeconomics, and structural economic change.
-      </p>
-
-      <a href="YOUR_SUBSTACK_LINK_HERE" target="_blank">
-        Read writing →
-      </a>
-    </div>
-
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <p>© 2026 Andy Setser</p>
-  </footer>
-
-</div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 Andy Setser · AndySetser.github.io</p>
+    <p>Built with HTML · Hosted on GitHub Pages</p>
+  </div>
+</footer>
 
 </body>
 </html>
