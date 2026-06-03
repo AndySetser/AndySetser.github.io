@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: Georgia, serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  line-height: 1.75;
+}
+
+.container {
+  max-width: 860px;
+  margin: 60px auto;
+  padding: 0 22px;
+}
+
+/* HERO */
+h1 {
+  font-size: 48px;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.tagline {
+  color: #2f6b4f;
+  font-style: italic;
+}
+
+/* NAV */
+nav {
+  margin-top: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+nav a {
+  margin-right: 16px;
+  text-decoration: none;
+  color: #1f5e3f;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* SECTION DIVIDERS (THIS IS THE KEY) */
+section {
+  padding: 60px 0;
+  border-top: 1px solid #e6e6e6;
+}
+
+/* HEADERS */
+h2 {
+  font-size: 20px;
+  font-family: Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-left: 4px solid #2f6b4f;
+  padding-left: 10px;
+  margin-bottom: 20px;
+}
+
+/* CARDS */
+.card {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #e3e3e3;
+  border-radius: 10px;
+  background: #fafafa;
+}
+
+/* LINKS */
+a {
+  color: #1f5e3f;
+}
+
+a:hover {
+  color: #145033;
+}
+
+/* FOOTER */
+footer {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid #ddd;
+  font-size: 13px;
+  color: #777;
+}
