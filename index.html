@@ -10,52 +10,52 @@
 
 <div class="container">
 
-  <!-- HERO SECTION -->
+  <!-- HERO -->
   <header>
     <h1>Andy Setser</h1>
 
-    <p class="subtitle">
-      Economics & Data Analyst
-    </p>
+    <p class="subtitle">Economics & Data Analyst</p>
 
     <p class="tagline">
-      Turning messy economic data into clear stories.
+      Turning messy economic data into structured analysis.
     </p>
 
     <p>
-      I analyze housing markets, labor productivity, and macroeconomic trends using
-      FRED, BEA, and Census data.
+      I study housing markets, labor productivity, and macroeconomic trends using FRED, BEA, and Census data.
     </p>
 
     <nav>
-      <a href="index.html">Home</a>
-      <a href="projects.html">Data Work</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#work">Data Work</a>
+      <a href="#writing">Writing</a>
       <a href="resume.pdf">Resume</a>
-      <a href="YOUR_SUBSTACK_LINK_HERE" target="_blank">Substack</a>
     </nav>
   </header>
 
   <!-- ABOUT -->
-  <section>
+  <section id="about">
     <h2>About</h2>
-    <p>
-      I build empirical models using public economic datasets to understand long-run structural changes in the U.S. economy.
-      My work focuses on housing affordability, wage dynamics, and productivity measurement.
-    </p>
+    <div class="card">
+      <p>
+        I focus on empirical economic analysis of housing affordability, wage dynamics,
+        and long-run structural changes in the U.S. economy.
+      </p>
+    </div>
   </section>
 
   <!-- SKILLS -->
-  <section>
+  <section id="skills">
     <h2>Skills</h2>
 
     <div class="card">
-      <h3>Languages</h3>
-      <p>SQL · Python · R</p>
+      <h3>Programming & Tools</h3>
+      <p>R · Python · SQL · Excel · GitHub</p>
     </div>
 
     <div class="card">
-      <h3>Econometric Tools</h3>
-      <p>Regression Analysis · Time Series · Forecasting</p>
+      <h3>Econometrics</h3>
+      <p>Regression Analysis · Time Series · Forecasting · Data Cleaning</p>
     </div>
 
     <div class="card">
@@ -65,44 +65,61 @@
 
   </section>
 
-  <!-- SELECTED WORK -->
-  <section>
-    <h2>Selected Work</h2>
+  <!-- DATA WORK -->
+  <section id="work">
+    <h2>Data Work</h2>
 
     <div class="card">
       <h3>Housing Affordability Crisis</h3>
       <p>
-        Built a price-to-income framework showing long-run divergence between wages and home prices in the U.S.
+        Constructed price-to-income ratio showing long-run divergence in housing affordability.
       </p>
     </div>
 
     <div class="card">
-      <h3>Labor Productivity (GDP per Hour Worked)</h3>
+      <h3>Housing Regression Model</h3>
       <p>
-        Measured output per labor hour using BEA GDP and BLS hours worked data (1947–2025).
+        OLS model estimating relationship between home prices, income, and mortgage rates using FRED data.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Labor Productivity (1947–2025)</h3>
+      <p>
+        Measured GDP per hour worked using BEA and BLS labor data.
       </p>
     </div>
 
     <div class="card">
       <h3>Inflation vs Housing Prices</h3>
       <p>
-        Compared CPI inflation to median home price growth to evaluate real affordability pressure over time.
+        Compared CPI inflation to home price growth to evaluate real affordability pressure.
       </p>
     </div>
 
   </section>
 
   <!-- WRITING -->
-  <section>
+  <section id="writing">
     <h2>Writing</h2>
-    <p>
-      I publish essays on housing markets, macroeconomics, and data analysis on my Substack.
-    </p>
 
-    <a href="YOUR_SUBSTACK_LINK_HERE" target="_blank">
-      Read my Substack →
-    </a>
+    <div class="card">
+      <h3>Substack</h3>
+      <p>
+        Essays on housing markets, macroeconomics, and structural economic change.
+      </p>
+
+      <a href="YOUR_SUBSTACK_LINK_HERE" target="_blank">
+        Read writing →
+      </a>
+    </div>
+
   </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Andy Setser</p>
+  </footer>
 
 </div>
 
