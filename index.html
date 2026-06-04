@@ -23,11 +23,11 @@
       --body: 'Source Serif 4', Georgia, serif;
       --mono: 'Space Mono', monospace;
     }
-
+ 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
     html { scroll-behavior: smooth; }
-
+ 
     body {
       background: var(--paper);
       color: var(--ink);
@@ -36,7 +36,7 @@
       line-height: 1.7;
       -webkit-font-smoothing: antialiased;
     }
-
+ 
     /* ── NAV ── */
     nav {
       position: sticky;
@@ -78,7 +78,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--accent); }
-
+ 
     /* ── HERO ── */
     .hero {
       border-bottom: 1px solid var(--rule);
@@ -144,7 +144,7 @@
       transition: color 0.2s, border-color 0.2s;
     }
     .hero-meta a:hover { color: var(--accent); border-color: var(--accent); }
-
+ 
     .hero-photo-wrap {
       position: relative;
     }
@@ -173,11 +173,11 @@
       margin-top: 0.6rem;
       text-align: right;
     }
-
+ 
     /* ── SECTION WRAPPER ── */
     section { padding: 5rem 2rem; border-bottom: 1px solid var(--rule); }
     .section-inner { max-width: 1200px; margin: 0 auto; }
-
+ 
     .section-header {
       display: flex;
       align-items: baseline;
@@ -199,7 +199,7 @@
       font-weight: 700;
       letter-spacing: -0.01em;
     }
-
+ 
     /* ── ABOUT ── */
     .about-grid {
       display: grid;
@@ -212,7 +212,7 @@
       font-size: 1.05rem;
     }
     .about-body p:first-child { font-size: 1.15rem; color: var(--ink); }
-
+ 
     .about-sidebar {}
     .sidebar-block {
       border-top: 2px solid var(--ink);
@@ -242,7 +242,7 @@
       color: var(--accent);
       font-size: 0.6rem;
     }
-
+ 
     /* ── PROJECTS ── */
     .projects-intro {
       font-size: 1.05rem;
@@ -253,7 +253,7 @@
       padding-left: 1.5rem;
       border-left: 3px solid var(--accent);
     }
-
+ 
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -270,7 +270,7 @@
     }
     .project-card:nth-child(3n) { border-right: none; }
     .project-card:hover { background: var(--accent-faint); }
-
+ 
     .project-tool {
       font-family: var(--mono);
       font-size: 0.58rem;
@@ -329,7 +329,7 @@
       border-bottom: 1px solid var(--accent);
     }
     .project-link:hover { color: var(--accent-light); }
-
+ 
     /* ── WRITING ── */
     .writing-grid {
       display: grid;
@@ -380,7 +380,7 @@
       color: var(--ink-mid);
       line-height: 1.6;
     }
-
+ 
     .writing-sidebar {}
     .substack-cta {
       background: var(--accent);
@@ -414,7 +414,7 @@
       transition: background 0.2s;
     }
     .substack-cta a:hover { background: var(--paper-warm); }
-
+ 
     /* ── RESUME ── */
     .resume-layout {
       display: grid;
@@ -459,7 +459,7 @@
       line-height: 1.65;
     }
     .resume-entry li { margin-bottom: 0.3rem; }
-
+ 
     .skills-tags {
       display: flex;
       flex-wrap: wrap;
@@ -478,7 +478,7 @@
       color: var(--accent);
       background: var(--accent-faint);
     }
-
+ 
     .resume-download {
       display: inline-flex;
       align-items: center;
@@ -496,7 +496,7 @@
     }
     .resume-download:hover { background: var(--accent); }
     .resume-download svg { width: 14px; height: 14px; }
-
+ 
     /* ── FOOTER ── */
     footer {
       background: var(--ink);
@@ -555,7 +555,7 @@
       letter-spacing: 0.1em;
       color: #555;
     }
-
+ 
     /* ── DIVIDER RULE ── */
     .rule-ornament {
       text-align: center;
@@ -564,7 +564,7 @@
       letter-spacing: 0.5rem;
       margin: 3rem 0;
     }
-
+ 
     /* ── ANIMATIONS ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -574,7 +574,7 @@
     .hero-sub { animation: fadeUp 0.7s 0.15s ease both; }
     .hero-meta { animation: fadeUp 0.7s 0.3s ease both; }
     .hero-photo-wrap { animation: fadeUp 0.7s 0.1s ease both; }
-
+ 
     /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
@@ -590,7 +590,7 @@
   </style>
 </head>
 <body>
-
+ 
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
@@ -604,7 +604,7 @@
     </ul>
   </div>
 </nav>
-
+ 
 <!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
@@ -620,12 +620,12 @@
       </div>
     </div>
     <div class="hero-photo-wrap">
-      <img class="hero-photo" src="IMG_2247.jpeg" alt="Andy Setser in the Colorado mountains" />
+      <img class="hero-photo" src="preview.webp" alt="Andy Setser in the Colorado mountains" />
       <p class="hero-caption">San Luis Valley, Colorado</p>
     </div>
   </div>
 </header>
-
+ 
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
@@ -635,10 +635,11 @@
     </div>
     <div class="about-grid">
       <div class="about-body">
-        <p>I'm an economics graduate and data analyst currently working as a REDI Economic Development Analyst in Colorado's San Luis Valley — one of the most economically complex rural regions in the American West. My work sits at the boundary of applied research and policy, where good data analysis can genuinely improve people's lives.</p>
+        <p>I'm an economics graduate working as a REDI Economic Development Analyst in Colorado's San Luis Valley — one of the most economically complex rural regions in the American West. My work is fundamentally about connection: identifying where regional organizations lack capacity and bridging them to the resources that can help.</p>
+        <p>Day to day, that means conducting structured outreach to Economic Development Organizations and Chambers of Commerce across a six-county district — listening for where their capacity is strained, processing what I hear into qualitative and quantitative gap analyses, and reporting findings to state and organizational stakeholders who can direct resources to fill those gaps. I act as a middleman between where things lack and where help exists.</p>
+        <p>Alongside that outreach work, I contribute to larger regional planning efforts — including action plan sections of the Comprehensive Economic Development Strategy (CEDS), retail data analysis, and authoring Enterprise Zone and EDA reports for the San Luis Valley. These projects let me apply the data skills I'm building toward real policy questions.</p>
         <p>My academic background is unconventional in the best way: I competed as an NCAA Division II cross country and track athlete at Adams State University while earning a BS in Business Economics and an MBA in Finance, both <em>Summa Cum Laude</em>. Managing 20+ hours of training weekly alongside a 4.0 GPA taught me something no classroom can — sustained performance under pressure.</p>
-        <p>My long-term goal is to work as an economist and data analyst — bringing rigorous quantitative methods to the economic policy questions that matter most: regional inequality, labor market dynamics, rural development, and climate economics. I'm building that toolkit now through work in Excel, R, Tableau, SQL, and Stata, with SAS training underway.</p>
-        <p>When I'm not working with data, I'm writing about economics and policy on Substack, exploring the mountains outside Alamosa, and thinking about what it would take to make the San Luis Valley thrive economically for the next generation.</p>
+        <p>My long-term goal is to work as an economist and data analyst, bringing rigorous quantitative methods to the economic policy questions that matter most: regional inequality, labor market dynamics, rural development, and climate economics. I'm building that toolkit in R and Excel now, with SQL, Stata, and SAS underway through DataCamp.</p>
       </div>
       <div class="about-sidebar">
         <div class="sidebar-block">
@@ -655,7 +656,7 @@
             <li>R · ggplot2 · tidyverse · dplyr</li>
             <li>Excel · Power Query · PivotTables</li>
             <li>Tableau · Data Visualization</li>
-            <li>SQL · Stata · SAS (in progress)</li>
+            <li>SQL · Stata · SAS — actively learning via DataCamp</li>
           </ul>
         </div>
         <div class="sidebar-block">
@@ -681,7 +682,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- PROJECTS -->
 <section id="projects" style="background: var(--paper-warm);">
   <div class="section-inner">
@@ -690,9 +691,9 @@
       <h2 class="section-title">Data Projects</h2>
     </div>
     <p class="projects-intro">A growing collection of applied data analysis projects using R, Excel, and Tableau — focused on economic development, regional labor markets, and public policy. Projects link to GitHub repositories and live dashboards as they are completed.</p>
-
+ 
     <div class="projects-grid">
-
+ 
       <!-- R Projects -->
       <div class="project-card">
         <span class="project-tool">R</span>
@@ -700,43 +701,45 @@
         <p>County-level labor force participation analysis using U.S. Census Bureau microdata and ACS datasets. Includes tidyverse data wrangling and ggplot2 visualizations of employment trends across the six-county district.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
       <div class="project-card">
         <span class="project-tool">R</span>
         <h3>Regional Housing Cost Burden Study</h3>
         <p>Analysis of housing affordability across rural Colorado using HUD and ACS data. Regression modeling of cost burden against income levels, with geographic visualizations highlighting disparity across census tracts.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
       <div class="project-card">
         <span class="project-tool">R</span>
         <h3>Economic Inequality Trends: A Colorado Case Study</h3>
         <p>Time-series analysis of income inequality measures (Gini coefficient, income quintiles) across Colorado's rural and urban counties. Draws on academic work in climate and distributional economics.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
       <!-- Excel Projects -->
       <div class="project-card">
         <span class="project-tool">Excel</span>
-        <h3>CEDS Budget Reconciliation Model</h3>
-        <p>Multi-sheet grant budget model built for the Comprehensive Economic Development Strategy. Features Power Query data pulls, variance tracking, and compliance reporting dashboards used by state agency reviewers.</p>
-        <p class="project-status coming">Coming Soon — In Development</p>
+        <h3>U.S. Housing Affordability &amp; Macroeconomic Pressure, 1985–2024</h3>
+        <p>Indexed analysis of home prices, income, inflation, and mortgage rates over 40 years. Constructs a Price-to-Income Ratio, Real Housing Index, and Affordability Gap Index to test the hypothesis that housing has structurally decoupled from income.</p>
+        <p class="project-status live">Live — View Project</p>
+        <br>
+        <a class="project-link" href="housing-affordability.html">Read Analysis →</a>
       </div>
-
+ 
       <div class="project-card">
         <span class="project-tool">Excel</span>
         <h3>Enterprise Zone Economic Indicator Dashboard</h3>
         <p>Annual reporting workbook synthesizing Enterprise Zone activity data, employment metrics, and tax credit usage into a clean, stakeholder-ready format for the Colorado Office of Economic Development.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
       <div class="project-card">
         <span class="project-tool">Excel</span>
         <h3>Healthcare Revenue Pattern Analysis</h3>
         <p>Financial analysis of billing datasets from a community health center. Applies statistical techniques to surface revenue cycle patterns and identify variance between budgeted and actual collections.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
       <!-- Tableau Projects -->
       <div class="project-card">
         <span class="project-tool">Tableau</span>
@@ -744,28 +747,28 @@
         <p>Interactive Tableau dashboard mapping population, age distribution, and migration patterns across the six-county San Luis Valley using ACS 5-year estimates. Built for regional planning committee presentations.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
       <div class="project-card">
         <span class="project-tool">Tableau</span>
         <h3>Rural Colorado Economic Vitality Index</h3>
         <p>Composite index visualization comparing economic vitality metrics — unemployment, poverty rate, median income, educational attainment — across Colorado's rural counties. Interactive filters by year and county.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
       <div class="project-card">
         <span class="project-tool">Tableau</span>
         <h3>Grant Funding Flows: San Luis Valley</h3>
         <p>Sankey and geographic visualization of federal and state grant funding flowing into the San Luis Valley, tracing sources (DOLA, EDA, USDA) through administering organizations to end programs.</p>
         <p class="project-status coming">Coming Soon — In Development</p>
       </div>
-
+ 
     </div>
-
+ 
     <div class="rule-ornament">— ◆ —</div>
     <p style="font-size:0.88rem; color:var(--ink-faint); font-style:italic; text-align:center;">Projects will link to GitHub repositories and live dashboards as they are published. Each project includes full methodology notes, data sources, and reproducible code.</p>
   </div>
 </section>
-
+ 
 <!-- WRITING -->
 <section id="writing">
   <div class="section-inner">
@@ -775,16 +778,16 @@
     </div>
     <div class="writing-grid">
       <div class="writing-main">
-
+ 
         <div class="writing-item">
           <div class="writing-num">01</div>
           <div class="writing-content">
             <p class="writing-meta">Substack · Economics & Policy</p>
-            <h3><a href="https://substack.com/@andysetser" target="_blank">The Setser Letter</a></h3>
+            <h3><a href="https://substack.com/@andysetser" target="_blank">Animal Spirits</a></h3>
             <p class="writing-excerpt">Writing on economic development, regional inequality, labor markets, and the political economy of rural America — with an eye toward data-driven policy. Published on Substack.</p>
           </div>
         </div>
-
+ 
         <div class="writing-item">
           <div class="writing-num">02</div>
           <div class="writing-content">
@@ -793,25 +796,25 @@
             <p class="writing-excerpt">Recognized for excellence in economic writing and applied research. Topics include economic inequality, climate economics, and cost-benefit analysis methodology.</p>
           </div>
         </div>
-
+ 
         <div class="writing-item">
           <div class="writing-num">03</div>
           <div class="writing-content">
-            <p class="writing-meta">Policy Writing · Regional Development</p>
-            <h3>CEDS Narrative Reports</h3>
-            <p class="writing-excerpt">Author of the annual Enterprise Zone narrative report for the San Luis Valley — independently synthesizing economic indicators, program activity, and compliance data into a complete analytical deliverable reviewed by state agencies.</p>
+            <p class="writing-meta">Policy & Regional Reports · San Luis Valley</p>
+            <h3>EDA & Enterprise Zone Reports</h3>
+            <p class="writing-excerpt">Author of Enterprise Zone and EDA reports for the San Luis Valley, synthesizing economic indicators and program activity for state agency review. Also contributed action plan sections, retail data analysis, and supporting research to the region's Comprehensive Economic Development Strategy (CEDS).</p>
           </div>
         </div>
-
+ 
       </div>
-
+ 
       <div class="writing-sidebar">
         <div class="substack-cta">
-          <h4>Read on Substack</h4>
+          <h4>Animal Spirits on Substack</h4>
           <p>Essays on economics, regional development, and the data behind policy decisions that shape rural communities.</p>
           <a href="https://substack.com/@andysetser" target="_blank">Subscribe →</a>
         </div>
-
+ 
         <div style="margin-top:2rem; padding:1.5rem; border:1px solid var(--rule);">
           <h4 style="font-family:var(--mono); font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem;">Topics I Write About</h4>
           <div class="skills-tags">
@@ -829,7 +832,7 @@
     </div>
   </div>
 </section>
-
+ 
 <!-- RESUME -->
 <section id="resume" style="background:var(--paper-warm);">
   <div class="section-inner">
@@ -837,25 +840,25 @@
       <span class="section-label">§ 04</span>
       <h2 class="section-title">Résumé</h2>
     </div>
-
+ 
     <div class="resume-layout">
       <div class="resume-col">
-
+ 
         <div class="resume-block">
           <p class="resume-block-title">Experience</p>
-
+ 
           <div class="resume-entry">
             <div class="resume-entry-title">REDI Economic Development Analyst</div>
             <div class="resume-entry-org">San Luis Valley Development Resource Group · Contractor</div>
             <div class="resume-entry-date">Dec 2025 – Dec 2026 · Alamosa, CO</div>
             <ul>
-              <li>Lead county-level labor force, housing, and demographic analyses using ACS and Census microdata for policy-facing reports delivered to regional and federal stakeholders.</li>
-              <li>Author annual Enterprise Zone narrative report synthesizing economic indicators, program activity, and compliance data for state agency review.</li>
-              <li>Lead data cleaning and economic analysis for the Comprehensive Economic Development Strategy (CEDS), a federally recognized five-year planning document.</li>
-              <li>Manage grant budget development and compliance reporting across DOLA, El Pomar Foundation, and CHFA funding streams.</li>
+              <li>Conduct structured outreach to Economic Development Organizations and Chambers of Commerce across a six-county district, assessing capacity gaps through qualitative and quantitative methods.</li>
+              <li>Process and report gap analyses to organizational and state stakeholders, connecting regional needs with available resources and technical assistance.</li>
+              <li>Contributed action plan sections, retail data analysis, and supporting research to the Comprehensive Economic Development Strategy (CEDS), a federally recognized five-year planning document.</li>
+              <li>Author Enterprise Zone and EDA reports for the San Luis Valley, synthesizing economic indicators and program activity for state agency review.</li>
             </ul>
           </div>
-
+ 
           <div class="resume-entry">
             <div class="resume-entry-title">Data Analysis Apprenticeship</div>
             <div class="resume-entry-org">Valley Wide Health · Unpaid</div>
@@ -865,7 +868,7 @@
               <li>Produced structured monthly variance reports under professional standards with full accuracy and reproducibility review.</li>
             </ul>
           </div>
-
+ 
           <div class="resume-entry">
             <div class="resume-entry-title">Sangre de Cristo NHA Steward</div>
             <div class="resume-entry-org">AmeriCorps Conservation Legacy</div>
@@ -875,11 +878,11 @@
             </ul>
           </div>
         </div>
-
+ 
       </div>
-
+ 
       <div class="resume-col">
-
+ 
         <div class="resume-block">
           <p class="resume-block-title">Education</p>
           <div class="resume-entry">
@@ -898,25 +901,24 @@
             <div class="resume-entry-date">Conferred May 2021 · GPA 4.00</div>
           </div>
         </div>
-
+ 
         <div class="resume-block">
           <p class="resume-block-title">Technical Skills</p>
           <div class="skills-tags" style="margin-bottom:1rem;">
             <span class="skill-tag primary">R</span>
             <span class="skill-tag primary">Excel</span>
             <span class="skill-tag primary">Tableau</span>
-            <span class="skill-tag primary">SQL</span>
-            <span class="skill-tag">Stata</span>
-            <span class="skill-tag">SAS (in progress)</span>
             <span class="skill-tag">ggplot2</span>
             <span class="skill-tag">tidyverse</span>
             <span class="skill-tag">Power Query</span>
             <span class="skill-tag">Regression Analysis</span>
             <span class="skill-tag">Survey Design</span>
-            <span class="skill-tag">Grant Compliance</span>
+            <span class="skill-tag">SQL — learning</span>
+            <span class="skill-tag">Stata — learning</span>
+            <span class="skill-tag">SAS — learning</span>
           </div>
         </div>
-
+ 
         <div class="resume-block">
           <p class="resume-block-title">Honors & Accomplishments</p>
           <ul style="list-style:none; font-size:0.9rem; color:var(--ink-mid); line-height:1.8;">
@@ -927,17 +929,17 @@
             <li>▸ NCAA Division II Athlete, Cross Country & Track (2019–2025)</li>
           </ul>
         </div>
-
+ 
         <a class="resume-download" href="AndySetser_Resume_.pdf" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Download Full Résumé (PDF)
         </a>
-
+ 
       </div>
     </div>
   </div>
 </section>
-
+ 
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -969,6 +971,6 @@
     <p>Built with HTML · Hosted on GitHub Pages</p>
   </div>
 </footer>
-
+ 
 </body>
 </html>
