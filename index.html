@@ -23,34 +23,20 @@
       --body: 'Source Serif 4', Georgia, serif;
       --mono: 'Space Mono', monospace;
     }
- 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body {
-      background: var(--paper);
-      color: var(--ink);
-      font-family: var(--body);
-      font-size: 17px;
-      line-height: 1.7;
-      -webkit-font-smoothing: antialiased;
-    }
+    body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
  
-    /* ── NAV ── */
-    nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--paper); border-bottom: 2px solid var(--ink); padding: 0 2rem;
-    }
-    .nav-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; height: 52px;
-    }
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 2px solid var(--ink); padding: 0 2rem; }
+    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; }
     .nav-logo { font-family: var(--serif); font-weight: 900; font-size: 1.15rem; letter-spacing: 0.01em; color: var(--ink); text-decoration: none; }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--accent); }
  
-    /* ── HERO ── */
+    /* HERO */
     .hero { border-bottom: 1px solid var(--rule); padding: 5rem 2rem 4rem; background: var(--paper); }
     .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 5rem; align-items: end; }
     .hero-kicker { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
@@ -65,14 +51,14 @@
     .hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 20%; display: block; filter: grayscale(15%); }
     .hero-caption { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; color: var(--ink-faint); margin-top: 0.6rem; text-align: right; }
  
-    /* ── SECTION WRAPPER ── */
+    /* SECTION */
     section { padding: 5rem 2rem; border-bottom: 1px solid var(--rule); }
     .section-inner { max-width: 1200px; margin: 0 auto; }
     .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; border-bottom: 2px solid var(--ink); padding-bottom: 0.75rem; }
     .section-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
     .section-title { font-family: var(--serif); font-size: 2rem; font-weight: 700; letter-spacing: -0.01em; }
  
-    /* ── ABOUT ── */
+    /* ABOUT */
     .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; }
     .about-body p { margin-bottom: 1.2rem; color: var(--ink-mid); font-size: 1.05rem; }
     .about-body p:first-child { font-size: 1.15rem; color: var(--ink); }
@@ -82,11 +68,12 @@
     .sidebar-block li { font-size: 0.88rem; color: var(--ink-mid); padding: 0.3rem 0; border-bottom: 1px solid var(--rule-light); display: flex; align-items: center; gap: 0.5rem; }
     .sidebar-block li::before { content: '▸'; color: var(--accent); font-size: 0.6rem; }
  
-    /* ── PROJECTS ── */
+    /* PROJECTS */
     .projects-intro { font-size: 1.05rem; color: var(--ink-mid); font-style: italic; max-width: 680px; margin-bottom: 3rem; padding-left: 1.5rem; border-left: 3px solid var(--accent); }
     .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--rule); }
     .project-card { padding: 2rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; transition: background 0.2s; }
     .project-card:nth-child(3n) { border-right: none; }
+    .project-card:nth-child(4) { border-right: 1px solid var(--rule); }
     .project-card:hover { background: var(--accent-faint); }
     .project-tool { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); background: var(--accent); display: inline-block; padding: 0.2rem 0.5rem; margin-bottom: 1rem; }
     .project-card h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75rem; }
@@ -97,7 +84,7 @@
     .project-link { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
     .project-link:hover { color: var(--accent-light); }
  
-    /* ── WRITING ── */
+    /* WRITING */
     .writing-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
     .writing-item { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--rule-light); align-items: start; }
     .writing-num { font-family: var(--serif); font-size: 3rem; font-weight: 900; color: var(--rule); line-height: 1; min-width: 2.5rem; }
@@ -105,14 +92,19 @@
     .writing-content h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
     .writing-content h3 a:hover { border-color: var(--accent); color: var(--accent); }
     .writing-meta { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.5rem; }
-    .writing-excerpt { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.6; }
+    .writing-excerpt { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.6; margin-bottom: 0.75rem; }
+    .writing-link { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); display: inline-block; }
+    .writing-link:hover { color: var(--accent-light); }
     .substack-cta { background: var(--accent); padding: 2rem; color: white; }
     .substack-cta h4 { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; color: white; }
     .substack-cta p { font-size: 0.88rem; line-height: 1.6; opacity: 0.88; margin-bottom: 1.5rem; }
     .substack-cta a { display: inline-block; background: white; color: var(--accent); font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.6rem 1.2rem; text-decoration: none; font-weight: 700; transition: background 0.2s; }
     .substack-cta a:hover { background: var(--paper-warm); }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; border: 1px solid var(--rule); padding: 0.3rem 0.7rem; color: var(--ink-mid); }
+    .skill-tag.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-faint); }
  
-    /* ── RESUME ── */
+    /* RESUME */
     .resume-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
     .resume-block { margin-bottom: 2.5rem; }
     .resume-block-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 0.4rem; margin-bottom: 1.2rem; }
@@ -122,14 +114,11 @@
     .resume-entry-date { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 0.5rem; }
     .resume-entry ul { padding-left: 1rem; font-size: 0.88rem; color: var(--ink-mid); line-height: 1.65; }
     .resume-entry li { margin-bottom: 0.3rem; }
-    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; border: 1px solid var(--rule); padding: 0.3rem 0.7rem; color: var(--ink-mid); }
-    .skill-tag.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-faint); }
     .resume-download { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0.75rem 1.5rem; text-decoration: none; margin-top: 2rem; transition: background 0.2s; }
     .resume-download:hover { background: var(--accent); }
     .resume-download svg { width: 14px; height: 14px; }
  
-    /* ── FOOTER ── */
+    /* FOOTER */
     footer { background: var(--ink); color: var(--paper-warm); padding: 3rem 2rem; }
     .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid #333; margin-bottom: 1.5rem; }
     .footer-brand h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: 0.5rem; }
@@ -143,14 +132,12 @@
     .footer-bottom p { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: #555; }
     .rule-ornament { text-align: center; color: var(--rule); font-size: 1rem; letter-spacing: 0.5rem; margin: 3rem 0; }
  
-    /* ── ANIMATIONS ── */
     @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
     .hero h1 { animation: fadeUp 0.7s ease both; }
     .hero-sub { animation: fadeUp 0.7s 0.15s ease both; }
     .hero-meta { animation: fadeUp 0.7s 0.3s ease both; }
     .hero-photo-wrap { animation: fadeUp 0.7s 0.1s ease both; }
  
-    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
       .hero-inner { grid-template-columns: 1fr; }
       .hero-photo-wrap { max-width: 280px; }
@@ -266,10 +253,8 @@
       <h2 class="section-title">Data Projects</h2>
     </div>
     <p class="projects-intro">Applied data analysis projects using R and Excel — focused on labor markets, housing economics, and public policy. Each project includes full methodology notes, data sources, and reproducible code.</p>
- 
     <div class="projects-grid">
  
-      <!-- LIVE: Housing -->
       <div class="project-card">
         <span class="project-tool">Excel</span>
         <h3>U.S. Housing Affordability &amp; Macroeconomic Pressure, 1985–2024</h3>
@@ -278,7 +263,6 @@
         <a class="project-link" href="housing-affordability.html">Read Analysis →</a>
       </div>
  
-      <!-- LIVE: Workforce Education -->
       <div class="project-card">
         <span class="project-tool">R</span>
         <h3>The Returns to Education in the U.S. Labor Market, 2010–2023</h3>
@@ -287,7 +271,14 @@
         <a class="project-link" href="workforce-education.html">Read Analysis →</a>
       </div>
  
-      <!-- IN THE WORKS -->
+      <div class="project-card">
+        <span class="project-tool">R</span>
+        <h3>Cobb-Douglas Production Function Estimation, 1899–1922</h3>
+        <p>OLS estimation of a log-linearized Cobb-Douglas production function on the original Douglas (1928) dataset. Recovers labour and capital elasticities, tests returns to scale, and includes an interactive 3D production surface visualization.</p>
+        <p class="project-status live" style="margin-bottom:0.75rem;">Live — View Project</p>
+        <a class="project-link" href="cobb-douglas.html">Read Analysis →</a>
+      </div>
+ 
       <div class="project-card">
         <span class="project-tool">R</span>
         <h3>San Luis Valley Labor Force Analysis</h3>
@@ -296,7 +287,6 @@
       </div>
  
     </div>
- 
     <div class="rule-ornament">— ◆ —</div>
     <p style="font-size:0.88rem; color:var(--ink-faint); font-style:italic; text-align:center;">More projects in development. Each will include full methodology notes, data sources, and reproducible code.</p>
   </div>
@@ -311,30 +301,46 @@
     </div>
     <div class="writing-grid">
       <div class="writing-main">
+ 
         <div class="writing-item">
           <div class="writing-num">01</div>
           <div class="writing-content">
             <p class="writing-meta">Substack · Economics &amp; Policy</p>
             <h3><a href="https://substack.com/@andysetser" target="_blank">Animal Spirits</a></h3>
             <p class="writing-excerpt">Writing on economic development, regional inequality, labor markets, and the political economy of rural America — with an eye toward data-driven policy. Published on Substack.</p>
+            <a class="writing-link" href="https://substack.com/@andysetser" target="_blank">Read on Substack ↗</a>
           </div>
         </div>
+ 
         <div class="writing-item">
           <div class="writing-num">02</div>
           <div class="writing-content">
-            <p class="writing-meta">Academic Paper · Economics</p>
-            <h3><a href="AndySetser_Paper.pdf" target="_blank">Academic Research Paper ↗</a></h3>
-            <p class="writing-excerpt">Recognized for excellence in economic writing and applied research. Topics include economic inequality, climate economics, and cost-benefit analysis methodology.</p>
+            <p class="writing-meta">Academic Paper · Macroeconomics · Adams State University, 2023</p>
+            <h3><a href="The_Looming_Recession_.pdf" target="_blank">The Looming Recession</a></h3>
+            <p class="writing-excerpt">An analysis of middle-class debt, income inequality, and structural economic risk. Drawing on Piketty &amp; Saez income share data, household debt-to-income ratios, and wage growth figures, the paper argues that the preconditions for a debt-driven recession mirror those of 2008 — and proposes policy interventions including tax reform, union expansion, and antitrust enforcement.</p>
+            <a class="writing-link" href="The_Looming_Recession_.pdf" target="_blank">Download PDF ↓</a>
           </div>
         </div>
+ 
         <div class="writing-item">
           <div class="writing-num">03</div>
+          <div class="writing-content">
+            <p class="writing-meta">Academic Paper · Climate Economics · Adams State University</p>
+            <h3><a href="The_Relationship_Between_Economic_Inequalities_and_Climate_Change.pdf" target="_blank">The Relationship Between Economic Inequalities and Climate Change</a></h3>
+            <p class="writing-excerpt">A review and synthesis of Stern, Nordhaus, Goulder &amp; Schein, and Boyce on the economics of climate policy. Evaluates carbon tax vs. cap-and-trade frameworks, critiques discount rate methodology in cost-benefit analysis, and introduces Boyce's argument that economic inequality is itself a structural cause of environmental degradation.</p>
+            <a class="writing-link" href="The_Relationship_Between_Economic_Inequalities_and_Climate_Change.pdf" target="_blank">Download PDF ↓</a>
+          </div>
+        </div>
+ 
+        <div class="writing-item">
+          <div class="writing-num">04</div>
           <div class="writing-content">
             <p class="writing-meta">Policy &amp; Regional Reports · San Luis Valley</p>
             <h3>EDA &amp; Enterprise Zone Reports</h3>
             <p class="writing-excerpt">Author of Enterprise Zone and EDA reports for the San Luis Valley, synthesizing economic indicators and program activity for state agency review. Also contributed action plan sections, retail data analysis, and supporting research to the region's Comprehensive Economic Development Strategy (CEDS).</p>
           </div>
         </div>
+ 
       </div>
       <div class="writing-sidebar">
         <div class="substack-cta">
@@ -371,55 +377,77 @@
       <div class="resume-col">
         <div class="resume-block">
           <p class="resume-block-title">Experience</p>
+ 
           <div class="resume-entry">
-            <div class="resume-entry-title">REDI Economic Development Analyst</div>
-            <div class="resume-entry-org">San Luis Valley Development Resource Group · Contractor</div>
-            <div class="resume-entry-date">Dec 2025 – Dec 2026 · Alamosa, CO</div>
+            <div class="resume-entry-title">REDI Economic Development Analyst (Contractor)</div>
+            <div class="resume-entry-org">San Luis Valley Development Resource Group · Alamosa, CO</div>
+            <div class="resume-entry-date">December 2025 – December 2026 · Full-time · 40–45 hrs/week</div>
             <ul>
-              <li>Conduct structured outreach to Economic Development Organizations and Chambers of Commerce across a six-county district, assessing capacity gaps through qualitative and quantitative methods.</li>
-              <li>Process and report gap analyses to organizational and state stakeholders, connecting regional needs with available resources and technical assistance.</li>
-              <li>Contributed action plan sections, retail data analysis, and supporting research to the Comprehensive Economic Development Strategy (CEDS), a federally recognized five-year planning document.</li>
-              <li>Author Enterprise Zone and EDA reports for the San Luis Valley, synthesizing economic indicators and program activity for state agency review.</li>
+              <li>Conduct outreach and engagement with Economic Development Organizations and chambers across six San Luis Valley counties, collecting quantitative and qualitative data to document organizational capacity and inform regional resource allocation.</li>
+              <li>Produce demographic and economic analysis from Census Bureau and American Community Survey data; findings presented to and incorporated into the City of Creede Comprehensive Plan.</li>
+              <li>Contribute to the Comprehensive Economic Development Strategy by cleaning and reconciling large multi-source datasets for chart and model integration into the federally recognized regional planning document.</li>
+              <li>Author the annual Enterprise Zone narrative for the San Luis Valley, compiling economic indicators, program outcomes, and compliance data into a written report reviewed at the state agency level.</li>
+              <li>Write grant budgets and EDA compliance reports including the EDA Annual Planning Grant submission; secured a Gates Foundation GIS grant for the organization.</li>
+              <li>Analyze financial statements for businesses applying to the regional Business Loan Fund and produce written assessments for the director.</li>
             </ul>
           </div>
+ 
           <div class="resume-entry">
             <div class="resume-entry-title">Data Analysis Apprenticeship</div>
-            <div class="resume-entry-org">Valley Wide Health · Unpaid</div>
-            <div class="resume-entry-date">Feb 2025 – Aug 2025 · Remote</div>
+            <div class="resume-entry-org">Valley Wide Health · Remote · Unpaid</div>
+            <div class="resume-entry-date">February 2025 – August 2025 · 10–15 hrs/week</div>
             <ul>
-              <li>Conducted financial data collection and analysis on healthcare billing datasets, identifying revenue patterns for leadership reporting.</li>
-              <li>Produced structured monthly variance reports under professional standards with full accuracy and reproducibility review.</li>
+              <li>Worked with the financial data analytics team analyzing healthcare billing datasets, building PivotTable dashboards and monthly performance reports in Excel.</li>
+              <li>Conducted budget-to-actual variance analysis, identifying discrepancies between projected and actual financial performance and producing structured written findings.</li>
             </ul>
           </div>
+ 
           <div class="resume-entry">
             <div class="resume-entry-title">Sangre de Cristo NHA Steward</div>
-            <div class="resume-entry-org">AmeriCorps Conservation Legacy</div>
-            <div class="resume-entry-date">Apr 2025 – Jul 2025 · Alamosa, CO</div>
+            <div class="resume-entry-org">AmeriCorps Conservation Legacy · Alamosa, CO</div>
+            <div class="resume-entry-date">April 2025 – July 2025 · 35 hrs/week</div>
             <ul>
-              <li>Collected and structured datasets on historical, environmental, and economic records for stakeholder presentation to History Colorado.</li>
+              <li>Compiled, digitized, and organized historical and economic records for 10 national heritage designation nominees across the San Luis Valley, producing structured data files submitted to History Colorado for official government review.</li>
+            </ul>
+          </div>
+ 
+          <div class="resume-entry">
+            <div class="resume-entry-title">Mathematics Tutor</div>
+            <div class="resume-entry-org">Upward Bound · Adams State University · Alamosa, CO</div>
+            <div class="resume-entry-date">2023 – 2025</div>
+            <ul>
+              <li>Provided individualized math tutoring to first-generation college-bound high school students across calculus, algebra, and statistics; used Workday for administrative and staff functions.</li>
             </ul>
           </div>
         </div>
       </div>
+ 
       <div class="resume-col">
         <div class="resume-block">
           <p class="resume-block-title">Education</p>
           <div class="resume-entry">
             <div class="resume-entry-title">MBA, Finance — Summa Cum Laude</div>
-            <div class="resume-entry-org">Adams State University</div>
+            <div class="resume-entry-org">Adams State University · Alamosa, CO</div>
             <div class="resume-entry-date">Conferred May 2025 · GPA 4.00</div>
+            <ul>
+              <li>Managerial Accounting · Portfolio Management &amp; Investment Analysis · Data Analytics in Accounting · Business Statistics · Financial Management · Marketing Research</li>
+            </ul>
           </div>
           <div class="resume-entry">
             <div class="resume-entry-title">BS, Business Administration, Economics — Summa Cum Laude</div>
-            <div class="resume-entry-org">Adams State University</div>
+            <div class="resume-entry-org">Adams State University · Alamosa, CO</div>
             <div class="resume-entry-date">Conferred May 2024 · GPA 3.98</div>
+            <ul>
+              <li>Managerial Finance · Financial Analysis · Economic Policy · Managerial Economics · Data Analytics · Agricultural Economics · Political Economy</li>
+            </ul>
           </div>
           <div class="resume-entry">
             <div class="resume-entry-title">AA, Economics — Summa Cum Laude</div>
-            <div class="resume-entry-org">Trinidad State Junior College</div>
+            <div class="resume-entry-org">Trinidad State Junior College · Trinidad, CO</div>
             <div class="resume-entry-date">Conferred May 2021 · GPA 4.00</div>
           </div>
         </div>
+ 
         <div class="resume-block">
           <p class="resume-block-title">Technical Skills</p>
           <div class="skills-tags" style="margin-bottom:1rem;">
@@ -429,23 +457,29 @@
             <span class="skill-tag">ggplot2</span>
             <span class="skill-tag">tidyverse</span>
             <span class="skill-tag">Power Query</span>
+            <span class="skill-tag">XLOOKUP</span>
+            <span class="skill-tag">PivotTables</span>
             <span class="skill-tag">Regression Analysis</span>
-            <span class="skill-tag">Survey Design</span>
+            <span class="skill-tag">Input-Output Modeling</span>
+            <span class="skill-tag">Workday</span>
             <span class="skill-tag">SQL — learning</span>
-            <span class="skill-tag">Stata — learning</span>
-            <span class="skill-tag">SAS — learning</span>
+            <span class="skill-tag">Google Analytics — in progress</span>
           </div>
         </div>
+ 
         <div class="resume-block">
           <p class="resume-block-title">Honors &amp; Accomplishments</p>
           <ul style="list-style:none; font-size:0.9rem; color:var(--ink-mid); line-height:1.8;">
-            <li>▸ Summa Cum Laude across three institutions</li>
+            <li>▸ Summa Cum Laude across three institutions (3.98–4.00 GPA)</li>
+            <li>▸ Superior Academic Achievement — GS-7 qualification</li>
             <li>▸ Presidential Scholarship, Adams State University</li>
-            <li>▸ George Scott Award, Trinidad State</li>
+            <li>▸ George Scott Award, Trinidad State Junior College</li>
             <li>▸ NCAA Division II Athlete, Cross Country &amp; Track (2019–2025)</li>
+            <li>▸ Academic Honor Roll every semester of athletic eligibility</li>
           </ul>
         </div>
-        <a class="resume-download" href="AndySetser_Resume_.pdf" download>
+ 
+        <a class="resume-download" href="AndySetser_Resume.pdf" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Download Full Résumé (PDF)
         </a>
@@ -488,4 +522,5 @@
  
 </body>
 </html>
+ 
  
