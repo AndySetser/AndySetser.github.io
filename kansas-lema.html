@@ -499,10 +499,6 @@
     </div>
  
     <div id="tab01" class="code-panel active">
-<pre><span class="c"># 01_lema_timeline.R
-# All four cohorts confirmed from official KDA/GMD Chief Engineer orders.
-# These are fixed historical facts — nothing here needs re-pulling.
-#
 
  
 <span class="f">library</span>(tibble)
@@ -537,13 +533,6 @@ dupes <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
     </div>
  
     <div id="tab02" class="code-panel">
-<pre><span class="c"># 02_groundwater_levels.R
-#
-# Source: KGS WIZARD database (geohydro.kgs.ku.edu/geohydro/wizard)
-# Downloaded manually as a single combined query across all 14 LEMA counties.
-# Two files: site metadata (~731 wells) and discrete water-level measurements
-# (~19,319 readings). Files sit in ~/Downloads with original colon-containing names.
-#
  
 <span class="f">library</span>(readr)
 <span class="f">library</span>(dplyr)
@@ -593,9 +582,6 @@ levels_clean <span class="k">&lt;-</span> levels_filtered <span class="k">%&gt;%
     </div>
  
     <div id="tab03" class="code-panel">
-<pre><span class="c"># 03_nass_quickstats.R
-# Free key (instant): https://quickstats.nass.usda.gov/api
-# install.packages("rnassqs")
 #
  
 <span class="f">library</span>(rnassqs)
@@ -659,17 +645,6 @@ results <span class="k">&lt;-</span> <span class="f">list</span>(
     </div>
  
     <div id="tab04" class="code-panel">
-<pre><span class="c"># 04_bea_reis.R
-# Free key: https://apps.bea.gov/API/signup/
-# install.packages("bea.R", dependencies = TRUE)
-#
-# CAINC45 ("Farm Income and Expenses") no longer exists in BEA's Regional dataset.
-# Farm income now lives inside CAINC5N:
-#   Line 71 = Farm proprietors' income  (closest to net farm income)
-#   Line 81 = Farm earnings             (broader, includes farm wage labor)
-#
-# CAINC5N with a specific LineCode can pull all 14 counties in one call.
-# CAINC1 with LineCode = ALL still requires a per-county loop.</span>
  
 <span class="f">library</span>(bea.R)
 <span class="f">library</span>(dplyr)
@@ -728,11 +703,6 @@ farm_earnings        <span class="k">&lt;-</span> <span class="f">safe_pull_line
     </div>
  
     <div id="tab05" class="code-panel">
-<pre><span class="c"># 05_analysis.R
-#
-# Merges groundwater slopes, NASS, and BEA into one county-year panel
-# aligned on each county's first LEMA adoption year.
-#
  
 <span class="f">library</span>(dplyr)
 <span class="f">library</span>(tidyr)
