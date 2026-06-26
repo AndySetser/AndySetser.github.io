@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kansas LEMA Water Economics — Andy Setser</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300;1,8..60,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #111111;
+      --ink-mid: #333333;
+      --ink-light: #666666;
+      --ink-faint: #999999;
+      --paper: #FAF9F6;
+      --paper-warm: #F2F0EA;
+      --rule: #CCCCCC;
+      --rule-light: #E5E3DC;
+      --accent: #2D5A27;
+      --accent-light: #4A7C44;
+      --accent-faint: #EBF2EA;
+      --blue: #1A4A7A;
+      --red: #B03A2E;
+      --serif: 'Playfair Display', Georgia, serif;
+      --body: 'Source Serif 4', Georgia, serif;
+      --mono: 'Space Mono', monospace;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+ 
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 2px solid var(--ink); padding: 0 2rem; }
+    .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; }
+    .nav-logo { font-family: var(--serif); font-weight: 900; font-size: 1rem; color: var(--ink); text-decoration: none; }
+    .nav-logo span { color: var(--accent); }
+    .nav-back { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s; }
+    .nav-back:hover { color: var(--accent); }
+ 
+    /* HERO */
+    .article-hero { border-bottom: 1px solid var(--rule); padding: 4rem 2rem 3rem; }
+    .article-hero-inner { max-width: 780px; margin: 0 auto; }
+    .article-kicker { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
+    .article-kicker::before { content: ''; display: inline-block; width: 24px; height: 2px; background: var(--accent); }
+    .article-hero h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 900; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
+    .article-dek { font-size: 1.15rem; color: var(--ink-mid); font-style: italic; line-height: 1.65; margin-bottom: 2rem; }
+    .article-meta { display: flex; flex-wrap: wrap; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
+    .meta-label { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 0.2rem; }
+    .meta-value { font-size: 0.88rem; color: var(--ink-mid); }
+    .meta-value a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); font-family: var(--mono); font-size: 0.75rem; }
+ 
+    /* STAT STRIP */
+    .stat-strip { background: var(--ink); padding: 2.5rem 2rem; }
+    .stat-strip-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+    .stat-card { border-left: 3px solid var(--accent-light); padding-left: 1.25rem; }
+    .stat-num { font-family: var(--serif); font-size: 2.2rem; font-weight: 900; color: white; line-height: 1; margin-bottom: 0.3rem; }
+    .stat-num.green { color: #7EC87A; }
+    .stat-num.amber { color: #E8C97F; }
+    .stat-label { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: #888; line-height: 1.4; }
+ 
+    /* ARTICLE BODY */
+    .article-body { max-width: 780px; margin: 0 auto; padding: 3.5rem 2rem; }
+    .article-body h2 { font-family: var(--serif); font-size: 1.7rem; font-weight: 700; margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink); }
+    .article-body h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; margin: 2rem 0 0.75rem; color: var(--ink-mid); }
+    .article-body p { margin-bottom: 1.3rem; color: var(--ink-mid); }
+    .article-body p:first-child { font-size: 1.1rem; color: var(--ink); }
+    .article-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
+    .article-body a:hover { color: var(--accent-light); }
+ 
+    .pullquote { border-left: 4px solid var(--accent); padding: 1rem 1.5rem; margin: 2.5rem 0; background: var(--accent-faint); }
+    .pullquote p { font-family: var(--serif); font-size: 1.15rem; font-style: italic; color: var(--ink); margin: 0; line-height: 1.6; }
+ 
+    .lema-table-wrap { overflow-x: auto; border: 1px solid var(--rule); margin: 2rem 0; }
+    .lema-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .lema-table thead tr { background: var(--ink); color: white; }
+    .lema-table thead th { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1rem; text-align: left; white-space: nowrap; }
+    .lema-table tbody tr { border-bottom: 1px solid var(--rule-light); }
+    .lema-table tbody tr:hover { background: var(--accent-faint); }
+    .lema-table tbody td { padding: 0.6rem 1rem; color: var(--ink-mid); font-size: 0.85rem; }
+    .lema-table tbody td:first-child { font-family: var(--serif); font-weight: 700; color: var(--ink); }
+    .cohort-tag { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.1em; text-transform: uppercase; background: var(--accent-faint); color: var(--accent); border: 1px solid var(--accent); padding: 0.15rem 0.4rem; white-space: nowrap; }
+ 
+    /* CHART IMAGES */
+    .figures-section { padding: 0 2rem 2rem; max-width: 1100px; margin: 0 auto; }
+    .figure-block { margin-bottom: 3.5rem; }
+    .figure-header { max-width: 780px; margin: 0 auto 1rem; }
+    .figure-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .figure-subtitle { font-size: 0.9rem; color: var(--ink-light); font-style: italic; }
+    .figure-img-wrap { border: 1px solid var(--rule); background: white; padding: 1.5rem; }
+    .figure-img-wrap img { width: 100%; height: auto; display: block; }
+    .figure-note { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; color: var(--ink-faint); margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid var(--rule-light); }
+ 
+    /* COUNTY RESULTS TABLE */
+    .results-section { padding: 0 2rem 4rem; max-width: 1100px; margin: 0 auto; }
+    .results-header { margin-bottom: 1.5rem; }
+    .results-header h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; border-bottom: 2px solid var(--ink); padding-bottom: 0.5rem; }
+    .results-table-wrap { overflow-x: auto; border: 1px solid var(--rule); }
+    .results-table { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
+    .results-table thead tr { background: var(--ink); color: white; }
+    .results-table thead th { font-family: var(--mono); font-size: 0.55rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1rem; text-align: right; white-space: nowrap; }
+    .results-table thead th:first-child, .results-table thead th:nth-child(2) { text-align: left; }
+    .results-table tbody tr { border-bottom: 1px solid var(--rule-light); transition: background 0.15s; }
+    .results-table tbody tr:hover { background: var(--accent-faint); }
+    .results-table tbody td { padding: 0.55rem 1rem; text-align: right; color: var(--ink-mid); font-family: var(--mono); font-size: 0.75rem; }
+    .results-table tbody td:first-child { text-align: left; font-family: var(--serif); font-weight: 700; color: var(--ink); font-size: 0.85rem; }
+    .results-table tbody td:nth-child(2) { text-align: left; }
+    td.improved { color: var(--accent); font-weight: 700; }
+    td.worsened { color: var(--red); font-weight: 700; }
+    td.excluded { color: var(--ink-faint); font-style: italic; }
+    .results-note { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; color: var(--ink-faint); margin-top: 1rem; line-height: 1.6; }
+ 
+    /* R SCRIPT */
+    .code-section { background: var(--paper-warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 3rem 2rem; }
+    .code-section-inner { max-width: 1100px; margin: 0 auto; }
+    .code-section h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; border-bottom: 2px solid var(--ink); padding-bottom: 0.5rem; margin-bottom: 0.75rem; }
+    .code-section p { font-size: 0.92rem; color: var(--ink-mid); margin-bottom: 1.5rem; max-width: 780px; }
+    .code-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--ink); margin-bottom: 0; }
+    .code-tab { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.6rem 1.2rem; cursor: pointer; border: 1px solid var(--rule); border-bottom: none; background: var(--paper-warm); color: var(--ink-faint); transition: background 0.15s, color 0.15s; }
+    .code-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
+    .code-panel { display: none; }
+    .code-panel.active { display: block; }
+    pre { background: #1A1A1A; color: #D4D4D4; padding: 2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.72rem; line-height: 1.7; border: none; }
+    .c { color: #6A9955; } /* comments */
+    .k { color: #569CD6; } /* keywords */
+    .s { color: #CE9178; } /* strings */
+    .f { color: #DCDCAA; } /* functions */
+    .n { color: #9CDCFE; } /* variables/names */
+ 
+    /* METHODOLOGY */
+    .methodology { background: var(--paper-warm); border-top: 2px solid var(--ink); padding: 4rem 2rem; }
+    .methodology-inner { max-width: 780px; margin: 0 auto; }
+    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
+    .method-block h4 { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 0.4rem; margin-bottom: 1rem; }
+    .method-block ul { list-style: none; font-size: 0.9rem; color: var(--ink-mid); }
+    .method-block li { padding: 0.35rem 0; border-bottom: 1px solid var(--rule-light); padding-left: 1rem; position: relative; }
+    .method-block li::before { content: '▸'; color: var(--accent); position: absolute; left: 0; font-size: 0.6rem; top: 0.5rem; }
+ 
+    /* FOOTER */
+    .article-footer { background: var(--ink); color: white; padding: 3rem 2rem; text-align: center; }
+    .article-footer a { color: var(--accent-light); text-decoration: none; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; }
+    .article-footer p { font-size: 0.85rem; color: #888; margin-top: 0.5rem; }
+ 
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .article-hero h1 { animation: fadeUp 0.6s ease both; }
+    .article-dek { animation: fadeUp 0.6s 0.1s ease both; }
+    .stat-strip-inner { animation: fadeUp 0.6s 0.15s ease both; }
+ 
+    @media (max-width: 700px) {
+      .stat-strip-inner { grid-template-columns: 1fr 1fr; }
+      .method-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+ 
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="index.html">Andy <span>Setser</span></a>
+    <a class="nav-back" href="index.html#projects">← All Projects</a>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<header class="article-hero">
+  <div class="article-hero-inner">
+    <p class="article-kicker">R · Difference-in-Differences · Water Economics</p>
+    <h1>The Economics of Voluntary Water Restrictions in Kansas</h1>
+    <p class="article-dek">A staggered difference-in-differences event study across four Kansas Local Enhanced Management Areas — asking whether locally-governed aquifer restrictions slow groundwater decline without collapsing farm income.</p>
+    <div class="article-meta">
+      <div class="meta-item"><span class="meta-label">Author</span><span class="meta-value">Andy Setser</span></div>
+      <div class="meta-item"><span class="meta-label">Method</span><span class="meta-value">Staggered DiD · TWFE Event Study</span></div>
+      <div class="meta-item"><span class="meta-label">Data Sources</span><span class="meta-value">KGS WIZARD · USDA NASS · BEA REIS</span></div>
+      <div class="meta-item"><span class="meta-label">Cohorts</span><span class="meta-value">2013 · 2018 · 2021 · 2023</span></div>
+      <div class="meta-item"><span class="meta-label">Full Essay</span><span class="meta-value"><a href="https://andysetser.substack.com/p/the-economics-of-voluntary-water" target="_blank">Read on Substack ↗</a></span></div>
+    </div>
+  </div>
+</header>
+ 
+<!-- STAT STRIP -->
+<div class="stat-strip">
+  <div class="stat-strip-inner">
+    <div class="stat-card">
+      <div class="stat-num green">−60%</div>
+      <div class="stat-label">Slowdown in aquifer<br>decline rate post-adoption</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num green">0.08 ft/yr</div>
+      <div class="stat-label">Sheridan-6 post-adoption<br>decline (from 0.63 ft/yr)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num amber">+41%</div>
+      <div class="stat-label">Sorghum share of cropland<br>pre → post restriction</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">−0.14 ft/yr</div>
+      <div class="stat-label">TWFE estimate, LEMA effect<br>on groundwater decline rate</div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ARTICLE BODY -->
+<div class="article-body">
+  <p>I have never really thought about a place's water as much as I have in my time in the San Luis Valley. Every livable place needs it. Yet here it is closer to a livelihood than a resource — nearly a third of the Valley's economic base is accounted for by agriculture that depends on a high-alpine aquifer being slowly drained. That reality is what sent me east, to Kansas, where a decade-old experiment in voluntary water governance has now accumulated enough data to say something real.</p>
+ 
+  <p>The Kansas Local Enhanced Management Area (LEMA) program gives Groundwater Management Districts the authority to write their own conservation plans — letting farmers set their own pumping caps rather than wait for state-imposed cuts. Sheridan County farmers were the first to act on that authority in 2013, agreeing to hold each irrigator to a five-year allocation of 55 acre-inches. Three more LEMAs followed across northwestern Kansas. Together they form a natural staggered experiment: four adoption cohorts, fourteen counties, and years of outcome data now available from public sources.</p>
+ 
+  <div class="pullquote">
+    <p>"The water table was falling about 0.38 feet per year before these restrictions. Post-adoption, that rate fell to 0.15 feet per year — roughly a 60 percent slowdown in the rate of aquifer decline."</p>
+  </div>
+ 
+  <h2>The Four LEMA Cohorts</h2>
+ 
+  <p>Each LEMA was established through a signed Chief Engineer order from the Kansas Division of Water Resources. The four adoption events used as treatment dates in this analysis are:</p>
+ 
+  <div class="lema-table-wrap">
+    <table class="lema-table">
+      <thead>
+        <tr>
+          <th>LEMA</th>
+          <th>Counties</th>
+          <th>Order Date</th>
+          <th>Active Period</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sheridan-6</td>
+          <td>Sheridan (partial)</td>
+          <td>April 17, 2013</td>
+          <td>2013–2027 <span class="cohort-tag">Cohort 1</span></td>
+        </tr>
+        <tr>
+          <td>GMD4 Districtwide</td>
+          <td>Cheyenne, Rawlins, Decatur, Sherman, Thomas, Sheridan, Graham, Wallace, Logan, Gove (partial)</td>
+          <td>April 13, 2018</td>
+          <td>2018–2027 <span class="cohort-tag">Cohort 2</span></td>
+        </tr>
+        <tr>
+          <td>Wichita County</td>
+          <td>Wichita (partial)</td>
+          <td>February 2, 2021</td>
+          <td>2021–2025 <span class="cohort-tag">Cohort 3</span></td>
+        </tr>
+        <tr>
+          <td>GMD1 Four-County</td>
+          <td>Greeley, Lane, Scott, Wallace (partial)</td>
+          <td>April 7, 2023</td>
+          <td>2023–2027 <span class="cohort-tag">Cohort 4</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <h2>Understanding a Water Cut</h2>
+ 
+  <p>Limiting groundwater pumping doesn't happen at the press of a button. It goes through a legal process established by Kansas's 2012 Groundwater Management District Act, which allows GMDs to propose plans to be approved by the Kansas Chief Engineer. Once adopted, the district board — in the case of the GMD4 LEMA, the Northwest Kansas Groundwater Management District — notifies every water right holder within 30 days, spelling out each right's five-year allocation.</p>
+ 
+  <p>For the farmers involved, that means treating water like a budget rather than a tap. A fixed allocation may redirect historically corn-heavy acres toward less water-intensive crops like grain sorghum, which demands noticeably less irrigation. These are choices made by individual operators trying to live within a shared number. The multiplier implications run wide: less irrigation means less seed, fertilizer, and chemical inputs bought from local ag retailers. In Sheridan County, one early study estimated seed and chemical spending fell by roughly 20 percent in the years after restriction took effect.</p>
+ 
+  <h2>Variable 1 — Groundwater</h2>
+ 
+  <p>The most important variable and the most useful in the data. Rather than comparing average water levels — which conflates secular aquifer decline with any treatment effect — this analysis estimates the <em>slope</em> (feet per year) of water table decline for each county's monitoring wells in the ten years before and ten years after each LEMA adoption, then compares those slopes.</p>
+ 
+  <p>Across eleven counties with sufficient well data, the average decline rate fell from 0.38 ft/yr before adoption to 0.15 ft/yr after — a 60 percent slowdown. The sharpest individual result was Sheridan County itself: from 0.63 ft/yr pre-adoption to 0.08 ft/yr after — nearly a steady water table after more than a decade of restrictions. Wichita County, a more recent adopter (2021), moved from 0.29 to 0.06 ft/yr.</p>
+ 
+  <p>Not every county fits the pattern. Sherman, Thomas, and Wallace are still losing groundwater each year, just somewhat slower. Graham, Logan, and Cheyenne actually show slightly faster decline post-adoption — changes of a few hundredths of a foot per year, small enough to be driven by weather variation rather than policy reversal. Lane, Scott, and Greeley were excluded from the groundwater comparison entirely: monitoring well counts in those counties dropped so sharply after their 2023 adoption that estimating a meaningful trend wasn't possible.</p>
+ 
+  <p>The TWFE regression — controlling for county fixed effects and adoption cohort fixed effects, with heteroskedasticity-robust standard errors — estimates that LEMA adoption is associated with a 0.14 ft/yr reduction in the groundwater decline rate (p ≈ 0.10). With only 22 observations (11 counties × 2 periods), that result should be treated as directionally consistent with the pre/post comparison rather than a precise causal estimate.</p>
+ 
+  <h2>Variable 2 — Crop Mix</h2>
+ 
+  <p>One response to a water budget is to grow less thirsty crops. If restrictions were driving real behavioral change, we'd expect to see cropland shift away from corn — which requires heavy irrigation — toward grain sorghum, which can be grown on significantly less water. Sorghum's share of total tracked cropland across LEMA counties rose from about 10.3 percent before adoption to 14.5 percent after — a 41 percent relative increase.</p>
+ 
+  <p>That finding comes with a real data caveat. USDA's NASS suppresses county-level crop acreage when too few farms are reporting, to protect farm privacy. The sorghum numbers are built on a thinner set of county-year observations than the groundwater or income data, skewed toward the years and counties where enough farms reported to publish. The crop mix shift is consistent with the expected behavioral response to water restrictions, but should be read as suggestive rather than definitive.</p>
+ 
+  <h2>Variable 3 — Farm Income</h2>
+ 
+  <p>Average farm proprietors' income across the fourteen counties ran about $30,700 per year before LEMA adoption and $28,400 afterward — a modest decline. In the TWFE event-study specification, however, none of the year-by-year income coefficients reached statistical significance. The variation in farm income across this panel is dominated by commodity price cycles and drought years, not the policy event.</p>
+ 
+  <p>This is also where the sub-county boundary limitation bites hardest. County-level BEA income figures blend farms inside the LEMA boundary with farms entirely outside it. If restriction reduced income for farms actually subject to the cap, that effect would be diluted across the full county total. The null farm income result is consistent with either a true null effect, or a real effect that the available data simply cannot resolve at county scale.</p>
+</div>
+ 
+<!-- FIGURES -->
+<div class="figures-section">
+ 
+  <div class="figure-block">
+    <div class="figure-header">
+      <div class="figure-title">Fig. 1 — Aquifer Decline Rate by County, Before and After LEMA Adoption</div>
+      <div class="figure-subtitle">Most counties show a slower decline post-adoption; Lane, Scott, and Greeley excluded due to well attrition</div>
+    </div>
+    <div class="figure-img-wrap">
+      <img src="AquiferDeclinebyCounty.png" alt="Dot plot showing before and after LEMA adoption groundwater decline rates by county" />
+      <p class="figure-note">Source: Kansas Geological Survey WIZARD Water Well Levels Database. Well-level OLS slope (ft/yr) averaged within each county for the 10-year window before and after adoption. Author: Andy Setser.</p>
+    </div>
+  </div>
+ 
+  <div class="figure-block">
+    <div class="figure-header">
+      <div class="figure-title">Fig. 2 — Average Aquifer Decline Rate, Before vs. After LEMA</div>
+      <div class="figure-subtitle">Across 11 counties with sufficient data, the average decline slowed by roughly 60 percent</div>
+    </div>
+    <div class="figure-img-wrap">
+      <img src="WaterTableBeforeAfter.png" alt="Bar chart comparing average aquifer decline rate before and after LEMA adoption" />
+      <p class="figure-note">Source: Kansas Geological Survey WIZARD Water Well Levels Database. Simple mean of county-level slopes; 11 counties included. Author: Andy Setser.</p>
+    </div>
+  </div>
+ 
+  <div class="figure-block">
+    <div class="figure-header">
+      <div class="figure-title">Fig. 3 — Sorghum Share of Cropland, Before vs. After LEMA Adoption</div>
+      <div class="figure-subtitle">Sorghum — a less water-intensive crop — grew its share of tracked cropland by 41% relative to baseline</div>
+    </div>
+    <div class="figure-img-wrap">
+      <img src="CropMixShift.png" alt="Bar chart showing sorghum share of cropland before and after LEMA restrictions" />
+      <p class="figure-note">Source: USDA NASS QuickStats. County-level sorghum, corn, wheat, and soybean acres. NASS suppression applies where fewer than 3 farms report; included observations skew toward larger counties. Author: Andy Setser.</p>
+    </div>
+  </div>
+ 
+</div>
+ 
+<!-- COUNTY RESULTS TABLE -->
+<div class="results-section">
+  <div class="results-header">
+    <h2>Groundwater Results by County</h2>
+  </div>
+  <div class="results-table-wrap">
+    <table class="results-table">
+      <thead>
+        <tr>
+          <th>County</th>
+          <th>LEMA Cohort</th>
+          <th>Pre-Adoption (ft/yr)</th>
+          <th>Post-Adoption (ft/yr)</th>
+          <th>Change</th>
+          <th>Wells (Pre)</th>
+          <th>Wells (Post)</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Sheridan</td>
+          <td>Sheridan-6, 2013</td>
+          <td>0.629</td>
+          <td>0.079</td>
+          <td class="improved">−0.550</td>
+          <td>57</td>
+          <td>63</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Wichita</td>
+          <td>Wichita Co., 2021</td>
+          <td>0.288</td>
+          <td>0.056</td>
+          <td class="improved">−0.232</td>
+          <td>47</td>
+          <td>44</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Decatur</td>
+          <td>GMD4, 2018</td>
+          <td>0.135</td>
+          <td>0.075</td>
+          <td class="improved">−0.060</td>
+          <td>56</td>
+          <td>51</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Gove</td>
+          <td>GMD4, 2018</td>
+          <td>0.200</td>
+          <td>0.064</td>
+          <td class="improved">−0.136</td>
+          <td>35</td>
+          <td>33</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Thomas</td>
+          <td>GMD4, 2018</td>
+          <td>0.650</td>
+          <td>0.420</td>
+          <td class="improved">−0.230</td>
+          <td>64</td>
+          <td>65</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Sherman</td>
+          <td>GMD4, 2018</td>
+          <td>0.983</td>
+          <td>0.758</td>
+          <td class="improved">−0.225</td>
+          <td>62</td>
+          <td>62</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Wallace</td>
+          <td>GMD4, 2018</td>
+          <td>1.400</td>
+          <td>1.290</td>
+          <td class="improved">−0.110</td>
+          <td>29</td>
+          <td>31</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Rawlins</td>
+          <td>GMD4, 2018</td>
+          <td>0.261</td>
+          <td>0.179</td>
+          <td class="improved">−0.082</td>
+          <td>43</td>
+          <td>45</td>
+          <td class="improved">Improved</td>
+        </tr>
+        <tr>
+          <td>Graham</td>
+          <td>GMD4, 2018</td>
+          <td>0.023</td>
+          <td>0.031</td>
+          <td class="worsened">+0.008</td>
+          <td>31</td>
+          <td>31</td>
+          <td class="worsened">Marginal ↑</td>
+        </tr>
+        <tr>
+          <td>Logan</td>
+          <td>GMD4, 2018</td>
+          <td>0.035</td>
+          <td>0.112</td>
+          <td class="worsened">+0.077</td>
+          <td>13</td>
+          <td>14</td>
+          <td class="worsened">Marginal ↑</td>
+        </tr>
+        <tr>
+          <td>Cheyenne</td>
+          <td>GMD4, 2018</td>
+          <td>0.285</td>
+          <td>0.331</td>
+          <td class="worsened">+0.046</td>
+          <td>62</td>
+          <td>62</td>
+          <td class="worsened">Marginal ↑</td>
+        </tr>
+        <tr>
+          <td>Lane</td>
+          <td>GMD1, 2023</td>
+          <td>0.008</td>
+          <td>—</td>
+          <td class="excluded">—</td>
+          <td>22</td>
+          <td>2</td>
+          <td class="excluded">Excluded</td>
+        </tr>
+        <tr>
+          <td>Scott</td>
+          <td>GMD1, 2023</td>
+          <td>0.125</td>
+          <td>—</td>
+          <td class="excluded">—</td>
+          <td>42</td>
+          <td>5</td>
+          <td class="excluded">Excluded</td>
+        </tr>
+        <tr>
+          <td>Greeley</td>
+          <td>GMD1, 2023</td>
+          <td>0.252</td>
+          <td>—</td>
+          <td class="excluded">—</td>
+          <td>20</td>
+          <td>2</td>
+          <td class="excluded">Excluded</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="results-note">Lane, Scott, and Greeley excluded from post-adoption comparison due to well attrition (20+ wells pre-adoption dropping to 2–5 post). A trend estimated from 2–5 wells is not a meaningful finding and was excluded rather than reported. Positive slope = water table falling; lower post-adoption value = slower decline.</p>
+</div>
+ 
+<!-- R SCRIPT SECTION -->
+<div class="code-section">
+  <div class="code-section-inner">
+    <h2>R Pipeline</h2>
+    <p>Full analysis pipeline in R. API keys are stored in <code>.Renviron</code> and never hardcoded. Run scripts in order from a fresh session; or jump to any step directly if prior outputs are already saved to <code>data_clean/</code> and <code>data_raw/</code>.</p>
+ 
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab('tab01')">01 · LEMA Timeline</button>
+      <button class="code-tab" onclick="showTab('tab02')">02 · Groundwater (KGS)</button>
+      <button class="code-tab" onclick="showTab('tab03')">03 · NASS Crops</button>
+      <button class="code-tab" onclick="showTab('tab04')">04 · BEA Farm Income</button>
+      <button class="code-tab" onclick="showTab('tab05')">05 · Analysis & TWFE</button>
+    </div>
+ 
+    <div id="tab01" class="code-panel active">
+<pre><span class="c"># 01_lema_timeline.R
+# All four cohorts confirmed from official KDA/GMD Chief Engineer orders.
+# These are fixed historical facts — nothing here needs re-pulling.
+#
+# IMPORTANT: "county" = full county for NASS/BEA joins, but the actual
+# LEMA boundary is often only a PORTION of that county. Treat any
+# estimate as diluted by non-LEMA acreage within the same county.</span>
+ 
+<span class="f">library</span>(tibble)
+ 
+lema_timeline <span class="k">&lt;-</span> <span class="f">tribble</span>(
+  <span class="k">~</span>lema,                  <span class="k">~</span>county,    <span class="k">~</span>order_date,    <span class="k">~</span>effective_start, <span class="k">~</span>effective_end, <span class="k">~</span>full_or_partial_county,
+  <span class="s">"Sheridan-6"</span>,           <span class="s">"Sheridan"</span>, <span class="s">"2013-04-17"</span>,   <span class="n">2013</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Cheyenne"</span>, <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Rawlins"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Decatur"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Sherman"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Thomas"</span>,   <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Sheridan"</span>, <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>, <span class="c"># overlaps Sheridan-6</span>
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Graham"</span>,   <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Wallace"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>, <span class="c"># also in GMD1</span>
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Logan"</span>,    <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Gove"</span>,     <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"Wichita County"</span>,       <span class="s">"Wichita"</span>,  <span class="s">"2021-02-02"</span>,   <span class="n">2021</span>,             <span class="n">2025</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Greeley"</span>,  <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Lane"</span>,     <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Scott"</span>,    <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
+  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Wallace"</span>,  <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>  <span class="c"># also in GMD4</span>
+)
+ 
+<span class="c"># Flag counties in more than one LEMA (expect Sheridan and Wallace)</span>
+dupes <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
+  dplyr<span class="k">::</span><span class="f">count</span>(county) <span class="k">%&gt;%</span>
+  dplyr<span class="k">::</span><span class="f">filter</span>(n <span class="k">&gt;</span> <span class="n">1</span>)
+<span class="f">print</span>(dupes)
+ 
+<span class="f">saveRDS</span>(lema_timeline, <span class="s">"data_clean/lema_timeline.rds"</span>)</pre>
+    </div>
+ 
+    <div id="tab02" class="code-panel">
+<pre><span class="c"># 02_groundwater_levels.R
+#
+# Source: KGS WIZARD database (geohydro.kgs.ku.edu/geohydro/wizard)
+# Downloaded manually as a single combined query across all 14 LEMA counties.
+# Two files: site metadata (~731 wells) and discrete water-level measurements
+# (~19,319 readings). Files sit in ~/Downloads with original colon-containing names.
+#
+# CRITICAL: USGS_ID must be read as character. If read normally, R converts
+# this long ID to scientific notation (3.93e14) and silently corrupts the join.
+# KGS's own download instructions warn about this.</span>
+ 
+<span class="f">library</span>(readr)
+<span class="f">library</span>(dplyr)
+<span class="f">library</span>(tigris)
+ 
+sites <span class="k">&lt;-</span> <span class="f">read_csv</span>(
+  <span class="s">"~/Downloads/kgs_gwl:sites.csv"</span>,
+  col_types <span class="k">=</span> <span class="f">cols</span>(USGS_ID <span class="k">=</span> <span class="f">col_character</span>(), .default <span class="k">=</span> <span class="f">col_guess</span>()),
+  show_col_types <span class="k">=</span> <span class="n">FALSE</span>
+)
+levels <span class="k">&lt;-</span> <span class="f">read_csv</span>(
+  <span class="s">"~/Downloads/kgs_gwl:levels.csv"</span>,
+  col_types <span class="k">=</span> <span class="f">cols</span>(USGS_ID <span class="k">=</span> <span class="f">col_character</span>(), .default <span class="k">=</span> <span class="f">col_guess</span>()),
+  show_col_types <span class="k">=</span> <span class="n">FALSE</span>
+)
+ 
+<span class="c"># Filter sites to our 14 LEMA counties using 3-digit KS FIPS county code</span>
+lema_timeline <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>)
+target_counties <span class="k">&lt;-</span> <span class="f">unique</span>(lema_timeline<span class="k">$</span>county)
+ 
+<span class="f">data</span>(fips_codes)
+county_fips <span class="k">&lt;-</span> fips_codes <span class="k">%&gt;%</span>
+  <span class="f">filter</span>(state <span class="k">==</span> <span class="s">"KS"</span>, county <span class="k">%in%</span> <span class="f">paste0</span>(target_counties, <span class="s">" County"</span>)) <span class="k">%&gt;%</span>
+  <span class="f">mutate</span>(county_code_3digit <span class="k">=</span> <span class="f">as.numeric</span>(county_code)) <span class="k">%&gt;%</span>
+  <span class="f">select</span>(county, county_code_3digit)
+ 
+sites_filtered <span class="k">&lt;-</span> sites <span class="k">%&gt;%</span>
+  <span class="f">inner_join</span>(county_fips, by <span class="k">=</span> <span class="f">c</span>(<span class="s">"COUNTY_CODE"</span> <span class="k">=</span> <span class="s">"county_code_3digit"</span>))
+ 
+levels_filtered <span class="k">&lt;-</span> levels <span class="k">%&gt;%</span>
+  <span class="f">inner_join</span>(sites_filtered <span class="k">%&gt;%</span> <span class="f">select</span>(USGS_ID, county, COUNTY_CODE,
+                                           LATITUDE, LONGITUDE, AQUIFER_CODE,
+                                           GROUNDWATER_MGMT_DISTRICT),
+             by <span class="k">=</span> <span class="s">"USGS_ID"</span>)
+ 
+<span class="c"># STATUS codes (Z, O, P, D, M, A, W) = non-standard reading (dry, obstructed,
+# pumping at time of measurement). DEPTH_TO_WATER is blank for these.
+# Do NOT treat as missing-equals-zero.</span>
+levels_clean <span class="k">&lt;-</span> levels_filtered <span class="k">%&gt;%</span>
+  <span class="f">mutate</span>(
+    measurement_date <span class="k">=</span> <span class="f">as.Date</span>(MEASUREMENT_DATE_AND_TIME, format <span class="k">=</span> <span class="s">"%m/%d/%Y"</span>),
+    year <span class="k">=</span> <span class="f">as.integer</span>(<span class="f">format</span>(measurement_date, <span class="s">"%Y"</span>)),
+    valid_reading <span class="k">=</span> <span class="f">is.na</span>(STATUS_CODE) <span class="k">&amp;</span> <span class="k">!</span><span class="f">is.na</span>(DEPTH_TO_WATER)
+  )
+ 
+<span class="f">write_csv</span>(levels_clean, <span class="s">"data_raw/kgs_gwl_clean.csv"</span>)</pre>
+    </div>
+ 
+    <div id="tab03" class="code-panel">
+<pre><span class="c"># 03_nass_quickstats.R
+# Free key (instant): https://quickstats.nass.usda.gov/api
+# install.packages("rnassqs")
+#
+# NOTE: irrigated corn share was DROPPED as a headline metric.
+# NASS's irrigated/non-irrigated breakout has zero county reporting
+# from 2019 onward across all 14 counties -- not fixable by re-pulling.
+# This would mean no data for the two newest cohorts (Wichita 2021,
+# GMD1 2023) exactly when you need it most.
+#
+# WHEAT: "WHEAT - ACRES HARVESTED" only runs through 2007 for these
+# counties. The continuously-reported series is
+# "WHEAT, WINTER - ACRES HARVESTED" (KS wheat is overwhelmingly winter).</span>
+ 
+<span class="f">library</span>(rnassqs)
+<span class="f">library</span>(dplyr)
+ 
+<span class="f">nassqs_auth</span>(key <span class="k">=</span> <span class="f">Sys.getenv</span>(<span class="s">"NASSQS_TOKEN"</span>))
+ 
+lema_timeline <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>)
+counties <span class="k">&lt;-</span> <span class="f">toupper</span>(<span class="f">unique</span>(lema_timeline<span class="k">$</span>county))
+ 
+safe_pull <span class="k">&lt;-</span> <span class="k">function</span>(short_desc, label, years <span class="k">=</span> <span class="n">2000</span><span class="k">:</span><span class="n">2025</span>,
+                       county_filter <span class="k">=</span> <span class="n">TRUE</span>, agg_level <span class="k">=</span> <span class="s">"COUNTY"</span>) {
+  <span class="f">cat</span>(<span class="s">"Attempting:"</span>, label, <span class="s">"...\n"</span>)
+  params <span class="k">&lt;-</span> <span class="f">list</span>(
+    source_desc   <span class="k">=</span> <span class="s">"SURVEY"</span>,
+    state_alpha   <span class="k">=</span> <span class="s">"KS"</span>,
+    short_desc    <span class="k">=</span> short_desc,
+    year          <span class="k">=</span> years,
+    agg_level_desc <span class="k">=</span> agg_level
+  )
+  <span class="k">if</span> (county_filter) params<span class="k">$</span>county_name <span class="k">&lt;-</span> counties
+  result <span class="k">&lt;-</span> <span class="f">tryCatch</span>(<span class="f">nassqs</span>(params), error <span class="k">=</span> <span class="k">function</span>(e) {
+    <span class="f">cat</span>(<span class="s">"  FAILED:"</span>, <span class="f">conditionMessage</span>(e), <span class="s">"\n"</span>)
+    <span class="n">NULL</span>
+  })
+  <span class="k">if</span> (<span class="k">!</span><span class="f">is.null</span>(result)) <span class="f">cat</span>(<span class="s">"  SUCCESS:"</span>, <span class="f">nrow</span>(result), <span class="s">"rows returned.\n"</span>)
+  result
+}
+ 
+irrigated_corn  <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"CORN, GRAIN, IRRIGATED - ACRES HARVESTED"</span>, <span class="s">"irrigated corn"</span>)
+corn_acres      <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"CORN, GRAIN - ACRES HARVESTED"</span>,           <span class="s">"corn total"</span>)
+soybean_acres   <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"SOYBEANS - ACRES HARVESTED"</span>,              <span class="s">"soybeans"</span>)
+wheat_acres     <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"WHEAT, WINTER - ACRES HARVESTED"</span>,         <span class="s">"winter wheat"</span>)
+sorghum_acres   <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"SORGHUM, GRAIN - ACRES HARVESTED"</span>,        <span class="s">"sorghum"</span>)
+ 
+<span class="c"># Land values: NOT available at county level for KS.
+# Pulling state-level only -- note this limitation in the writeup.</span>
+land_values <span class="k">&lt;-</span> <span class="f">safe_pull</span>(
+  <span class="s">"AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE"</span>,
+  <span class="s">"land values (state-level only)"</span>,
+  county_filter <span class="k">=</span> <span class="n">FALSE</span>,
+  agg_level <span class="k">=</span> <span class="s">"STATE"</span>
+)
+ 
+results <span class="k">&lt;-</span> <span class="f">list</span>(
+  nass_corn_acres    <span class="k">=</span> corn_acres,
+  nass_wheat_winter  <span class="k">=</span> wheat_acres,
+  nass_sorghum_acres <span class="k">=</span> sorghum_acres,
+  nass_soybean_acres <span class="k">=</span> soybean_acres,
+  nass_land_values   <span class="k">=</span> land_values
+)
+ 
+<span class="k">for</span> (name <span class="k">in</span> <span class="f">names</span>(results)) {
+  <span class="k">if</span> (<span class="k">!</span><span class="f">is.null</span>(results[[name]])) {
+    <span class="f">write.csv</span>(results[[name]], <span class="f">paste0</span>(<span class="s">"data_raw/"</span>, name, <span class="s">".csv"</span>), row.names <span class="k">=</span> <span class="n">FALSE</span>)
+    <span class="f">cat</span>(name, <span class="s">": saved,"</span>, <span class="f">nrow</span>(results[[name]]), <span class="s">"rows\n"</span>)
+  } <span class="k">else</span> {
+    <span class="f">cat</span>(name, <span class="s">": FAILED\n"</span>)
+  }
+}</pre>
+    </div>
+ 
+    <div id="tab04" class="code-panel">
+<pre><span class="c"># 04_bea_reis.R
+# Free key: https://apps.bea.gov/API/signup/
+# install.packages("bea.R", dependencies = TRUE)
+#
+# CAINC45 ("Farm Income and Expenses") no longer exists in BEA's Regional dataset.
+# Farm income now lives inside CAINC5N:
+#   Line 71 = Farm proprietors' income  (closest to net farm income)
+#   Line 81 = Farm earnings             (broader, includes farm wage labor)
+#
+# CAINC5N with a specific LineCode can pull all 14 counties in one call.
+# CAINC1 with LineCode = ALL still requires a per-county loop.</span>
+ 
+<span class="f">library</span>(bea.R)
+<span class="f">library</span>(dplyr)
+<span class="f">library</span>(tigris)
+ 
+beaKey <span class="k">&lt;-</span> <span class="f">Sys.getenv</span>(<span class="s">"BEA_API_KEY"</span>)
+ 
+lema_timeline  <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>)
+target_counties <span class="k">&lt;-</span> <span class="f">unique</span>(lema_timeline<span class="k">$</span>county)
+ 
+<span class="f">data</span>(fips_codes)
+county_fips <span class="k">&lt;-</span> fips_codes <span class="k">%&gt;%</span>
+  <span class="f">filter</span>(state <span class="k">==</span> <span class="s">"KS"</span>, county <span class="k">%in%</span> <span class="f">paste0</span>(target_counties, <span class="s">" County"</span>)) <span class="k">%&gt;%</span>
+  <span class="f">mutate</span>(fips <span class="k">=</span> <span class="f">paste0</span>(state_code, county_code)) <span class="k">%&gt;%</span>
+  <span class="f">pull</span>(fips)
+ 
+safe_pull_line <span class="k">&lt;-</span> <span class="k">function</span>(table_name, line_code, label) {
+  <span class="f">cat</span>(<span class="s">"Attempting:"</span>, label, <span class="s">"...\n"</span>)
+  <span class="f">tryCatch</span>(
+    <span class="f">beaGet</span>(<span class="f">list</span>(
+      UserID      <span class="k">=</span> beaKey,
+      Method      <span class="k">=</span> <span class="s">"GetData"</span>,
+      DatasetName <span class="k">=</span> <span class="s">"Regional"</span>,
+      TableName   <span class="k">=</span> table_name,
+      LineCode    <span class="k">=</span> line_code,
+      GeoFips     <span class="k">=</span> <span class="f">paste</span>(county_fips, collapse <span class="k">=</span> <span class="s">","</span>),
+      Year        <span class="k">=</span> <span class="s">"ALL"</span>,
+      ResultFormat <span class="k">=</span> <span class="s">"json"</span>
+    )),
+    error <span class="k">=</span> <span class="k">function</span>(e) { <span class="f">cat</span>(<span class="s">"  FAILED:"</span>, <span class="f">conditionMessage</span>(e), <span class="s">"\n"</span>); <span class="n">NULL</span> }
+  )
+}
+ 
+<span class="c"># CAINC1: requires per-county loop when LineCode = ALL</span>
+pull_cainc1_looped <span class="k">&lt;-</span> <span class="k">function</span>() {
+  results <span class="k">&lt;-</span> <span class="f">lapply</span>(county_fips, <span class="k">function</span>(f) {
+    <span class="f">tryCatch</span>(
+      <span class="f">beaGet</span>(<span class="f">list</span>(
+        UserID <span class="k">=</span> beaKey, Method <span class="k">=</span> <span class="s">"GetData"</span>, DatasetName <span class="k">=</span> <span class="s">"Regional"</span>,
+        TableName <span class="k">=</span> <span class="s">"CAINC1"</span>, LineCode <span class="k">=</span> <span class="s">"ALL"</span>, GeoFips <span class="k">=</span> f,
+        Year <span class="k">=</span> <span class="s">"ALL"</span>, ResultFormat <span class="k">=</span> <span class="s">"json"</span>
+      )),
+      error <span class="k">=</span> <span class="k">function</span>(e) <span class="n">NULL</span>
+    )
+  })
+  <span class="f">bind_rows</span>(results[<span class="k">!</span><span class="f">sapply</span>(results, is.null)])
+}
+ 
+personal_income      <span class="k">&lt;-</span> <span class="f">pull_cainc1_looped</span>()
+farm_proprietors_inc <span class="k">&lt;-</span> <span class="f">safe_pull_line</span>(<span class="s">"CAINC5N"</span>, <span class="s">"71"</span>, <span class="s">"farm proprietors' income"</span>)
+farm_earnings        <span class="k">&lt;-</span> <span class="f">safe_pull_line</span>(<span class="s">"CAINC5N"</span>, <span class="s">"81"</span>, <span class="s">"farm earnings"</span>)
+ 
+<span class="f">write.csv</span>(personal_income,      <span class="s">"data_raw/bea_personal_income.csv"</span>,         row.names <span class="k">=</span> <span class="n">FALSE</span>)
+<span class="f">write.csv</span>(farm_proprietors_inc, <span class="s">"data_raw/bea_farm_proprietors_income.csv"</span>,  row.names <span class="k">=</span> <span class="n">FALSE</span>)
+<span class="f">write.csv</span>(farm_earnings,        <span class="s">"data_raw/bea_farm_earnings.csv"</span>,            row.names <span class="k">=</span> <span class="n">FALSE</span>)</pre>
+    </div>
+ 
+    <div id="tab05" class="code-panel">
+<pre><span class="c"># 05_analysis.R
+#
+# Merges groundwater slopes, NASS, and BEA into one county-year panel
+# aligned on each county's first LEMA adoption year.
+#
+# METHODS NOTE: an earlier version compared each well's residual from its
+# all-time mean depth. That approach is wrong for testing "did LEMA slow
+# the decline" -- because the aquifer has been declining continuously,
+# any early year looks below average and any late year above average almost
+# by construction. The correct test is to compare the SLOPE (ft/yr) pre vs
+# post LEMA, not the average level.</span>
+ 
+<span class="f">library</span>(dplyr)
+<span class="f">library</span>(tidyr)
+<span class="f">library</span>(readr)
+<span class="f">library</span>(ggplot2)
+<span class="f">library</span>(fixest)
+ 
+clean_county <span class="k">&lt;-</span> <span class="k">function</span>(x) x <span class="k">|&gt;</span> <span class="f">toupper</span>() <span class="k">|&gt;</span> <span class="f">trimws</span>() <span class="k">|&gt;</span> <span class="f">gsub</span>(<span class="s">" COUNTY$"</span>, <span class="s">""</span>, x <span class="k">=</span> _)
+ 
+lema_timeline <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>) <span class="k">%&gt;%</span>
+  <span class="f">mutate</span>(county_key <span class="k">=</span> <span class="f">clean_county</span>(county))
+ 
+county_treatment <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
+  <span class="f">group_by</span>(county_key) <span class="k">%&gt;%</span>
+  <span class="f">summarise</span>(
+    first_lema           <span class="k">=</span> lema[<span class="f">which.min</span>(effective_start)],
+    first_treatment_year <span class="k">=</span> <span class="f">min</span>(effective_start),
+    n_lemas              <span class="k">=</span> <span class="f">n_distinct</span>(lema),
+    .groups <span class="k">=</span> <span class="s">"drop"</span>
+  )
+ 
+<span class="c"># --- Groundwater: well-level slope comparison ---</span>
+gw_raw <span class="k">&lt;-</span> <span class="f">read_csv</span>(<span class="s">"data_raw/kgs_gwl_clean.csv"</span>, show_col_types <span class="k">=</span> <span class="n">FALSE</span>)
+ 
+get_well_slopes <span class="k">&lt;-</span> <span class="k">function</span>(county_name_key, anchor_year, window <span class="k">=</span> <span class="n">10</span>, min_n <span class="k">=</span> <span class="n">3</span>) {
+  gw_raw <span class="k">%&gt;%</span>
+    <span class="f">filter</span>(valid_reading, <span class="f">clean_county</span>(county) <span class="k">==</span> county_name_key) <span class="k">%&gt;%</span>
+    <span class="f">mutate</span>(period <span class="k">=</span> <span class="f">case_when</span>(
+      year <span class="k">&gt;=</span> anchor_year <span class="k">-</span> window <span class="k">&amp;</span> year <span class="k">&lt;</span> anchor_year <span class="k">~</span> <span class="s">"pre"</span>,
+      year <span class="k">&gt;=</span> anchor_year <span class="k">&amp;</span> year <span class="k">&lt;=</span> anchor_year <span class="k">+</span> window <span class="k">~</span> <span class="s">"post"</span>,
+      <span class="n">TRUE</span> <span class="k">~</span> <span class="n">NA_character_</span>
+    )) <span class="k">%&gt;%</span>
+    <span class="f">filter</span>(<span class="k">!</span><span class="f">is.na</span>(period)) <span class="k">%&gt;%</span>
+    <span class="f">group_by</span>(period, USGS_ID) <span class="k">%&gt;%</span>
+    <span class="f">filter</span>(<span class="f">n</span>() <span class="k">&gt;=</span> min_n) <span class="k">%&gt;%</span>
+    <span class="f">summarise</span>(slope <span class="k">=</span> <span class="f">coef</span>(<span class="f">lm</span>(DEPTH_TO_WATER <span class="k">~</span> year))[<span class="n">2</span>], .groups <span class="k">=</span> <span class="s">"drop"</span>) <span class="k">%&gt;%</span>
+    <span class="f">group_by</span>(period) <span class="k">%&gt;%</span>
+    <span class="f">summarise</span>(avg_slope_ft_per_yr <span class="k">=</span> <span class="f">mean</span>(slope, na.rm <span class="k">=</span> <span class="n">TRUE</span>),
+              n_wells <span class="k">=</span> <span class="f">n</span>(), .groups <span class="k">=</span> <span class="s">"drop"</span>) <span class="k">%&gt;%</span>
+    <span class="f">mutate</span>(county_key <span class="k">=</span> county_name_key)
+}
+ 
+gw_slopes_by_county <span class="k">&lt;-</span> <span class="f">bind_rows</span>(<span class="f">lapply</span>(<span class="f">seq_len</span>(<span class="f">nrow</span>(county_treatment)), <span class="k">function</span>(i) {
+  <span class="f">get_well_slopes</span>(county_treatment<span class="k">$</span>county_key[i], county_treatment<span class="k">$</span>first_treatment_year[i])
+}))
+ 
+<span class="c"># --- TWFE: groundwater (Lane, Scott, Greeley excluded -- well attrition) ---</span>
+gw_reg <span class="k">&lt;-</span> gw_slopes_by_county <span class="k">%&gt;%</span>
+  <span class="f">mutate</span>(post_indicator <span class="k">=</span> <span class="f">ifelse</span>(period <span class="k">==</span> <span class="s">"post"</span>, <span class="n">1</span>, <span class="n">0</span>)) <span class="k">%&gt;%</span>
+  <span class="f">left_join</span>(county_treatment <span class="k">%&gt;%</span> <span class="f">select</span>(county_key, first_treatment_year),
+            by <span class="k">=</span> <span class="s">"county_key"</span>) <span class="k">%&gt;%</span>
+  <span class="f">filter</span>(<span class="k">!</span>county_key <span class="k">%in%</span> <span class="f">c</span>(<span class="s">"LANE"</span>, <span class="s">"SCOTT"</span>, <span class="s">"GREELEY"</span>))
+ 
+twfe_gw <span class="k">&lt;-</span> <span class="f">feols</span>(avg_slope_ft_per_yr <span class="k">~</span> post_indicator <span class="k">|</span> county_key <span class="k">+</span> first_treatment_year,
+                 data <span class="k">=</span> gw_reg, vcov <span class="k">=</span> <span class="s">"hetero"</span>)
+<span class="f">etable</span>(twfe_gw)
+ 
+<span class="c"># --- TWFE event-study: farm proprietors income ---</span>
+master_panel <span class="k">&lt;-</span> county_treatment <span class="k">%&gt;%</span>
+  <span class="f">left_join</span>(crop_panel, by <span class="k">=</span> <span class="s">"county_key"</span>) <span class="k">%&gt;%</span>
+  <span class="f">left_join</span>(bea_panel,  by <span class="k">=</span> <span class="f">c</span>(<span class="s">"county_key"</span>, <span class="s">"year"</span>)) <span class="k">%&gt;%</span>
+  <span class="f">filter</span>(<span class="k">!</span><span class="f">is.na</span>(year)) <span class="k">%&gt;%</span>
+  <span class="f">mutate</span>(
+    event_time    <span class="k">=</span> year <span class="k">-</span> first_treatment_year,
+    sorghum_share <span class="k">=</span> sorghum <span class="k">/</span> (corn_total <span class="k">+</span> wheat_winter <span class="k">+</span> sorghum <span class="k">+</span> soybeans)
+  )
+ 
+twfe_income <span class="k">&lt;-</span> <span class="f">feols</span>(
+  farm_proprietors_income <span class="k">~</span> <span class="f">i</span>(event_time, ref <span class="k">=</span> <span class="k">-</span><span class="n">1</span>) <span class="k">|</span> county_key <span class="k">+</span> year,
+  data  <span class="k">=</span> master_panel <span class="k">%&gt;%</span> <span class="f">filter</span>(event_time <span class="k">&gt;=</span> <span class="k">-</span><span class="n">6</span>, event_time <span class="k">&lt;=</span> <span class="n">6</span>),
+  vcov  <span class="k">=</span> <span class="s">"hetero"</span>
+)
+<span class="f">etable</span>(twfe_income)
+ 
+<span class="f">write_csv</span>(master_panel,         <span class="s">"output/master_panel.csv"</span>)
+<span class="f">write_csv</span>(gw_slopes_by_county,  <span class="s">"output/groundwater_slopes_by_county.csv"</span>)</pre>
+    </div>
+ 
+  </div>
+</div>
+ 
+<!-- METHODOLOGY -->
+<div class="methodology">
+  <div class="methodology-inner">
+    <h2 style="font-family:var(--serif); font-size:1.7rem; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:0.5rem; margin-bottom:0.5rem;">Methodology</h2>
+    <p style="font-size:0.9rem; color:var(--ink-light); margin-bottom:0;">Design, data sources, and limitations.</p>
+    <div class="method-grid">
+      <div class="method-block">
+        <h4>Data Sources</h4>
+        <ul>
+          <li>KGS WIZARD — well-level groundwater levels (manual download, all 14 counties)</li>
+          <li>USDA NASS QuickStats — crop acreage by county (rnassqs API)</li>
+          <li>BEA CAINC5N, Line 71 — farm proprietors' income (bea.R API)</li>
+          <li>BEA CAINC1 — personal income and population</li>
+        </ul>
+      </div>
+      <div class="method-block">
+        <h4>Identification Strategy</h4>
+        <ul>
+          <li>Staggered DiD: four adoption cohorts (2013, 2018, 2021, 2023)</li>
+          <li>Event-time window: ±10 years for groundwater; ±6 for income</li>
+          <li>Groundwater: well-level OLS slope (ft/yr) pre vs post, then county average</li>
+          <li>TWFE with county and cohort/year fixed effects; heteroskedasticity-robust SE</li>
+        </ul>
+      </div>
+      <div class="method-block">
+        <h4>Critical Limitations</h4>
+        <ul>
+          <li>LEMA boundaries are sub-county; county-level data dilutes the treatment signal</li>
+          <li>Wallace and Sheridan each fall under two overlapping LEMAs</li>
+          <li>Lane, Scott, Greeley excluded from groundwater comparison (well attrition)</li>
+          <li>NASS irrigated corn breakout unavailable from 2019 onward; sorghum suppressed in small-farm counties</li>
+          <li>Farm income null result may reflect data limitation, not true null effect</li>
+        </ul>
+      </div>
+      <div class="method-block">
+        <h4>Framing</h4>
+        <ul>
+          <li>Results framed as "patterns consistent with LEMA adoption" — not precise causal estimates</li>
+          <li>Commodity price cycles and drought confound income comparisons</li>
+          <li>All data sources free and publicly available; no NRD/GMD outreach required</li>
+          <li>Full R pipeline available above; API keys stored in .Renviron, never hardcoded</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="article-footer">
+  <a href="index.html#projects">← Back to All Projects</a>
+  <p>Andy Setser · Economic Data Analyst · Alamosa, Colorado</p>
+</div>
+ 
+<script>
+function showTab(id) {
+  document.querySelectorAll('.code-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
+ 
