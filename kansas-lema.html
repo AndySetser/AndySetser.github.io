@@ -503,9 +503,7 @@
 # All four cohorts confirmed from official KDA/GMD Chief Engineer orders.
 # These are fixed historical facts — nothing here needs re-pulling.
 #
-# IMPORTANT: "county" = full county for NASS/BEA joins, but the actual
-# LEMA boundary is often only a PORTION of that county. Treat any
-# estimate as diluted by non-LEMA acreage within the same county.</span>
+
  
 <span class="f">library</span>(tibble)
  
@@ -546,9 +544,6 @@ dupes <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
 # Two files: site metadata (~731 wells) and discrete water-level measurements
 # (~19,319 readings). Files sit in ~/Downloads with original colon-containing names.
 #
-# CRITICAL: USGS_ID must be read as character. If read normally, R converts
-# this long ID to scientific notation (3.93e14) and silently corrupts the join.
-# KGS's own download instructions warn about this.</span>
  
 <span class="f">library</span>(readr)
 <span class="f">library</span>(dplyr)
@@ -602,15 +597,6 @@ levels_clean <span class="k">&lt;-</span> levels_filtered <span class="k">%&gt;%
 # Free key (instant): https://quickstats.nass.usda.gov/api
 # install.packages("rnassqs")
 #
-# NOTE: irrigated corn share was DROPPED as a headline metric.
-# NASS's irrigated/non-irrigated breakout has zero county reporting
-# from 2019 onward across all 14 counties -- not fixable by re-pulling.
-# This would mean no data for the two newest cohorts (Wichita 2021,
-# GMD1 2023) exactly when you need it most.
-#
-# WHEAT: "WHEAT - ACRES HARVESTED" only runs through 2007 for these
-# counties. The continuously-reported series is
-# "WHEAT, WINTER - ACRES HARVESTED" (KS wheat is overwhelmingly winter).</span>
  
 <span class="f">library</span>(rnassqs)
 <span class="f">library</span>(dplyr)
@@ -747,12 +733,6 @@ farm_earnings        <span class="k">&lt;-</span> <span class="f">safe_pull_line
 # Merges groundwater slopes, NASS, and BEA into one county-year panel
 # aligned on each county's first LEMA adoption year.
 #
-# METHODS NOTE: an earlier version compared each well's residual from its
-# all-time mean depth. That approach is wrong for testing "did LEMA slow
-# the decline" -- because the aquifer has been declining continuously,
-# any early year looks below average and any late year above average almost
-# by construction. The correct test is to compare the SLOPE (ft/yr) pre vs
-# post LEMA, not the average level.</span>
  
 <span class="f">library</span>(dplyr)
 <span class="f">library</span>(tidyr)
