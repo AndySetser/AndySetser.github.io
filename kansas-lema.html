@@ -540,15 +540,7 @@ dupes <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
  
     <div id="tab02" class="code-panel">
 <pre><span class="c"># 02_groundwater_levels.R
-#
-# Source: KGS WIZARD database (geohydro.kgs.ku.edu/geohydro/wizard)
-# Downloaded manually as a single combined query across all 14 LEMA counties.
-# Two files: site metadata (~731 wells) and discrete water-level measurements
-# (~19,319 readings). Files sit in ~/Downloads with original colon-containing names.
-#
-# CRITICAL: USGS_ID must be read as character. If read normally, R converts
-# this long ID to scientific notation (3.93e14) and silently corrupts the join.
-# KGS's own download instructions warn about this.</span>
+</span>
  
 <span class="f">library</span>(readr)
 <span class="f">library</span>(dplyr)
@@ -565,7 +557,7 @@ levels <span class="k">&lt;-</span> <span class="f">read_csv</span>(
   show_col_types <span class="k">=</span> <span class="n">FALSE</span>
 )
  
-<span class="c"># Filter sites to our 14 LEMA counties using 3-digit KS FIPS county code</span>
+<span class="c"></span>
 lema_timeline <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>)
 target_counties <span class="k">&lt;-</span> <span class="f">unique</span>(lema_timeline<span class="k">$</span>county)
  
