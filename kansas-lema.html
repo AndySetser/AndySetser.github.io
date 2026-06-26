@@ -500,12 +500,7 @@
  
     <div id="tab01" class="code-panel active">
 <pre><span class="c"># 01_lema_timeline.R
-# All four cohorts confirmed from official KDA/GMD Chief Engineer orders.
-# These are fixed historical facts — nothing here needs re-pulling.
-#
-# IMPORTANT: "county" = full county for NASS/BEA joins, but the actual
-# LEMA boundary is often only a PORTION of that county. Treat any
-# estimate as diluted by non-LEMA acreage within the same county.</span>
+</span>
  
 <span class="f">library</span>(tibble)
  
@@ -529,7 +524,7 @@ lema_timeline <span class="k">&lt;-</span> <span class="f">tribble</span>(
   <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Wallace"</span>,  <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>  <span class="c"># also in GMD4</span>
 )
  
-<span class="c"># Flag counties in more than one LEMA (expect Sheridan and Wallace)</span>
+<span class="c"></span>
 dupes <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
   dplyr<span class="k">::</span><span class="f">count</span>(county) <span class="k">%&gt;%</span>
   dplyr<span class="k">::</span><span class="f">filter</span>(n <span class="k">&gt;</span> <span class="n">1</span>)
@@ -576,9 +571,7 @@ levels_filtered <span class="k">&lt;-</span> levels <span class="k">%&gt;%</span
                                            GROUNDWATER_MGMT_DISTRICT),
              by <span class="k">=</span> <span class="s">"USGS_ID"</span>)
  
-<span class="c"># STATUS codes (Z, O, P, D, M, A, W) = non-standard reading (dry, obstructed,
-# pumping at time of measurement). DEPTH_TO_WATER is blank for these.
-# Do NOT treat as missing-equals-zero.</span>
+<span class="c"></span>
 levels_clean <span class="k">&lt;-</span> levels_filtered <span class="k">%&gt;%</span>
   <span class="f">mutate</span>(
     measurement_date <span class="k">=</span> <span class="f">as.Date</span>(MEASUREMENT_DATE_AND_TIME, format <span class="k">=</span> <span class="s">"%m/%d/%Y"</span>),
@@ -591,18 +584,7 @@ levels_clean <span class="k">&lt;-</span> levels_filtered <span class="k">%&gt;%
  
     <div id="tab03" class="code-panel">
 <pre><span class="c"># 03_nass_quickstats.R
-# Free key (instant): https://quickstats.nass.usda.gov/api
-# install.packages("rnassqs")
-#
-# NOTE: irrigated corn share was DROPPED as a headline metric.
-# NASS's irrigated/non-irrigated breakout has zero county reporting
-# from 2019 onward across all 14 counties -- not fixable by re-pulling.
-# This would mean no data for the two newest cohorts (Wichita 2021,
-# GMD1 2023) exactly when you need it most.
-#
-# WHEAT: "WHEAT - ACRES HARVESTED" only runs through 2007 for these
-# counties. The continuously-reported series is
-# "WHEAT, WINTER - ACRES HARVESTED" (KS wheat is overwhelmingly winter).</span>
+</span>
  
 <span class="f">library</span>(rnassqs)
 <span class="f">library</span>(dplyr)
@@ -637,8 +619,7 @@ soybean_acres   <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<s
 wheat_acres     <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"WHEAT, WINTER - ACRES HARVESTED"</span>,         <span class="s">"winter wheat"</span>)
 sorghum_acres   <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"SORGHUM, GRAIN - ACRES HARVESTED"</span>,        <span class="s">"sorghum"</span>)
  
-<span class="c"># Land values: NOT available at county level for KS.
-# Pulling state-level only -- note this limitation in the writeup.</span>
+<span class="c"></span>
 land_values <span class="k">&lt;-</span> <span class="f">safe_pull</span>(
   <span class="s">"AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE"</span>,
   <span class="s">"land values (state-level only)"</span>,
@@ -666,16 +647,7 @@ results <span class="k">&lt;-</span> <span class="f">list</span>(
  
     <div id="tab04" class="code-panel">
 <pre><span class="c"># 04_bea_reis.R
-# Free key: https://apps.bea.gov/API/signup/
-# install.packages("bea.R", dependencies = TRUE)
-#
-# CAINC45 ("Farm Income and Expenses") no longer exists in BEA's Regional dataset.
-# Farm income now lives inside CAINC5N:
-#   Line 71 = Farm proprietors' income  (closest to net farm income)
-#   Line 81 = Farm earnings             (broader, includes farm wage labor)
-#
-# CAINC5N with a specific LineCode can pull all 14 counties in one call.
-# CAINC1 with LineCode = ALL still requires a per-county loop.</span>
+</span>
  
 <span class="f">library</span>(bea.R)
 <span class="f">library</span>(dplyr)
@@ -709,7 +681,7 @@ safe_pull_line <span class="k">&lt;-</span> <span class="k">function</span>(tabl
   )
 }
  
-<span class="c"># CAINC1: requires per-county loop when LineCode = ALL</span>
+<span class="c"></span>
 pull_cainc1_looped <span class="k">&lt;-</span> <span class="k">function</span>() {
   results <span class="k">&lt;-</span> <span class="f">lapply</span>(county_fips, <span class="k">function</span>(f) {
     <span class="f">tryCatch</span>(
@@ -734,17 +706,7 @@ farm_earnings        <span class="k">&lt;-</span> <span class="f">safe_pull_line
     </div>
  
     <div id="tab05" class="code-panel">
-<pre><span class="c"># 05_analysis.R
-#
-# Merges groundwater slopes, NASS, and BEA into one county-year panel
-# aligned on each county's first LEMA adoption year.
-#
-# METHODS NOTE: an earlier version compared each well's residual from its
-# all-time mean depth. That approach is wrong for testing "did LEMA slow
-# the decline" -- because the aquifer has been declining continuously,
-# any early year looks below average and any late year above average almost
-# by construction. The correct test is to compare the SLOPE (ft/yr) pre vs
-# post LEMA, not the average level.</span>
+<pre><span class="c"></span>
  
 <span class="f">library</span>(dplyr)
 <span class="f">library</span>(tidyr)
@@ -766,7 +728,7 @@ county_treatment <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt
     .groups <span class="k">=</span> <span class="s">"drop"</span>
   )
  
-<span class="c"># --- Groundwater: well-level slope comparison ---</span>
+<span class="c"></span>
 gw_raw <span class="k">&lt;-</span> <span class="f">read_csv</span>(<span class="s">"data_raw/kgs_gwl_clean.csv"</span>, show_col_types <span class="k">=</span> <span class="n">FALSE</span>)
  
 get_well_slopes <span class="k">&lt;-</span> <span class="k">function</span>(county_name_key, anchor_year, window <span class="k">=</span> <span class="n">10</span>, min_n <span class="k">=</span> <span class="n">3</span>) {
@@ -791,7 +753,7 @@ gw_slopes_by_county <span class="k">&lt;-</span> <span class="f">bind_rows</span
   <span class="f">get_well_slopes</span>(county_treatment<span class="k">$</span>county_key[i], county_treatment<span class="k">$</span>first_treatment_year[i])
 }))
  
-<span class="c"># --- TWFE: groundwater (Lane, Scott, Greeley excluded -- well attrition) ---</span>
+<span class="c"></span>
 gw_reg <span class="k">&lt;-</span> gw_slopes_by_county <span class="k">%&gt;%</span>
   <span class="f">mutate</span>(post_indicator <span class="k">=</span> <span class="f">ifelse</span>(period <span class="k">==</span> <span class="s">"post"</span>, <span class="n">1</span>, <span class="n">0</span>)) <span class="k">%&gt;%</span>
   <span class="f">left_join</span>(county_treatment <span class="k">%&gt;%</span> <span class="f">select</span>(county_key, first_treatment_year),
@@ -802,7 +764,7 @@ twfe_gw <span class="k">&lt;-</span> <span class="f">feols</span>(avg_slope_ft_p
                  data <span class="k">=</span> gw_reg, vcov <span class="k">=</span> <span class="s">"hetero"</span>)
 <span class="f">etable</span>(twfe_gw)
  
-<span class="c"># --- TWFE event-study: farm proprietors income ---</span>
+<span class="c"></span>
 master_panel <span class="k">&lt;-</span> county_treatment <span class="k">%&gt;%</span>
   <span class="f">left_join</span>(crop_panel, by <span class="k">=</span> <span class="s">"county_key"</span>) <span class="k">%&gt;%</span>
   <span class="f">left_join</span>(bea_panel,  by <span class="k">=</span> <span class="f">c</span>(<span class="s">"county_key"</span>, <span class="s">"year"</span>)) <span class="k">%&gt;%</span>
