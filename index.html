@@ -5,154 +5,199 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andy Setser — Economic Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --ink: #111111;
-      --ink-mid: #333333;
-      --ink-light: #666666;
-      --ink-faint: #999999;
-      --paper: #FAF9F6;
-      --paper-warm: #F2F0EA;
-      --rule: #CCCCCC;
-      --rule-light: #E5E3DC;
-      --accent: #2D5A27;
-      --accent-light: #4A7C44;
-      --accent-faint: #EBF2EA;
-      --serif: 'Playfair Display', Georgia, serif;
-      --body: 'Source Serif 4', Georgia, serif;
-      --mono: 'Space Mono', monospace;
+      --ink: #0D0D0D;
+      --ink-mid: #222222;
+      --ink-light: #4D4D4D;
+      --ink-faint: #909090;
+      --paper: #FAFAF8;
+      --paper-warm: #F3F1EC;
+      --rule: #D4D0C8;
+      --rule-light: #E8E5DE;
+      --accent: #1E4D2B;
+      --accent-light: #2E6B3E;
+      --accent-faint: #E6EFE9;
+      --serif: 'Libre Baskerville', Georgia, serif;
+      --sans: 'Inter', system-ui, sans-serif;
+      --condensed: 'Barlow Condensed', system-ui, sans-serif;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--paper); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
- 
-    /* NAV */
-    nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 2px solid var(--ink); padding: 0 2rem; }
-    .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 52px; }
-    .nav-logo { font-family: var(--serif); font-weight: 900; font-size: 1.15rem; letter-spacing: 0.01em; color: var(--ink); text-decoration: none; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    /* ── NAV ── */
+    nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 2px solid var(--ink); }
+    .nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 50px; }
+    .nav-logo { font-family: var(--condensed); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
     .nav-logo span { color: var(--accent); }
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-mid); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover { color: var(--accent); }
- 
-    /* HERO */
-    .hero { border-bottom: 1px solid var(--rule); padding: 5rem 2rem 4rem; background: var(--paper); }
-    .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 320px; gap: 5rem; align-items: end; }
-    .hero-kicker { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
-    .hero-kicker::before { content: ''; display: inline-block; width: 28px; height: 2px; background: var(--accent); }
-    .hero h1 { font-family: var(--serif); font-size: clamp(3rem, 7vw, 5.5rem); font-weight: 900; line-height: 1.0; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
-    .hero-sub { font-size: 1.15rem; color: var(--ink-mid); font-style: italic; max-width: 540px; line-height: 1.6; margin-bottom: 2rem; }
-    .hero-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; }
-    .hero-meta a { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1.5px solid var(--ink); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
-    .hero-meta a:hover { color: var(--accent); border-color: var(--accent); }
+    .nav-links { display: flex; gap: 1.75rem; list-style: none; }
+    .nav-links a { font-family: var(--sans); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-hamburger { display: none; background: none; border: none; cursor: pointer; padding: 4px; flex-direction: column; gap: 5px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); transition: all 0.2s; }
+    .nav-mobile { display: none; }
+
+    /* ── HERO ── */
+    .hero { border-bottom: 1px solid var(--rule); padding: 4rem 1.5rem 3.5rem; }
+    .hero-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 300px; gap: 4rem; align-items: end; }
+    .hero-kicker { font-family: var(--sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.6rem; }
+    .hero-kicker::before { content: ''; display: inline-block; width: 20px; height: 1.5px; background: var(--accent); }
+    .hero h1 { font-family: var(--serif); font-size: clamp(2.8rem, 6.5vw, 5.2rem); font-weight: 700; line-height: 1.0; letter-spacing: -0.025em; margin-bottom: 1.25rem; }
+    .hero-sub { font-family: var(--serif); font-size: 1.05rem; font-style: italic; color: var(--ink-light); max-width: 520px; line-height: 1.65; margin-bottom: 1.75rem; }
+    .hero-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-meta a { font-family: var(--sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none; padding: 0.45rem 1rem; transition: all 0.15s; }
+    .hero-meta a.filled { background: var(--ink); color: white; }
+    .hero-meta a.filled:hover { background: var(--accent); }
+    .hero-meta a.outline { border: 1.5px solid var(--ink); color: var(--ink); }
+    .hero-meta a.outline:hover { background: var(--ink); color: white; }
     .hero-photo-wrap { position: relative; }
-    .hero-photo-wrap::before { content: ''; position: absolute; inset: 8px -8px -8px 8px; border: 2px solid var(--accent); z-index: 0; }
-    .hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 20%; display: block; filter: grayscale(15%); }
-    .hero-caption { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.08em; color: var(--ink-faint); margin-top: 0.6rem; text-align: right; }
- 
-    /* SECTION */
-    section { padding: 5rem 2rem; border-bottom: 1px solid var(--rule); }
+    .hero-photo-wrap::before { content: ''; position: absolute; inset: 8px -8px -8px 8px; border: 1.5px solid var(--accent); z-index: 0; }
+    .hero-photo { position: relative; z-index: 1; width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center 20%; display: block; filter: grayscale(12%); }
+    .hero-caption { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.07em; color: var(--ink-faint); margin-top: 0.6rem; text-align: right; }
+
+    /* ── SECTIONS ── */
+    section { padding: 4.5rem 1.5rem; border-bottom: 1px solid var(--rule); }
     .section-inner { max-width: 1200px; margin: 0 auto; }
-    .section-header { display: flex; align-items: baseline; gap: 1.5rem; margin-bottom: 3rem; border-bottom: 2px solid var(--ink); padding-bottom: 0.75rem; }
-    .section-label { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
-    .section-title { font-family: var(--serif); font-size: 2rem; font-weight: 700; letter-spacing: -0.01em; }
- 
-    /* ABOUT */
-    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 5rem; }
-    .about-body p { margin-bottom: 1.2rem; color: var(--ink-mid); font-size: 1.05rem; }
-    .about-body p:first-child { font-size: 1.15rem; color: var(--ink); }
-    .sidebar-block { border-top: 2px solid var(--ink); padding-top: 1rem; margin-bottom: 2rem; }
-    .sidebar-block h4 { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 2.75rem; }
+    .section-label { font-family: var(--sans); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); white-space: nowrap; }
+    .section-rule { flex: 1; height: 2px; background: var(--ink); }
+    .section-title { font-family: var(--serif); font-size: 1.9rem; font-weight: 700; letter-spacing: -0.02em; margin-top: 0.2rem; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4.5rem; }
+    .about-body p { margin-bottom: 1.2rem; color: var(--ink-mid); font-size: 1.02rem; line-height: 1.8; }
+    .about-body p:first-child { font-size: 1.08rem; color: var(--ink); }
+    .sidebar-block { border-top: 2px solid var(--ink); padding-top: 0.9rem; margin-bottom: 1.75rem; }
+    .sidebar-block h4 { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
     .sidebar-block ul { list-style: none; }
-    .sidebar-block li { font-size: 0.88rem; color: var(--ink-mid); padding: 0.3rem 0; border-bottom: 1px solid var(--rule-light); display: flex; align-items: center; gap: 0.5rem; }
-    .sidebar-block li::before { content: '▸'; color: var(--accent); font-size: 0.6rem; }
- 
-    /* PROJECTS */
-    .projects-intro { font-size: 1.05rem; color: var(--ink-mid); font-style: italic; max-width: 680px; margin-bottom: 3rem; padding-left: 1.5rem; border-left: 3px solid var(--accent); }
-    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--rule); }
-    .project-card { padding: 2rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); position: relative; transition: background 0.2s; }
+    .sidebar-block li { font-family: var(--sans); font-size: 0.8rem; font-weight: 400; color: var(--ink-light); padding: 0.28rem 0; border-bottom: 1px solid var(--rule-light); }
+
+    /* ── PROJECTS ── */
+    .projects-intro { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--ink-light); max-width: 640px; margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 2.5px solid var(--accent); line-height: 1.7; }
+    .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); }
+    .project-card { padding: 1.75rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); transition: background 0.15s; }
     .project-card:nth-child(3n) { border-right: none; }
     .project-card:nth-child(4) { border-right: 1px solid var(--rule); }
+    .project-card:last-child { border-bottom: none; }
     .project-card:hover { background: var(--accent-faint); }
-    .project-tool { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); background: var(--accent); display: inline-block; padding: 0.2rem 0.5rem; margin-bottom: 1rem; }
-    .project-card h3 { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.75rem; }
-    .project-card p { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.6; margin-bottom: 1.25rem; }
-    .project-status { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 0.4rem; }
-    .project-status.coming::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--ink-faint); display: inline-block; }
-    .project-status.live::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); display: inline-block; }
-    .project-link { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
-    .project-link:hover { color: var(--accent-light); }
- 
-    /* WRITING */
-    .writing-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 4rem; }
-    .writing-item { display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; padding: 2rem 0; border-bottom: 1px solid var(--rule-light); align-items: start; }
-    .writing-num { font-family: var(--serif); font-size: 3rem; font-weight: 900; color: var(--rule); line-height: 1; min-width: 2.5rem; }
-    .writing-content h3 { font-family: var(--serif); font-size: 1.3rem; font-weight: 600; margin-bottom: 0.4rem; line-height: 1.3; }
-    .writing-content h3 a { color: var(--ink); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-    .writing-content h3 a:hover { border-color: var(--accent); color: var(--accent); }
-    .writing-meta { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.5rem; }
-    .writing-excerpt { font-size: 0.92rem; color: var(--ink-mid); line-height: 1.6; margin-bottom: 0.75rem; }
-    .writing-link { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); display: inline-block; }
+    .project-tool { font-family: var(--condensed); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; background: var(--accent); display: inline-block; padding: 0.18rem 0.5rem; margin-bottom: 0.85rem; }
+    .project-card h3 { font-family: var(--serif); font-size: 1.08rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.7rem; }
+    .project-card p { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-light); line-height: 1.62; margin-bottom: 1rem; }
+    .project-status { font-family: var(--sans); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); display: flex; align-items: center; gap: 0.35rem; }
+    .project-status.coming::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--rule); display: inline-block; }
+    .project-status.live { color: var(--accent); }
+    .project-status.live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); display: inline-block; }
+    .project-link { font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); padding-bottom: 1px; }
+    .project-link:hover { color: var(--accent); border-color: var(--accent); }
+    .rule-ornament { text-align: center; color: var(--rule); font-size: 1rem; letter-spacing: 0.5rem; margin: 2.5rem 0; }
+
+    /* ── WRITING ── */
+    .writing-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3.5rem; }
+    .writing-item { display: grid; grid-template-columns: 40px 1fr; gap: 1.25rem; padding: 1.75rem 0; border-bottom: 1px solid var(--rule-light); align-items: start; }
+    .writing-num { font-family: var(--serif); font-size: 2.5rem; font-weight: 700; color: var(--rule); line-height: 1; text-align: right; }
+    .writing-content h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin-bottom: 0.3rem; line-height: 1.3; }
+    .writing-content h3 a { color: var(--ink); text-decoration: none; }
+    .writing-content h3 a:hover { color: var(--accent); }
+    .writing-meta { font-family: var(--sans); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 0.4rem; }
+    .writing-excerpt { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-light); line-height: 1.68; margin-bottom: 0.6rem; }
+    .writing-link { font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
     .writing-link:hover { color: var(--accent-light); }
-    .substack-cta { background: var(--accent); padding: 2rem; color: white; }
-    .substack-cta h4 { font-family: var(--serif); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; color: white; }
-    .substack-cta p { font-size: 0.88rem; line-height: 1.6; opacity: 0.88; margin-bottom: 1.5rem; }
-    .substack-cta a { display: inline-block; background: white; color: var(--accent); font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.6rem 1.2rem; text-decoration: none; font-weight: 700; transition: background 0.2s; }
+    .substack-cta { background: var(--accent); padding: 1.75rem; color: white; }
+    .substack-cta h4 { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.6rem; color: white; line-height: 1.3; }
+    .substack-cta p { font-family: var(--sans); font-size: 0.82rem; line-height: 1.62; opacity: 0.88; margin-bottom: 1.25rem; }
+    .substack-cta a { display: inline-block; background: white; color: var(--accent); font-family: var(--sans); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.5rem 1.1rem; text-decoration: none; transition: background 0.15s; }
     .substack-cta a:hover { background: var(--paper-warm); }
-    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-    .skill-tag { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.08em; border: 1px solid var(--rule); padding: 0.3rem 0.7rem; color: var(--ink-mid); }
+    .writing-tags-box { margin-top: 1.75rem; padding: 1.5rem; border: 1px solid var(--rule); }
+    .writing-tags-box h4 { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.85rem; }
+    .skills-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .skill-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 500; border: 1px solid var(--rule); padding: 0.24rem 0.6rem; color: var(--ink-light); }
     .skill-tag.primary { border-color: var(--accent); color: var(--accent); background: var(--accent-faint); }
- 
-    /* RESUME */
+
+    /* ── RESUME ── */
     .resume-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-    .resume-block { margin-bottom: 2.5rem; }
-    .resume-block-title { font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 0.4rem; margin-bottom: 1.2rem; }
-    .resume-entry { margin-bottom: 1.5rem; }
-    .resume-entry-title { font-family: var(--serif); font-weight: 700; font-size: 1rem; margin-bottom: 0.15rem; }
-    .resume-entry-org { font-size: 0.85rem; color: var(--ink-mid); margin-bottom: 0.1rem; }
-    .resume-entry-date { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: var(--ink-faint); margin-bottom: 0.5rem; }
-    .resume-entry ul { padding-left: 1rem; font-size: 0.88rem; color: var(--ink-mid); line-height: 1.65; }
-    .resume-entry li { margin-bottom: 0.3rem; }
-    .resume-download { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--paper); background: var(--ink); padding: 0.75rem 1.5rem; text-decoration: none; margin-top: 2rem; transition: background 0.2s; }
+    .resume-block { margin-bottom: 2.25rem; }
+    .resume-block-title { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 0.4rem; margin-bottom: 1.1rem; }
+    .resume-entry { margin-bottom: 1.4rem; }
+    .resume-entry-title { font-family: var(--serif); font-weight: 700; font-size: 0.95rem; margin-bottom: 0.12rem; line-height: 1.3; }
+    .resume-entry-org { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-light); margin-bottom: 0.08rem; }
+    .resume-entry-date { font-family: var(--sans); font-size: 0.6rem; font-weight: 500; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 0.45rem; }
+    .resume-entry ul { padding-left: 1rem; font-family: var(--sans); font-size: 0.8rem; color: var(--ink-light); line-height: 1.68; }
+    .resume-entry li { margin-bottom: 0.25rem; }
+    .resume-download { display: inline-flex; align-items: center; gap: 0.5rem; font-family: var(--sans); font-size: 0.62rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: white; background: var(--ink); padding: 0.7rem 1.4rem; text-decoration: none; margin-top: 1.75rem; transition: background 0.15s; }
     .resume-download:hover { background: var(--accent); }
-    .resume-download svg { width: 14px; height: 14px; }
- 
-    /* FOOTER */
-    footer { background: var(--ink); color: var(--paper-warm); padding: 3rem 2rem; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem; padding-bottom: 2.5rem; border-bottom: 1px solid #333; margin-bottom: 1.5rem; }
-    .footer-brand h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 900; color: white; margin-bottom: 0.5rem; }
-    .footer-brand p { font-size: 0.85rem; color: #888; line-height: 1.6; }
-    .footer-col h4 { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 1rem; }
+    .resume-download svg { width: 13px; height: 13px; }
+
+    /* ── FOOTER ── */
+    footer { background: var(--ink); color: #ccc; padding: 2.5rem 1.5rem; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 3rem; padding-bottom: 2rem; border-bottom: 1px solid #222; margin-bottom: 1.25rem; }
+    .footer-brand h3 { font-family: var(--condensed); font-size: 1.3rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: white; margin-bottom: 0.4rem; }
+    .footer-brand p { font-family: var(--sans); font-size: 0.78rem; color: #666; line-height: 1.62; }
+    .footer-col h4 { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 0.85rem; }
     .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 0.5rem; }
-    .footer-col a { font-size: 0.88rem; color: #aaa; text-decoration: none; transition: color 0.2s; }
+    .footer-col li { margin-bottom: 0.45rem; }
+    .footer-col a { font-family: var(--sans); font-size: 0.8rem; color: #777; text-decoration: none; transition: color 0.15s; }
     .footer-col a:hover { color: white; }
     .footer-bottom { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-    .footer-bottom p { font-family: var(--mono); font-size: 0.58rem; letter-spacing: 0.1em; color: #555; }
-    .rule-ornament { text-align: center; color: var(--rule); font-size: 1rem; letter-spacing: 0.5rem; margin: 3rem 0; }
- 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
-    .hero h1 { animation: fadeUp 0.7s ease both; }
-    .hero-sub { animation: fadeUp 0.7s 0.15s ease both; }
-    .hero-meta { animation: fadeUp 0.7s 0.3s ease both; }
-    .hero-photo-wrap { animation: fadeUp 0.7s 0.1s ease both; }
- 
+    .footer-bottom p { font-family: var(--sans); font-size: 0.6rem; color: #444; letter-spacing: 0.05em; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+    .hero h1 { animation: fadeUp 0.65s ease both; }
+    .hero-sub { animation: fadeUp 0.65s 0.12s ease both; }
+    .hero-meta { animation: fadeUp 0.65s 0.24s ease both; }
+    .hero-photo-wrap { animation: fadeUp 0.65s 0.08s ease both; }
+
+    /* ── RESPONSIVE ── */
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .hero-photo-wrap { max-width: 280px; }
-      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-mobile { display: none; position: absolute; top: 50px; left: 0; right: 0; background: var(--paper); border-bottom: 2px solid var(--ink); padding: 1rem 1.5rem; flex-direction: column; gap: 0; z-index: 99; }
+      .nav-mobile.open { display: flex; }
+      .nav-mobile a { font-family: var(--sans); font-size: 0.8rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink); text-decoration: none; padding: 0.85rem 0; border-bottom: 1px solid var(--rule-light); }
+      .nav-mobile a:last-child { border-bottom: none; }
+
+      .hero { padding: 2.5rem 1.5rem 2rem; }
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-photo-wrap { max-width: 220px; }
+      .hero-photo-wrap::before { display: none; }
+
+      section { padding: 3rem 1.5rem; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .projects-grid { grid-template-columns: 1fr 1fr; }
+      .project-card:nth-child(3n) { border-right: 1px solid var(--rule); }
+      .project-card:nth-child(2n) { border-right: none; }
+
+      .writing-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .resume-layout { grid-template-columns: 1fr; gap: 2rem; }
+
+      .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 560px) {
+      .hero h1 { font-size: 2.6rem; }
+      .hero-meta { gap: 0.6rem; }
+      .hero-meta a { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
+
       .projects-grid { grid-template-columns: 1fr; }
-      .project-card { border-right: none; }
-      .writing-grid { grid-template-columns: 1fr; }
-      .resume-layout { grid-template-columns: 1fr; }
-      .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .nav-links { gap: 1rem; }
+      .project-card { border-right: none !important; }
+
+      .writing-item { grid-template-columns: 30px 1fr; gap: 0.85rem; }
+      .writing-num { font-size: 1.8rem; }
+
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-bottom { flex-direction: column; gap: 0.4rem; text-align: center; }
     }
   </style>
 </head>
 <body>
- 
+
 <!-- NAV -->
 <nav>
   <div class="nav-inner">
@@ -164,9 +209,19 @@
       <li><a href="#resume">Résumé</a></li>
       <li><a href="mailto:andysetser@icloud.com">Contact</a></li>
     </ul>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-mobile').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile">
+    <a href="#about" onclick="this.parentElement.classList.remove('open')">About</a>
+    <a href="#projects" onclick="this.parentElement.classList.remove('open')">Projects</a>
+    <a href="#writing" onclick="this.parentElement.classList.remove('open')">Writing</a>
+    <a href="#resume" onclick="this.parentElement.classList.remove('open')">Résumé</a>
+    <a href="mailto:andysetser@icloud.com">Contact</a>
   </div>
 </nav>
- 
+
 <!-- HERO -->
 <header class="hero">
   <div class="hero-inner">
@@ -175,10 +230,10 @@
       <h1>Andy<br>Setser</h1>
       <p class="hero-sub">Economist and data analyst working at the intersection of regional economic development, applied statistics, and public policy based in the San Luis Valley, Colorado.</p>
       <div class="hero-meta">
-        <a href="#projects">View Projects</a>
-        <a href="#writing">Read Writing</a>
-        <a href="https://substack.com/@andysetser" target="_blank">Substack ↗</a>
-        <a href="#resume">Download Résumé</a>
+        <a href="#projects" class="filled">View Projects</a>
+        <a href="#writing" class="outline">Read Writing</a>
+        <a href="https://substack.com/@andysetser" target="_blank" class="outline">Substack ↗</a>
+        <a href="#resume" class="outline">Download Résumé</a>
       </div>
     </div>
     <div class="hero-photo-wrap">
@@ -187,14 +242,16 @@
     </div>
   </div>
 </header>
- 
+
 <!-- ABOUT -->
 <section id="about">
   <div class="section-inner">
     <div class="section-header">
       <span class="section-label">§ 01</span>
-      <h2 class="section-title">About</h2>
+      <div class="section-rule"></div>
     </div>
+    <h2 class="section-title">About</h2>
+    <br>
     <div class="about-grid">
       <div class="about-body">
         <p>I'm an economics graduate working as a REDI Economic Development Analyst in Colorado's San Luis Valley, one of the most economically complex rural regions in the American West. My work is fundamentally about connection: identifying where regional organizations lack capacity and bridging them to the resources that can help.</p>
@@ -244,17 +301,19 @@
     </div>
   </div>
 </section>
- 
+
 <!-- PROJECTS -->
 <section id="projects" style="background: var(--paper-warm);">
   <div class="section-inner">
     <div class="section-header">
       <span class="section-label">§ 02</span>
-      <h2 class="section-title">Data Projects</h2>
+      <div class="section-rule"></div>
     </div>
+    <h2 class="section-title">Data Projects</h2>
+    <br>
     <p class="projects-intro">Applied data analysis projects using R and Excel. Focused on labor markets, housing economics, and public policy. Each project includes full methodology notes, data sources, and reproducible code.</p>
     <div class="projects-grid">
- 
+
       <div class="project-card">
         <span class="project-tool">Excel</span>
         <h3>U.S. Housing Affordability &amp; Macroeconomic Pressure, 1985–2024</h3>
@@ -262,7 +321,7 @@
         <p class="project-status live" style="margin-bottom:0.75rem;">Live — View Project</p>
         <a class="project-link" href="housing-affordability.html">Read Analysis →</a>
       </div>
- 
+
       <div class="project-card">
         <span class="project-tool">R</span>
         <h3>The Returns to Education in the U.S. Labor Market, 2010–2023</h3>
@@ -270,7 +329,7 @@
         <p class="project-status live" style="margin-bottom:0.75rem;">Live — View Project</p>
         <a class="project-link" href="workforce-education.html">Read Analysis →</a>
       </div>
- 
+
       <div class="project-card">
         <span class="project-tool">R</span>
         <h3>Cobb-Douglas Production Function Estimation, 1899–1922</h3>
@@ -279,37 +338,39 @@
         <a class="project-link" href="cobb-douglas.html">Read Analysis →</a>
       </div>
 
-    <div class="project-card">
-  <span class="project-tool">R · DiD</span>
-  <h3>The Economics of Voluntary Water Restrictions in Kansas</h3>
-  <p>A staggered difference-in-differences event study across four Kansas LEMA adoption cohorts (2013–2023). Uses KGS WIZARD well data, USDA NASS crop acreage, and BEA farm income to ask whether locally-governed aquifer restrictions slow groundwater decline without collapsing farm income.</p>
-  <p class="project-status live" style="margin-bottom:0.75rem;">Live — View Project</p>
-  <a class="project-link" href="kansas-lema.html">Read Analysis →</a>
-</div>
-      
+      <div class="project-card">
+        <span class="project-tool">R · DiD</span>
+        <h3>The Economics of Voluntary Water Restrictions in Kansas</h3>
+        <p>A staggered difference-in-differences event study across four Kansas LEMA adoption cohorts (2013–2023). Uses KGS WIZARD well data, USDA NASS crop acreage, and BEA farm income to ask whether locally-governed aquifer restrictions slow groundwater decline without collapsing farm income.</p>
+        <p class="project-status live" style="margin-bottom:0.75rem;">Live — View Project</p>
+        <a class="project-link" href="kansas-lema.html">Read Analysis →</a>
+      </div>
+
       <div class="project-card">
         <span class="project-tool">R</span>
         <h3>San Luis Valley Labor Force Analysis</h3>
         <p>County-level labor force participation analysis using U.S. Census Bureau microdata and ACS datasets. Includes tidyverse data wrangling and ggplot2 visualizations of employment trends across the six-county district.</p>
         <p class="project-status coming">In the Works</p>
       </div>
- 
+
     </div>
     <div class="rule-ornament">— ◆ —</div>
-    <p style="font-size:0.88rem; color:var(--ink-faint); font-style:italic; text-align:center;">More projects in development. Each will include full methodology notes, data sources, and reproducible code.</p>
+    <p style="font-family:var(--sans); font-size:0.82rem; color:var(--ink-faint); font-style:italic; text-align:center;">More projects in development. Each will include full methodology notes, data sources, and reproducible code.</p>
   </div>
 </section>
- 
+
 <!-- WRITING -->
 <section id="writing">
   <div class="section-inner">
     <div class="section-header">
       <span class="section-label">§ 03</span>
-      <h2 class="section-title">Writing</h2>
+      <div class="section-rule"></div>
     </div>
+    <h2 class="section-title">Writing</h2>
+    <br>
     <div class="writing-grid">
       <div class="writing-main">
- 
+
         <div class="writing-item">
           <div class="writing-num">01</div>
           <div class="writing-content">
@@ -319,7 +380,7 @@
             <a class="writing-link" href="https://substack.com/@andysetser" target="_blank">Read on Substack ↗</a>
           </div>
         </div>
- 
+
         <div class="writing-item">
           <div class="writing-num">02</div>
           <div class="writing-content">
@@ -329,7 +390,7 @@
             <a class="writing-link" href="The_Looming_Recession_.pdf" target="_blank">Download PDF ↓</a>
           </div>
         </div>
- 
+
         <div class="writing-item">
           <div class="writing-num">03</div>
           <div class="writing-content">
@@ -339,7 +400,7 @@
             <a class="writing-link" href="The_Relationship_Between_Economic_Inequalities_and_Climate_Change-1.pdf" target="_blank">Download PDF ↓</a>
           </div>
         </div>
- 
+
         <div class="writing-item">
           <div class="writing-num">04</div>
           <div class="writing-content">
@@ -348,7 +409,7 @@
             <p class="writing-excerpt">Author of Enterprise Zone and EDA reports for the San Luis Valley, synthesizing economic indicators and program activity for state agency review. Also contributed action plan sections, retail data analysis, and supporting research to the region's Comprehensive Economic Development Strategy (CEDS).</p>
           </div>
         </div>
- 
+
       </div>
       <div class="writing-sidebar">
         <div class="substack-cta">
@@ -356,8 +417,8 @@
           <p>Essays on economics, regional development, and the data behind policy decisions that shape rural communities.</p>
           <a href="https://substack.com/@andysetser" target="_blank">Subscribe →</a>
         </div>
-        <div style="margin-top:2rem; padding:1.5rem; border:1px solid var(--rule);">
-          <h4 style="font-family:var(--mono); font-size:0.6rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--accent); margin-bottom:1rem;">Topics I Write About</h4>
+        <div class="writing-tags-box">
+          <h4>Topics I Write About</h4>
           <div class="skills-tags">
             <span class="skill-tag primary">Regional Economics</span>
             <span class="skill-tag primary">Rural Policy</span>
@@ -373,19 +434,21 @@
     </div>
   </div>
 </section>
- 
+
 <!-- RESUME -->
 <section id="resume" style="background:var(--paper-warm);">
   <div class="section-inner">
     <div class="section-header">
       <span class="section-label">§ 04</span>
-      <h2 class="section-title">Résumé</h2>
+      <div class="section-rule"></div>
     </div>
+    <h2 class="section-title">Résumé</h2>
+    <br>
     <div class="resume-layout">
       <div class="resume-col">
         <div class="resume-block">
           <p class="resume-block-title">Experience</p>
- 
+
           <div class="resume-entry">
             <div class="resume-entry-title">REDI Economic Development Analyst (Contractor)</div>
             <div class="resume-entry-org">San Luis Valley Development Resource Group · Alamosa, CO</div>
@@ -399,7 +462,7 @@
               <li>Analyze financial statements for businesses applying to the regional Business Loan Fund and produce written assessments for the director.</li>
             </ul>
           </div>
- 
+
           <div class="resume-entry">
             <div class="resume-entry-title">Data Analysis Apprenticeship</div>
             <div class="resume-entry-org">Valley Wide Health · Remote · Unpaid</div>
@@ -409,7 +472,7 @@
               <li>Conducted budget-to-actual variance analysis, identifying discrepancies between projected and actual financial performance and producing structured written findings.</li>
             </ul>
           </div>
- 
+
           <div class="resume-entry">
             <div class="resume-entry-title">Sangre de Cristo NHA Steward</div>
             <div class="resume-entry-org">AmeriCorps Conservation Legacy · Alamosa, CO</div>
@@ -418,7 +481,7 @@
               <li>Compiled, digitized, and organized historical and economic records for 10 national heritage designation nominees across the San Luis Valley, producing structured data files submitted to History Colorado for official government review.</li>
             </ul>
           </div>
- 
+
           <div class="resume-entry">
             <div class="resume-entry-title">Mathematics Tutor</div>
             <div class="resume-entry-org">Upward Bound · Adams State University · Alamosa, CO</div>
@@ -429,7 +492,7 @@
           </div>
         </div>
       </div>
- 
+
       <div class="resume-col">
         <div class="resume-block">
           <p class="resume-block-title">Education</p>
@@ -455,7 +518,7 @@
             <div class="resume-entry-date">Conferred May 2021 · GPA 4.00</div>
           </div>
         </div>
- 
+
         <div class="resume-block">
           <p class="resume-block-title">Technical Skills</p>
           <div class="skills-tags" style="margin-bottom:1rem;">
@@ -474,10 +537,10 @@
             <span class="skill-tag">Google Analytics — in progress</span>
           </div>
         </div>
- 
+
         <div class="resume-block">
           <p class="resume-block-title">Honors &amp; Accomplishments</p>
-          <ul style="list-style:none; font-size:0.9rem; color:var(--ink-mid); line-height:1.8;">
+          <ul style="list-style:none; font-family:var(--sans); font-size:0.82rem; color:var(--ink-light); line-height:1.85;">
             <li>▸ Summa Cum Laude across three institutions (3.98–4.00 GPA)</li>
             <li>▸ Presidential Scholarship, Adams State University</li>
             <li>▸ George Scott Award, Trinidad State Junior College</li>
@@ -485,7 +548,7 @@
             <li>▸ Academic Honor Roll every semester of athletic eligibility</li>
           </ul>
         </div>
- 
+
         <a class="resume-download" href="AndySetser_Resume-1.pdf" download>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
           Download Full Résumé (PDF)
@@ -494,7 +557,7 @@
     </div>
   </div>
 </section>
- 
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
@@ -526,7 +589,6 @@
     <p>Built with HTML · Hosted on GitHub Pages</p>
   </div>
 </footer>
- 
+
 </body>
 </html>
- 
