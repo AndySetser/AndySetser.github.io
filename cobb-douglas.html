@@ -65,10 +65,6 @@
     .page-body p:first-child { font-size: 1.08rem; color: var(--ink); }
     .page-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
 
-    .aside-pull { float: right; width: 240px; margin: 0.5rem 0 1.5rem 2.5rem; border-top: 2px solid var(--ink); padding-top: 0.75rem; }
-    .aside-pull p { font-family: var(--serif); font-size: 1rem; font-style: italic; line-height: 1.55; color: var(--ink); margin: 0; }
-    .aside-pull cite { font-family: var(--sans); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-top: 0.5rem; font-style: normal; }
-
     .eq { background: var(--ink); padding: 1.25rem 1.75rem; margin: 2rem 0; }
     .eq-tag { font-family: var(--sans); font-size: 0.52rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 0.4rem; display: block; }
     .eq p { font-family: var(--sans); font-size: 0.88rem; color: #ddd; margin: 0 0 0.3rem; }
@@ -194,11 +190,6 @@
   <p>The Cobb-Douglas production function is one of the most enduring models in economics — first estimated by Charles Cobb and Paul Douglas in 1928 using U.S. manufacturing data. This project applies that same original dataset to replicate and interpret the estimation using OLS regression in R, recovering the labour and capital elasticities and drawing practical implications for firm strategy.</p>
 
   <p>The model is log-linearized to allow estimation via ordinary least squares. Taking the natural log of both sides of Q = A · L<sup>β</sup> · K<sup>γ</sup> converts a nonlinear relationship into a tractable linear regression, with the slope coefficients directly interpretable as output elasticities.</p>
-
-  <div class="aside-pull">
-    <p>"A 1% increase in labour raises output by roughly 0.81%. A 1% increase in capital raises it by only about 0.23%. Labour is more than three times as productive at the margin."</p>
-    <cite>Author's OLS estimate</cite>
-  </div>
 
   <div class="eq">
     <span class="eq-tag">Estimated Model</span>
