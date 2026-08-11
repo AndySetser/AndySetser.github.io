@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Education & Wage Returns — Andy Setser</title>
+  <title>The Returns to Education in the U.S. Labor Market — Andy Setser</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     :root {
@@ -20,184 +20,119 @@
       --accent: #1E4D2B;
       --accent-light: #2E6B3E;
       --accent-faint: #E6EFE9;
-      --red: #B03A2E;
-      --blue: #1A4A7A;
-      --gold: #8B6914;
+      --amber: #A8791F;
+      --red: #A23B2E;
       --serif: 'Libre Baskerville', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
       --condensed: 'Barlow Condensed', system-ui, sans-serif;
+      --mono: 'Space Mono', monospace;
     }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 17px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
 
-    /* NAV */
     nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 2px solid var(--ink); padding: 0 2rem; }
     .nav-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 50px; }
-    .nav-logo { font-family: var(--condensed); font-weight: 700; font-size: 1.05rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
+    .nav-logo { font-family: var(--condensed); font-weight: 700; font-size: 1.1rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); text-decoration: none; }
     .nav-logo span { color: var(--accent); }
-    .nav-back { font-family: var(--sans); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; display: flex; align-items: center; gap: 0.4rem; transition: color 0.15s; }
-    .nav-back:hover { color: var(--accent); }
+    .nav-back { font-family: var(--sans); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
+    .nav-back:hover { color: var(--ink); }
 
-    /* HERO */
-    .article-hero { border-bottom: 1px solid var(--rule); padding: 4rem 2rem 3rem; }
-    .article-hero-inner { max-width: 780px; margin: 0 auto; }
-    .article-kicker { font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.75rem; }
-    .article-kicker::before { content: ''; display: inline-block; width: 20px; height: 1.5px; background: var(--accent); }
-    .article-hero h1 { font-family: var(--serif); font-size: clamp(1.9rem, 5vw, 3rem); font-weight: 700; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 1.2rem; }
-    .article-dek { font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: var(--ink-light); line-height: 1.65; margin-bottom: 2rem; }
-    .article-meta { display: flex; flex-wrap: wrap; gap: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--rule); }
-    .meta-label { font-family: var(--sans); font-size: 0.55rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-bottom: 0.2rem; }
-    .meta-value { font-family: var(--sans); font-size: 0.85rem; color: var(--ink-light); }
+    /* HERO — left-heavy editorial, no symmetry */
+    .hero { padding: 5rem 2rem 0; border-bottom: 1px solid var(--rule); }
+    .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 6rem; align-items: end; }
+    .hero-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
+    .hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 900; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 1.5rem; }
+    .hero-dek { font-size: 1.1rem; color: var(--ink-mid); line-height: 1.65; max-width: 520px; border-left: 3px solid var(--accent); padding-left: 1.25rem; margin-bottom: 3rem; }
+    .hero-meta-row { display: flex; flex-wrap: wrap; column-gap: 2.5rem; row-gap: 0.75rem; padding: 1.5rem 0; border-top: 1px solid var(--rule); }
+    .meta-pair { display: flex; flex-direction: column; gap: 0.15rem; }
+    .meta-key { font-family: var(--sans); font-size: 0.52rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
+    .meta-val { font-family: var(--sans); font-size: 0.85rem; color: var(--ink-mid); }
 
-    /* STAT STRIP */
-    .stat-strip { background: var(--ink); padding: 2.5rem 2rem; }
-    .stat-strip-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
-    .stat-card { border-left: 2px solid var(--accent-light); padding-left: 1.25rem; }
-    .stat-num { font-family: var(--serif); font-size: 2.1rem; font-weight: 700; color: white; line-height: 1; margin-bottom: 0.3rem; }
-    .stat-num.red { color: #E8897F; }
-    .stat-num.gold { color: #D4B86A; }
-    .stat-label { font-family: var(--sans); font-size: 0.58rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #888; line-height: 1.5; }
+    /* sidebar pulls the headline numbers in a sparse way */
+    .hero-aside { padding-bottom: 3rem; }
+    .aside-figure { margin-bottom: 2rem; border-top: 2px solid var(--ink); padding-top: 1rem; }
+    .aside-num { font-family: var(--serif); font-size: 2.6rem; font-weight: 900; line-height: 1; color: var(--ink); }
+    .aside-num.red { color: var(--red); }
+    .aside-num.muted { color: var(--ink-faint); font-size: 2rem; }
+    .aside-label { font-family: var(--sans); font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-top: 0.3rem; line-height: 1.5; }
 
-    /* ARTICLE BODY */
-    .article-body { max-width: 780px; margin: 0 auto; padding: 3.5rem 2rem; }
-    .article-body h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin: 3rem 0 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink); }
-    .article-body h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 700; margin: 2rem 0 0.75rem; color: var(--ink-mid); }
-    .article-body p { margin-bottom: 1.3rem; color: var(--ink-mid); font-family: var(--serif); line-height: 1.8; }
-    .article-body p:first-child { font-size: 1.08rem; color: var(--ink); }
-    .pullquote { border-left: 3px solid var(--accent); padding: 1rem 1.5rem; margin: 2.5rem 0; background: var(--accent-faint); }
-    .pullquote p { font-family: var(--serif); font-size: 1.1rem; font-style: italic; color: var(--ink); margin: 0; line-height: 1.65; }
+    /* BODY */
+    .page-body { max-width: 680px; margin: 0 auto; padding: 4rem 2rem; }
+    .page-body h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin: 3.5rem 0 1rem; }
+    .page-body h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 2.5rem 0 0.6rem; color: var(--ink); }
+    .page-body p { color: var(--ink-mid); margin-bottom: 1.3rem; }
+    .page-body p:first-child { font-size: 1.08rem; color: var(--ink); }
+
+    /* SECTION — shared shell for figures, table, code */
+    .section-block { border-top: 2px solid var(--ink); padding: 4rem 2rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-hed { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .section-sub { font-size: 0.92rem; color: var(--ink-light); margin-bottom: 1.75rem; max-width: 620px; }
 
     /* CHARTS */
-    .chart-section { padding: 2rem; max-width: 1100px; margin: 0 auto; }
-    .chart-block { margin-bottom: 4rem; }
-    .chart-header { max-width: 780px; margin: 0 auto 1.5rem; padding: 0 2rem; }
-    .chart-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 700; margin-bottom: 0.4rem; }
-    .chart-subtitle { font-family: var(--sans); font-size: 0.85rem; color: var(--ink-light); font-style: italic; }
+    .chart-block { margin-bottom: 3.5rem; }
+    .chart-block:last-child { margin-bottom: 0; }
+    .chart-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .chart-subtitle { font-size: 0.9rem; color: var(--ink-light); font-style: italic; margin-bottom: 1rem; max-width: 620px; }
     .chart-wrap { background: white; border: 1px solid var(--rule); padding: 2rem; position: relative; }
-    .chart-wrap canvas { max-height: 400px; }
-    .chart-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.07em; color: var(--ink-faint); margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--rule-light); }
+    .chart-wrap canvas { max-height: 380px; }
+    .chart-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--rule-light); }
 
-    /* REGRESSION TABLE */
-    .reg-section { padding: 0 2rem 4rem; max-width: 1100px; margin: 0 auto; }
-    .reg-section h2 { font-family: var(--serif); font-size: 1.55rem; font-weight: 700; border-bottom: 2px solid var(--ink); padding-bottom: 0.5rem; margin-bottom: 1.5rem; }
-    .table-wrap { overflow-x: auto; border: 1px solid var(--rule); }
-    table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
-    thead tr { background: var(--ink); color: white; }
-    thead th { font-family: var(--sans); font-size: 0.55rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.75rem 1rem; text-align: right; white-space: nowrap; }
-    thead th:first-child { text-align: left; min-width: 200px; }
-    tbody tr { border-bottom: 1px solid var(--rule-light); transition: background 0.15s; }
+    /* DATA / REGRESSION TABLE */
+    .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
+    thead tr { border-bottom: 2px solid var(--ink); background: var(--ink); }
+    th { font-family: var(--sans); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; padding: 0.65rem 0.9rem; text-align: right; white-space: nowrap; }
+    th:first-child { text-align: left; min-width: 180px; }
+    td { font-family: var(--sans); font-size: 0.78rem; padding: 0.5rem 0.9rem; text-align: right; border-bottom: 1px solid var(--rule-light); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
+    td:first-child { text-align: left; font-family: var(--serif); font-size: 0.85rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
     tbody tr:hover { background: var(--accent-faint); }
-    tbody tr.section-divider td { background: var(--paper-warm); font-family: var(--sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); padding: 0.4rem 1rem; border-top: 2px solid var(--rule); }
-    tbody td { padding: 0.55rem 1rem; text-align: right; color: var(--ink-light); font-family: var(--sans); font-size: 0.78rem; }
-    tbody td:first-child { text-align: left; font-family: var(--serif); color: var(--ink); font-size: 0.85rem; }
-    td.sig { color: var(--accent); font-weight: 600; }
-    td.se { color: var(--ink-faint); font-size: 0.72rem; }
-    .table-note { font-family: var(--sans); font-size: 0.6rem; color: var(--ink-faint); margin-top: 0.75rem; line-height: 1.7; }
+    tbody tr.section-divider td { background: var(--paper-warm); font-family: var(--sans); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); padding: 0.4rem 0.9rem; border-top: 2px solid var(--rule); }
+    td.sig { color: var(--accent); font-weight: 700; }
+    td.se { color: var(--ink-faint); font-size: 0.7rem; }
+    .table-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 0.9rem; line-height: 1.7; }
 
-    /* CODE BLOCK */
-    .code-section { background: var(--paper-warm); border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); padding: 4rem 2rem; }
-    .code-section-inner { max-width: 900px; margin: 0 auto; }
-    .code-section h2 { font-family: var(--serif); font-size: 1.55rem; font-weight: 700; border-bottom: 2px solid var(--ink); padding-bottom: 0.5rem; margin-bottom: 0.5rem; }
-    .code-section > .code-section-inner > p { font-family: var(--sans); font-size: 0.88rem; color: var(--ink-light); margin-bottom: 2rem; font-style: italic; }
-    .code-block-wrap { background: #1a1a1a; border-radius: 2px; overflow: hidden; margin-bottom: 2rem; }
-    .code-block-label { font-family: var(--condensed); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-light); background: #111; padding: 0.5rem 1.25rem; border-bottom: 1px solid #333; }
-    pre { font-family: 'Courier New', monospace; font-size: 0.78rem; line-height: 1.65; color: #d4d4d4; padding: 1.5rem 1.25rem; overflow-x: auto; margin: 0; }
-    .kw { color: #569cd6; }
-    .fn { color: #dcdcaa; }
-    .str { color: #ce9178; }
-    .cm { color: #6a9955; font-style: italic; }
-    .nm { color: #b5cea8; }
-    .op { color: #d4d4d4; }
-    .va { color: #9cdcfe; }
+    /* R CODE SECTION */
+    .code-section { background: var(--paper-warm); }
+    .code-tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 2px solid var(--ink); margin-bottom: 0; }
+    .code-tab { font-family: var(--sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.65rem 1.1rem; cursor: pointer; border: 1px solid var(--rule); border-bottom: none; background: var(--paper-warm); color: var(--ink-faint); transition: background 0.15s, color 0.15s; }
+    .code-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
+    .code-panel { display: none; }
+    .code-panel.active { display: block; }
+    pre { background: #1A1A1A; color: #D4D4D4; padding: 2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.72rem; line-height: 1.7; border: none; }
+    .kw { color: #569CD6; }
+    .fn { color: #DCDCAA; }
+    .str { color: #CE9178; }
+    .cm { color: #6A9955; font-style: italic; }
+    .nm { color: #B5CEA8; }
+    .op { color: #D4D4D4; }
+    .va { color: #9CDCFE; }
 
     /* METHODOLOGY */
-    .methodology { background: var(--paper-warm); border-top: 2px solid var(--ink); padding: 4rem 2rem; }
-    .methodology-inner { max-width: 780px; margin: 0 auto; }
-    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 2rem; }
-    .method-block h4 { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 0.4rem; margin-bottom: 1rem; }
-    .method-block ul { list-style: none; font-family: var(--sans); font-size: 0.82rem; color: var(--ink-light); }
-    .method-block li { padding: 0.32rem 0; border-bottom: 1px solid var(--rule-light); padding-left: 0.85rem; position: relative; }
-    .method-block li::before { content: '–'; color: var(--accent); position: absolute; left: 0; font-size: 0.7rem; top: 0.35rem; }
+    .method-section { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 4rem 2rem; }
+    .method-inner { max-width: 1100px; margin: 0 auto; }
+    .method-hed { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 2.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink); }
+    .method-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+    .method-block h4 { font-family: var(--sans); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); border-bottom: 1px solid var(--rule); padding-bottom: 0.4rem; margin-bottom: 0.9rem; }
+    .method-block ul { list-style: none; font-size: 0.88rem; color: var(--ink-mid); }
+    .method-block li { font-family: var(--sans); font-size: 0.8rem; padding: 0.3rem 0 0.3rem 1rem; border-bottom: 1px solid var(--rule-light); position: relative; }
+    .method-block li::before { content: '▸'; color: var(--accent); position: absolute; left: 0; font-size: 0.55rem; top: 0.5rem; }
 
-    /* CITATION */
-    .citation-block { max-width: 780px; margin: 2rem auto 0; padding: 1.25rem 1.5rem; border: 1px solid var(--rule); background: white; }
-    .citation-block h4 { font-family: var(--sans); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
-    .citation-block p { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-light); line-height: 1.7; margin: 0; }
-    .citation-block a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
+    .citation-box { margin-top: 2rem; padding: 1.25rem 1.5rem; border: 1px solid var(--rule); background: white; }
+    .citation-box h4 { font-family: var(--sans); font-size: 0.56rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+    .citation-box p { font-family: var(--sans); font-size: 0.85rem; color: var(--ink-mid); line-height: 1.7; margin: 0; }
+    .citation-box a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-light); }
 
-    /* FOOTER */
-    .article-footer { background: var(--ink); color: white; padding: 3rem 2rem; text-align: center; }
-    .article-footer a { color: var(--accent-light); text-decoration: none; font-family: var(--sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
-    .article-footer p { font-family: var(--sans); font-size: 0.82rem; color: #888; margin-top: 0.5rem; }
+    .page-footer { background: var(--ink); color: white; padding: 2.5rem 2rem; text-align: center; }
+    .page-footer a { color: var(--accent-light); text-decoration: none; font-family: var(--sans); font-size: 0.62rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+    .page-footer p { font-family: var(--sans); font-size: 0.82rem; color: #666; margin-top: 0.4rem; }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    .article-hero h1 { animation: fadeUp 0.6s ease both; }
-    .article-dek { animation: fadeUp 0.6s 0.1s ease both; }
-    .stat-strip-inner { animation: fadeUp 0.6s 0.15s ease both; }
-
-    @media (max-width: 700px) {
-      /* Nav */
-      nav { padding: 0 1.25rem; }
-      .nav-inner { height: 46px; }
-      .nav-logo { font-size: 0.95rem; }
-      .nav-back { font-size: 0.6rem; }
-
-      /* Hero */
-      .article-hero { padding: 2.25rem 1.25rem 1.75rem; }
-      .article-hero h1 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
-      .article-dek { font-size: 1rem; }
-      .article-meta { gap: 1.25rem; }
-      .meta-value { font-size: 0.78rem; }
-
-      /* Stat strip */
-      .stat-strip { padding: 1.75rem 1.25rem; }
-      .stat-strip-inner { grid-template-columns: 1fr 1fr; gap: 1.25rem; }
-      .stat-num { font-size: 1.7rem; }
-      .stat-label { font-size: 0.54rem; }
-
-      /* Article body */
-      .article-body { padding: 2.25rem 1.25rem; }
-      .article-body h2 { font-size: 1.35rem; }
-      .article-body h3 { font-size: 1.05rem; }
-      .article-body p { font-size: 0.97rem; }
-      .pullquote { padding: 0.85rem 1.1rem; }
-      .pullquote p { font-size: 1rem; }
-
-      /* Charts */
-      .chart-section { padding: 1rem 1.25rem; }
-      .chart-header { padding: 0; margin-bottom: 1rem; }
-      .chart-title { font-size: 1.05rem; }
-      .chart-wrap { padding: 1.25rem; }
-      .chart-wrap canvas { max-height: 280px; }
-
-      /* Regression table */
-      .reg-section { padding: 0 1.25rem 2.5rem; }
-      .reg-section h2 { font-size: 1.35rem; }
-      tbody td { font-size: 0.7rem; padding: 0.45rem 0.75rem; }
-      thead th { font-size: 0.5rem; padding: 0.6rem 0.75rem; }
-
-      /* Code section */
-      .code-section { padding: 2.5rem 1.25rem; }
-      .code-section h2 { font-size: 1.35rem; }
-      pre { font-size: 0.68rem; padding: 1.1rem 1rem; }
-
-      /* Methodology */
-      .methodology { padding: 2.5rem 1.25rem; }
-      .methodology-inner h2 { font-size: 1.35rem !important; }
-      .method-grid { grid-template-columns: 1fr; gap: 1.5rem; margin-top: 1.5rem; }
-
-      /* Citation */
-      .citation-block { padding: 1rem 1.1rem; }
-      .citation-block p { font-size: 0.78rem; }
-
-      /* Footer */
-      .article-footer { padding: 2rem 1.25rem; }
-    }
-
-    @media (max-width: 400px) {
-      .stat-strip-inner { grid-template-columns: 1fr; }
-      .article-meta { flex-direction: column; gap: 0.75rem; }
+    @media (max-width: 800px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-aside { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-bottom: 0; }
+      .method-cols { grid-template-columns: 1fr; gap: 2rem; }
     }
   </style>
 </head>
@@ -206,57 +141,49 @@
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="index.html">Andy <span>Setser</span></a>
-    <a class="nav-back" href="index.html#projects">← All Projects</a>
+    <a class="nav-back" href="index.html#projects">All Projects</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="article-hero">
-  <div class="article-hero-inner">
-    <p class="article-kicker">R · OLS Regression · Labor Economics</p>
-    <h1>The Returns to Education in the U.S. Labor Market, 2010–2023</h1>
-    <p class="article-dek">A Mincer earnings equation estimated on 263,863 full-time workers — quantifying the wage premium for education, the gender gap, and the experience-earnings profile.</p>
-    <div class="article-meta">
-      <div class="meta-item"><span class="meta-label">Author</span><span class="meta-value">Andy Setser</span></div>
-      <div class="meta-item"><span class="meta-label">Tool</span><span class="meta-value">R · tidyverse · modelsummary</span></div>
-      <div class="meta-item"><span class="meta-label">Data Source</span><span class="meta-value">IPUMS CPS, Version 13.0</span></div>
-      <div class="meta-item"><span class="meta-label">Sample</span><span class="meta-value">263,863 observations</span></div>
-      <div class="meta-item"><span class="meta-label">Period</span><span class="meta-value">2010, 2015, 2019, 2021, 2023</span></div>
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-tag">R · OLS Regression · Labor Economics</p>
+      <h1>The Returns to Education in the U.S. Labor Market, 2010–2023</h1>
+      <p class="hero-dek">A Mincer earnings equation estimated on 263,863 full-time workers — quantifying the wage premium for education, the gender gap, and the experience-earnings profile.</p>
+      <div class="hero-meta-row">
+        <div class="meta-pair"><span class="meta-key">Tool</span><span class="meta-val">R · tidyverse · modelsummary</span></div>
+        <div class="meta-pair"><span class="meta-key">Data Source</span><span class="meta-val">IPUMS CPS, Version 13.0</span></div>
+        <div class="meta-pair"><span class="meta-key">Sample</span><span class="meta-val">263,863 observations</span></div>
+        <div class="meta-pair"><span class="meta-key">Period</span><span class="meta-val">2010, 2015, 2019, 2021, 2023</span></div>
+      </div>
     </div>
+    <aside class="hero-aside">
+      <div class="aside-figure">
+        <div class="aside-num">+93%</div>
+        <div class="aside-label">Log-wage premium<br>Bachelor's vs. No Diploma</div>
+      </div>
+      <div class="aside-figure">
+        <div class="aside-num">+124%</div>
+        <div class="aside-label">Log-wage premium<br>Graduate vs. No Diploma</div>
+      </div>
+      <div class="aside-figure">
+        <div class="aside-num red">−32.5%</div>
+        <div class="aside-label">Unexplained gender<br>wage gap (women)</div>
+      </div>
+      <div class="aside-figure">
+        <div class="aside-num muted">+33.6%</div>
+        <div class="aside-label">Real wage growth<br>2010 → 2023</div>
+      </div>
+    </aside>
   </div>
 </header>
 
-<!-- STAT STRIP -->
-<div class="stat-strip">
-  <div class="stat-strip-inner">
-    <div class="stat-card">
-      <div class="stat-num">+93%</div>
-      <div class="stat-label">Log-wage premium<br>Bachelor's vs. No Diploma</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num">+124%</div>
-      <div class="stat-label">Log-wage premium<br>Graduate vs. No Diploma</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num red">−32.5%</div>
-      <div class="stat-label">Unexplained gender<br>wage gap (women)</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-num gold">+33.6%</div>
-      <div class="stat-label">Real wage growth<br>2010 → 2023</div>
-    </div>
-  </div>
-</div>
+<div class="page-body">
 
-<!-- ARTICLE BODY -->
-<div class="article-body">
   <p>How much is a college degree worth in the U.S. labor market, and does that premium hold after controlling for experience, gender, and race? This analysis estimates a standard Mincer earnings equation on Current Population Survey microdata spanning 2010 to 2023, using log annual wages as the outcome variable and education, experience, and demographic controls as predictors.</p>
 
   <p>The sample is restricted to full-time workers (35+ hours per week) aged 25–64 with positive wage income, yielding 263,863 observations across five survey years. Three nested OLS models are estimated, progressively adding controls to test the stability of the education coefficients.</p>
-
-  <div class="pullquote">
-    <p>"Education coefficients are stable across all three model specifications; the wage premium is not an artifact of omitted experience or demographic controls. It is a persistent feature of the U.S. wage structure."</p>
-  </div>
 
   <h2>Key Findings</h2>
 
@@ -275,205 +202,207 @@
 
   <h3>5. Real Wages Grew Substantially After 2019</h3>
   <p>Year dummy coefficients show strong real wage growth across the sample period: +4.9% by 2015, +17.0% by 2019, +21.6% by 2021, and +33.6% by 2023 relative to the 2010 reference year. The acceleration post-2019 is consistent with the tight pandemic-era labor market and is one of the largest wage growth periods in the dataset.</p>
+
 </div>
 
-<!-- CHARTS -->
-<div class="chart-section">
-  <div class="chart-block">
-    <div class="chart-header">
+<div class="section-block">
+  <div class="section-inner">
+    <h2 class="section-hed">Figures</h2>
+    <p class="section-sub">Predicted wages, coefficient stability across model specifications, the experience-earnings profile, and year-over-year wage growth.</p>
+
+    <div class="chart-block">
       <div class="chart-title">Fig. 1 — Predicted Annual Wages by Education Level</div>
       <div class="chart-subtitle">Reference worker: Male, White, 10 years experience, 2019. Derived from Model 3 coefficients.</div>
+      <div class="chart-wrap">
+        <canvas id="chartWages"></canvas>
+        <p class="chart-note">Source: IPUMS CPS 2010–2023. OLS Mincer earnings equation. Predicted wages = exp(log-wage fitted value) for reference worker profile. Author: Andy Setser.</p>
+      </div>
     </div>
-    <div class="chart-wrap">
-      <canvas id="chartWages"></canvas>
-      <p class="chart-note">Source: IPUMS CPS 2010–2023. OLS Mincer earnings equation. Author: Andy Setser. Predicted wages = exp(log-wage fitted value) for reference worker profile.</p>
-    </div>
-  </div>
 
-  <div class="chart-block">
-    <div class="chart-header">
+    <div class="chart-block">
       <div class="chart-title">Fig. 2 — Education Coefficients Across Model Specifications</div>
       <div class="chart-subtitle">Coefficient stability demonstrates the premium is not driven by omitted variable bias from experience or demographics</div>
+      <div class="chart-wrap">
+        <canvas id="chartCoefs"></canvas>
+        <p class="chart-note">Source: IPUMS CPS 2010–2023. Reference category: Less than High School. Bars show log-wage coefficient; all estimates significant at p &lt; 0.001. Author: Andy Setser.</p>
+      </div>
     </div>
-    <div class="chart-wrap">
-      <canvas id="chartCoefs"></canvas>
-      <p class="chart-note">Source: IPUMS CPS 2010–2023. Reference category: Less than High School. Bars show log-wage coefficient; all estimates significant at p &lt; 0.001. Author: Andy Setser.</p>
-    </div>
-  </div>
 
-  <div class="chart-block">
-    <div class="chart-header">
+    <div class="chart-block">
       <div class="chart-title">Fig. 3 — Experience-Earnings Profile (Model 3)</div>
       <div class="chart-subtitle">Fitted log-wage by years of experience — the classic concave Mincerian profile, holding education and demographics constant</div>
+      <div class="chart-wrap">
+        <canvas id="chartExp"></canvas>
+        <p class="chart-note">Source: IPUMS CPS 2010–2023. Profile computed holding education = Bachelor's Degree, Female = 0, Black = 0, Asian = 0, Year = 2019. Author: Andy Setser.</p>
+      </div>
     </div>
-    <div class="chart-wrap">
-      <canvas id="chartExp"></canvas>
-      <p class="chart-note">Source: IPUMS CPS 2010–2023. Profile computed holding education = Bachelor's Degree, Female = 0, Black = 0, Asian = 0, Year = 2019. Author: Andy Setser.</p>
-    </div>
-  </div>
 
-  <div class="chart-block">
-    <div class="chart-header">
+    <div class="chart-block">
       <div class="chart-title">Fig. 4 — Real Wage Growth Over Time (Year Fixed Effects, Model 3)</div>
       <div class="chart-subtitle">Year dummy coefficients relative to 2010 baseline — the post-2019 labor market acceleration is clearly visible</div>
-    </div>
-    <div class="chart-wrap">
-      <canvas id="chartYear"></canvas>
-      <p class="chart-note">Source: IPUMS CPS 2010–2023. Year dummies relative to 2010 reference. All coefficients significant at p &lt; 0.001. Author: Andy Setser.</p>
+      <div class="chart-wrap">
+        <canvas id="chartYear"></canvas>
+        <p class="chart-note">Source: IPUMS CPS 2010–2023. Year dummies relative to 2010 reference. All coefficients significant at p &lt; 0.001. Author: Andy Setser.</p>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- REGRESSION TABLE -->
-<div class="reg-section">
-  <h2>OLS Regression Results</h2>
-  <p style="font-family:var(--sans); font-size:0.88rem; color:var(--ink-light); font-style:italic; margin-bottom:1.5rem;">Three nested models. Dependent variable: log annual wage. Reference categories: Less than High School; Year 2010; White; Male.</p>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>Variable</th>
-          <th>Model 1<br>Education Only</th>
-          <th>Model 2<br>+ Experience &amp; Gender</th>
-          <th>Model 3<br>Full Controls</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="section-divider"><td colspan="4">Education (ref: Less than High School)</td></tr>
-        <tr>
-          <td>(Intercept)</td>
-          <td class="sig">10.183***</td>
-          <td class="sig">9.822***</td>
-          <td class="sig">9.691***</td>
-        </tr>
-        <tr><td></td><td class="se">(0.005)</td><td class="se">(0.008)</td><td class="se">(0.008)</td></tr>
-        <tr>
-          <td>High School Diploma</td>
-          <td class="sig">0.307***</td>
-          <td class="sig">0.347***</td>
-          <td class="sig">0.344***</td>
-        </tr>
-        <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
-        <tr>
-          <td>Some College</td>
-          <td class="sig">0.467***</td>
-          <td class="sig">0.556***</td>
-          <td class="sig">0.553***</td>
-        </tr>
-        <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
-        <tr>
-          <td>Bachelor's Degree</td>
-          <td class="sig">0.830***</td>
-          <td class="sig">0.954***</td>
-          <td class="sig">0.933***</td>
-        </tr>
-        <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
-        <tr>
-          <td>Graduate Degree</td>
-          <td class="sig">1.132***</td>
-          <td class="sig">1.265***</td>
-          <td class="sig">1.237***</td>
-        </tr>
-        <tr><td></td><td class="se">(0.007)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+<div class="section-block">
+  <div class="section-inner">
+    <h2 class="section-hed">OLS Regression Results</h2>
+    <p class="section-sub">Three nested models. Dependent variable: log annual wage. Reference categories: Less than High School; Year 2010; White; Male.</p>
+    <div class="data-table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Variable</th>
+            <th>Model 1<br>Education Only</th>
+            <th>Model 2<br>+ Experience &amp; Gender</th>
+            <th>Model 3<br>Full Controls</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-divider"><td colspan="4">Education (ref: Less than High School)</td></tr>
+          <tr>
+            <td>(Intercept)</td>
+            <td class="sig">10.183***</td>
+            <td class="sig">9.822***</td>
+            <td class="sig">9.691***</td>
+          </tr>
+          <tr><td></td><td class="se">(0.005)</td><td class="se">(0.008)</td><td class="se">(0.008)</td></tr>
+          <tr>
+            <td>High School Diploma</td>
+            <td class="sig">0.307***</td>
+            <td class="sig">0.347***</td>
+            <td class="sig">0.344***</td>
+          </tr>
+          <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+          <tr>
+            <td>Some College</td>
+            <td class="sig">0.467***</td>
+            <td class="sig">0.556***</td>
+            <td class="sig">0.553***</td>
+          </tr>
+          <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+          <tr>
+            <td>Bachelor's Degree</td>
+            <td class="sig">0.830***</td>
+            <td class="sig">0.954***</td>
+            <td class="sig">0.933***</td>
+          </tr>
+          <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+          <tr>
+            <td>Graduate Degree</td>
+            <td class="sig">1.132***</td>
+            <td class="sig">1.265***</td>
+            <td class="sig">1.237***</td>
+          </tr>
+          <tr><td></td><td class="se">(0.007)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
 
-        <tr class="section-divider"><td colspan="4">Experience</td></tr>
-        <tr>
-          <td>Experience (years)</td>
-          <td>—</td>
-          <td class="sig">0.032***</td>
-          <td class="sig">0.033***</td>
-        </tr>
-        <tr><td></td><td></td><td class="se">(0.001)</td><td class="se">(0.001)</td></tr>
-        <tr>
-          <td>Experience Squared</td>
-          <td>—</td>
-          <td class="sig">−0.000***</td>
-          <td class="sig">−0.001***</td>
-        </tr>
-        <tr><td></td><td></td><td class="se">(0.000)</td><td class="se">(0.000)</td></tr>
+          <tr class="section-divider"><td colspan="4">Experience</td></tr>
+          <tr>
+            <td>Experience (years)</td>
+            <td>—</td>
+            <td class="sig">0.032***</td>
+            <td class="sig">0.033***</td>
+          </tr>
+          <tr><td></td><td></td><td class="se">(0.001)</td><td class="se">(0.001)</td></tr>
+          <tr>
+            <td>Experience Squared</td>
+            <td>—</td>
+            <td class="sig">−0.000***</td>
+            <td class="sig">−0.001***</td>
+          </tr>
+          <tr><td></td><td></td><td class="se">(0.000)</td><td class="se">(0.000)</td></tr>
 
-        <tr class="section-divider"><td colspan="4">Gender</td></tr>
-        <tr>
-          <td>Female</td>
-          <td>—</td>
-          <td class="sig">−0.332***</td>
-          <td class="sig">−0.325***</td>
-        </tr>
-        <tr><td></td><td></td><td class="se">(0.003)</td><td class="se">(0.003)</td></tr>
+          <tr class="section-divider"><td colspan="4">Gender</td></tr>
+          <tr>
+            <td>Female</td>
+            <td>—</td>
+            <td class="sig">−0.332***</td>
+            <td class="sig">−0.325***</td>
+          </tr>
+          <tr><td></td><td></td><td class="se">(0.003)</td><td class="se">(0.003)</td></tr>
 
-        <tr class="section-divider"><td colspan="4">Race (ref: White)</td></tr>
-        <tr>
-          <td>Black</td>
-          <td>—</td>
-          <td>—</td>
-          <td class="sig">−0.144***</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
-        <tr>
-          <td>Asian</td>
-          <td>—</td>
-          <td>—</td>
-          <td>0.007</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td class="se">(0.005)</td></tr>
+          <tr class="section-divider"><td colspan="4">Race (ref: White)</td></tr>
+          <tr>
+            <td>Black</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="sig">−0.144***</td>
+          </tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr>
+            <td>Asian</td>
+            <td>—</td>
+            <td>—</td>
+            <td>0.007</td>
+          </tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.005)</td></tr>
 
-        <tr class="section-divider"><td colspan="4">Year Fixed Effects (ref: 2010)</td></tr>
-        <tr>
-          <td>Year: 2015</td>
-          <td>—</td><td>—</td>
-          <td class="sig">0.049***</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
-        <tr>
-          <td>Year: 2019</td>
-          <td>—</td><td>—</td>
-          <td class="sig">0.170***</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
-        <tr>
-          <td>Year: 2021</td>
-          <td>—</td><td>—</td>
-          <td class="sig">0.216***</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
-        <tr>
-          <td>Year: 2023</td>
-          <td>—</td><td>—</td>
-          <td class="sig">0.336***</td>
-        </tr>
-        <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr class="section-divider"><td colspan="4">Year Fixed Effects (ref: 2010)</td></tr>
+          <tr>
+            <td>Year: 2015</td>
+            <td>—</td><td>—</td>
+            <td class="sig">0.049***</td>
+          </tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr>
+            <td>Year: 2019</td>
+            <td>—</td><td>—</td>
+            <td class="sig">0.170***</td>
+          </tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr>
+            <td>Year: 2021</td>
+            <td>—</td><td>—</td>
+            <td class="sig">0.216***</td>
+          </tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr>
+            <td>Year: 2023</td>
+            <td>—</td><td>—</td>
+            <td class="sig">0.336***</td>
+          </tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
 
-        <tr class="section-divider"><td colspan="4">Model Fit</td></tr>
-        <tr>
-          <td>Observations</td>
-          <td>263,863</td><td>263,863</td><td>263,863</td>
-        </tr>
-        <tr>
-          <td>R²</td>
-          <td>0.172</td><td>0.237</td><td>0.262</td>
-        </tr>
-        <tr>
-          <td>Adjusted R²</td>
-          <td>0.172</td><td>0.237</td><td>0.262</td>
-        </tr>
-      </tbody>
-    </table>
+          <tr class="section-divider"><td colspan="4">Model Fit</td></tr>
+          <tr>
+            <td>Observations</td>
+            <td>263,863</td><td>263,863</td><td>263,863</td>
+          </tr>
+          <tr>
+            <td>R²</td>
+            <td>0.172</td><td>0.237</td><td>0.262</td>
+          </tr>
+          <tr>
+            <td>Adjusted R²</td>
+            <td>0.172</td><td>0.237</td><td>0.262</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">
+      Standard errors in parentheses. Significance: + p &lt; 0.1 &nbsp;|&nbsp; * p &lt; 0.05 &nbsp;|&nbsp; ** p &lt; 0.01 &nbsp;|&nbsp; *** p &lt; 0.001<br>
+      Sample: Full-time workers (UHRSWORKT ≥ 35), ages 25–64, positive wage income. Years: 2010, 2015, 2019, 2021, 2023. Dependent variable: log(INCWAGE).
+    </p>
   </div>
-  <p class="table-note">
-    Standard errors in parentheses. Significance: + p &lt; 0.1 &nbsp;|&nbsp; * p &lt; 0.05 &nbsp;|&nbsp; ** p &lt; 0.01 &nbsp;|&nbsp; *** p &lt; 0.001<br>
-    Sample: Full-time workers (UHRSWORKT ≥ 35), ages 25–64, positive wage income. Years: 2010, 2015, 2019, 2021, 2023. Dependent variable: log(INCWAGE).
-  </p>
 </div>
 
-<!-- R CODE -->
-<div class="code-section">
-  <div class="code-section-inner">
-    <h2>R Code</h2>
-    <p>Fully reproducible analysis. Data from IPUMS CPS; register and extract at ipums.org/cps.</p>
+<div class="section-block code-section">
+  <div class="section-inner">
+    <h2 class="section-hed">R Code</h2>
+    <p class="section-sub">Fully reproducible analysis. Data from IPUMS CPS; register and extract at ipums.org/cps.</p>
 
-    <div class="code-block-wrap">
-      <div class="code-block-label">01 — Data Preparation</div>
-      <pre><span class="kw">library</span>(tidyverse)
+    <div class="code-tabs">
+      <button class="code-tab active" onclick="showTab('tab01')">01 · Data Preparation</button>
+      <button class="code-tab" onclick="showTab('tab02')">02 · OLS Models</button>
+      <button class="code-tab" onclick="showTab('tab03')">03 · Wage Premium Chart</button>
+    </div>
+
+    <div id="tab01" class="code-panel active">
+<pre><span class="kw">library</span>(tidyverse)
 <span class="kw">library</span>(modelsummary)
 <span class="kw">library</span>(scales)
 <span class="kw">library</span>(viridis)
@@ -512,9 +441,8 @@ cps_clean <span class="op">&lt;-</span> cps <span class="op">|&gt;</span>
   <span class="fn">filter</span>(<span class="op">!</span><span class="fn">is.na</span>(education), experience <span class="op">&gt;=</span> <span class="nm">0</span>)</pre>
     </div>
 
-    <div class="code-block-wrap">
-      <div class="code-block-label">02 — OLS Models</div>
-      <pre><span class="cm"># Model 1: Education only</span>
+    <div id="tab02" class="code-panel">
+<pre><span class="cm"># Model 1: Education only</span>
 model1 <span class="op">&lt;-</span> <span class="fn">lm</span>(log_wage <span class="op">~</span> education, <span class="va">data</span> <span class="op">=</span> cps_clean)
 
 <span class="cm"># Model 2: Add experience and gender</span>
@@ -533,9 +461,8 @@ model3 <span class="op">&lt;-</span> <span class="fn">lm</span>(log_wage <span c
 )</pre>
     </div>
 
-    <div class="code-block-wrap">
-      <div class="code-block-label">03 — Education Wage Premium Chart</div>
-      <pre><span class="cm"># Predict wages for reference worker at each education level</span>
+    <div id="tab03" class="code-panel">
+<pre><span class="cm"># Predict wages for reference worker at each education level</span>
 ref_worker <span class="op">&lt;-</span> <span class="fn">data.frame</span>(
   education     <span class="op">=</span> <span class="fn">c</span>(<span class="str">"1. Less than High School"</span>, <span class="str">"2. High School Diploma"</span>,
                     <span class="str">"3. Some College"</span>, <span class="str">"4. Bachelor's Degree"</span>, <span class="str">"5. Graduate Degree"</span>),
@@ -557,15 +484,14 @@ ref_worker <span class="op">|&gt;</span>
        <span class="va">caption</span> <span class="op">=</span> <span class="str">"Source: IPUMS CPS 2010–2023 | OLS Mincer earnings equation"</span>) <span class="op">+</span>
   <span class="fn">theme_minimal</span>(<span class="va">base_size</span> <span class="op">=</span> <span class="nm">14</span>)</pre>
     </div>
+
   </div>
 </div>
 
-<!-- METHODOLOGY -->
-<div class="methodology">
-  <div class="methodology-inner">
-    <h2 style="font-family:var(--serif); font-size:1.6rem; font-weight:700; border-bottom:2px solid var(--ink); padding-bottom:0.5rem; margin-bottom:0.5rem;">Methodology &amp; Variables</h2>
-    <p style="font-family:var(--sans); font-size:0.88rem; color:var(--ink-light); margin-bottom:0;">IPUMS CPS extract variables and analytical decisions.</p>
-    <div class="method-grid">
+<div class="method-section">
+  <div class="method-inner">
+    <h2 class="method-hed">Methodology &amp; Variables</h2>
+    <div class="method-cols">
       <div class="method-block">
         <h4>CPS Variables Used</h4>
         <ul>
@@ -584,7 +510,7 @@ ref_worker <span class="op">|&gt;</span>
         <ul>
           <li>Ages 25–64 (prime working age)</li>
           <li>Full-time workers: UHRSWORKT ≥ 35</li>
-          <li>Positive wage income: INCWAGE > 0</li>
+          <li>Positive wage income: INCWAGE &gt; 0</li>
           <li>Excludes top-coded wages (INCWAGE = 99,999,999)</li>
           <li>Drops observations with missing education</li>
           <li>Drops implied negative experience (experience ≥ 0)</li>
@@ -615,22 +541,29 @@ ref_worker <span class="op">|&gt;</span>
       </div>
     </div>
 
-    <div class="citation-block">
+    <div class="citation-box">
       <h4>Data Citation</h4>
       <p>Sarah Flood, Miriam King, Renae Rodgers, Steven Ruggles, J. Robert Warren, Daniel Backman, Etienne Breton, Grace Cooper, Julia A. Rivera Drew, Stephanie Richards, David Van Riper, and Kari C.W. Williams. <em>IPUMS CPS: Version 13.0</em> [dataset]. Minneapolis, MN: IPUMS, 2025. <a href="https://doi.org/10.18128/D030.V13.0" target="_blank">https://doi.org/10.18128/D030.V13.0</a></p>
     </div>
   </div>
 </div>
 
-<div class="article-footer">
-  <a href="index.html#projects">← Back to All Projects</a>
+<div class="page-footer">
+  <a href="index.html#projects">All Projects</a>
   <p>Andy Setser · Economic Data Analyst · Alamosa, Colorado</p>
 </div>
 
 <script>
+function showTab(id) {
+  document.querySelectorAll('.code-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.code-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  event.target.classList.add('active');
+}
+
 Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
 Chart.defaults.font.size = 11;
-Chart.defaults.color = '#666666';
+Chart.defaults.color = '#4D4D4D';
 const gridOpts = { color: '#E8E5DE', lineWidth: 1 };
 const tickOpts = { color: '#909090', font: { size: 10 } };
 
@@ -653,7 +586,7 @@ new Chart(document.getElementById('chartWages'), {
     responsive: true, maintainAspectRatio: true,
     plugins: {
       legend: { display: false },
-      tooltip: { backgroundColor: '#111', padding: 12, callbacks: { label: ctx => '$' + ctx.raw.toLocaleString() } }
+      tooltip: { backgroundColor: '#0D0D0D', padding: 12, callbacks: { label: ctx => '$' + ctx.raw.toLocaleString() } }
     },
     scales: {
       x: { grid: gridOpts, ticks: { ...tickOpts, callback: v => '$' + (v/1000).toFixed(0) + 'k' }, title: { display: true, text: 'Predicted Annual Wage (2019 USD)', color: '#909090', font: { size: 10 } } },
@@ -669,13 +602,13 @@ new Chart(document.getElementById('chartCoefs'), {
     labels: eduCats,
     datasets: [
       { label: 'Model 1: Education Only', data: [0.307, 0.467, 0.830, 1.132], backgroundColor: 'rgba(26,74,122,0.6)', borderColor: 'transparent', borderRadius: 2 },
-      { label: 'Model 2: + Experience & Gender', data: [0.347, 0.556, 0.954, 1.265], backgroundColor: 'rgba(139,105,20,0.6)', borderColor: 'transparent', borderRadius: 2 },
+      { label: 'Model 2: + Experience & Gender', data: [0.347, 0.556, 0.954, 1.265], backgroundColor: 'rgba(168,121,31,0.6)', borderColor: 'transparent', borderRadius: 2 },
       { label: 'Model 3: Full Controls', data: [0.344, 0.553, 0.933, 1.237], backgroundColor: 'rgba(30,77,43,0.82)', borderColor: 'transparent', borderRadius: 2 }
     ]
   },
   options: {
     responsive: true, maintainAspectRatio: true,
-    plugins: { legend: { position: 'top', labels: { usePointStyle: true, font: { size: 11 } } }, tooltip: { backgroundColor: '#111', padding: 12 } },
+    plugins: { legend: { position: 'top', labels: { usePointStyle: true, font: { size: 11 } } }, tooltip: { backgroundColor: '#0D0D0D', padding: 12 } },
     scales: {
       x: { grid: { display: false }, ticks: tickOpts },
       y: { grid: gridOpts, ticks: { ...tickOpts, callback: v => v.toFixed(2) }, title: { display: true, text: 'Log-Wage Coefficient', color: '#909090', font: { size: 10 } } }
@@ -703,7 +636,7 @@ new Chart(document.getElementById('chartExp'), {
   },
   options: {
     responsive: true, maintainAspectRatio: true,
-    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111', padding: 12, callbacks: { label: ctx => 'Log-Wage: ' + ctx.raw.toFixed(3) } } },
+    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0D0D0D', padding: 12, callbacks: { label: ctx => 'Log-Wage: ' + ctx.raw.toFixed(3) } } },
     scales: {
       x: { grid: gridOpts, ticks: tickOpts, title: { display: true, text: 'Years of Experience', color: '#909090', font: { size: 10 } } },
       y: { grid: gridOpts, ticks: tickOpts, title: { display: true, text: 'Fitted Log Annual Wage', color: '#909090', font: { size: 10 } } }
@@ -725,7 +658,7 @@ new Chart(document.getElementById('chartYear'), {
   },
   options: {
     responsive: true, maintainAspectRatio: true,
-    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#111', padding: 12, callbacks: { label: ctx => 'Δ log-wage: +' + ctx.raw.toFixed(3) } } },
+    plugins: { legend: { display: false }, tooltip: { backgroundColor: '#0D0D0D', padding: 12, callbacks: { label: ctx => 'Δ log-wage: +' + ctx.raw.toFixed(3) } } },
     scales: {
       x: { grid: { display: false }, ticks: tickOpts },
       y: { grid: gridOpts, ticks: tickOpts, title: { display: true, text: 'Log-Wage Coefficient (vs. 2010)', color: '#909090', font: { size: 10 } } }
@@ -733,6 +666,5 @@ new Chart(document.getElementById('chartYear'), {
   }
 });
 </script>
-
 </body>
 </html>
