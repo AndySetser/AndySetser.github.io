@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Spatial Equilibrium — Andy Setser</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0D0D0D;
@@ -22,6 +22,7 @@
       --serif: 'Libre Baskerville', Georgia, serif;
       --sans: 'Inter', system-ui, sans-serif;
       --condensed: 'Barlow Condensed', system-ui, sans-serif;
+      --mono: 'Space Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -35,7 +36,6 @@
     .nav-back { font-family: var(--sans); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
     .nav-back:hover { color: var(--ink); }
 
-    /* HERO — left-heavy editorial, no symmetry */
     .hero { padding: 5rem 2rem 0; border-bottom: 1px solid var(--rule); }
     .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 6rem; align-items: end; }
     .hero-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
@@ -46,14 +46,12 @@
     .meta-key { font-family: var(--sans); font-size: 0.52rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); }
     .meta-val { font-family: var(--sans); font-size: 0.85rem; color: var(--ink-mid); }
 
-    /* sidebar pulls the regression numbers in a sparse way */
     .hero-aside { padding-bottom: 3rem; }
     .aside-figure { margin-bottom: 2rem; border-top: 2px solid var(--ink); padding-top: 1rem; }
     .aside-num { font-family: var(--serif); font-size: 2.8rem; font-weight: 900; line-height: 1; color: var(--ink); }
     .aside-num.muted { color: var(--ink-faint); font-size: 2rem; }
     .aside-label { font-family: var(--sans); font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-top: 0.3rem; line-height: 1.5; }
 
-    /* BODY */
     .page-body { max-width: 680px; margin: 0 auto; padding: 4rem 2rem; }
     .page-body h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin: 3.5rem 0 1rem; }
     .page-body h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 2.5rem 0 0.6rem; color: var(--ink); }
@@ -65,12 +63,11 @@
     .aside-pull p { font-family: var(--serif); font-size: 1rem; font-style: italic; line-height: 1.55; color: var(--ink); margin: 0; }
     .aside-pull cite { font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-top: 0.5rem; font-style: normal; }
 
-    .eq { background: var(--ink); padding: 1.25rem 1.75rem; margin: 2rem 0; }
-    .eq-tag { font-family: var(--sans); font-size: 0.52rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 0.4rem; display: block; }
-    .eq p { font-family: var(--sans); font-size: 0.88rem; color: #ddd; margin: 0 0 0.3rem; }
-    .eq p:last-child { margin: 0; }
+    .eq { background: #FFFFFF; border: 1px solid var(--rule); border-left: 4px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2rem 0; border-radius: 6px; }
+    .eq-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; display: block; }
+    .eq p { font-family: var(--sans); font-size: 0.92rem; color: var(--ink-mid); margin: 0 0 0.4rem; }
+    .eq p:last-child { margin: 0; color: var(--ink); font-weight: 600; }
 
-    /* TOOL */
     .tool-section { border-top: 2px solid var(--ink); padding: 4rem 2rem; }
     .tool-inner { max-width: 1100px; margin: 0 auto; }
     .tool-hed { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
@@ -82,7 +79,6 @@
     .tool-note { font-family: var(--sans); font-size: 0.56rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 0.75rem; }
     .tool-note a { color: var(--accent); text-decoration: none; }
 
-    /* METHODOLOGY */
     .method-section { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 4rem 2rem; }
     .method-inner { max-width: 1100px; margin: 0 auto; }
     .method-hed { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 2.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink); }
@@ -92,7 +88,6 @@
     .method-block li { font-family: var(--sans); font-size: 0.8rem; padding: 0.3rem 0 0.3rem 1rem; border-bottom: 1px solid var(--rule-light); position: relative; }
     .method-block li::before { content: '▸'; color: var(--accent); position: absolute; left: 0; font-size: 0.55rem; top: 0.5rem; }
 
-    /* DATA TABLE */
     .data-table-wrap { overflow-x: auto; }
     table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
     thead tr { border-bottom: 2px solid var(--ink); }
@@ -101,7 +96,6 @@
     td:first-child { font-family: var(--condensed); font-size: 0.82rem; font-weight: 600; letter-spacing: 0.04em; color: var(--ink); white-space: nowrap; }
     td:nth-child(2) { font-size: 0.72rem; color: var(--ink-faint); white-space: nowrap; }
 
-    /* FOOTNOTES */
     .footnotes { max-width: 680px; margin: 0 auto; padding: 2.5rem 2rem 4rem; }
     .footnotes h4 { font-family: var(--sans); font-size: 0.55rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--rule-light); padding-bottom: 0.4rem; margin-bottom: 1rem; }
     .footnotes ol { padding-left: 1.25rem; }
