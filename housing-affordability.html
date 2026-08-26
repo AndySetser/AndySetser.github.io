@@ -38,7 +38,6 @@
     .nav-back { font-family: var(--sans); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
     .nav-back:hover { color: var(--ink); }
 
-    /* HERO — left-heavy editorial, no symmetry */
     .hero { padding: 5rem 2rem 0; border-bottom: 1px solid var(--rule); }
     .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 6rem; align-items: end; }
     .hero-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
@@ -50,27 +49,23 @@
     .meta-val { font-family: var(--sans); font-size: 0.85rem; color: var(--ink-mid); }
     .meta-val a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
 
-    /* sidebar pulls the headline numbers in a sparse way */
     .hero-aside { padding-bottom: 3rem; }
     .aside-figure { margin-bottom: 2rem; border-top: 2px solid var(--ink); padding-top: 1rem; }
     .aside-num { font-family: var(--serif); font-size: 2.6rem; font-weight: 900; line-height: 1; color: var(--ink); }
     .aside-num.red { color: var(--red); }
     .aside-label { font-family: var(--sans); font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-top: 0.3rem; line-height: 1.5; }
 
-    /* BODY */
     .page-body { max-width: 680px; margin: 0 auto; padding: 4rem 2rem; }
     .page-body h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin: 3.5rem 0 1rem; }
     .page-body h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 2.5rem 0 0.6rem; color: var(--ink); }
     .page-body p { color: var(--ink-mid); margin-bottom: 1.3rem; }
     .page-body p:first-child { font-size: 1.08rem; color: var(--ink); }
 
-    /* SECTION — shared shell for charts, table */
     .section-block { border-top: 2px solid var(--ink); padding: 4rem 2rem; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-hed { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
     .section-sub { font-size: 0.92rem; color: var(--ink-light); margin-bottom: 1.75rem; max-width: 620px; }
 
-    /* CHARTS */
     .chart-block { margin-bottom: 3.5rem; }
     .chart-block:last-child { margin-bottom: 0; }
     .chart-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 700; margin-bottom: 0.3rem; }
@@ -79,7 +74,6 @@
     .chart-wrap img { width: 100%; height: auto; display: block; }
     .chart-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--rule-light); }
 
-    /* DATA TABLE — simple, friendly header instead of a dark block */
     .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; border-radius: 6px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
     thead tr { background: var(--paper-warm); border-bottom: 2px solid var(--accent); }
@@ -87,12 +81,10 @@
     th:first-child { text-align: left; }
     td { font-family: var(--sans); font-size: 0.78rem; padding: 0.55rem 0.9rem; text-align: right; border-bottom: 1px solid var(--rule-light); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
     td:first-child { text-align: left; font-family: var(--condensed); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.03em; color: var(--ink); white-space: nowrap; }
-    tbody tr:hover { background: var(--accent-faint); }
     tbody tr:nth-child(5n) { border-bottom: 2px solid var(--rule); }
     td.highlight { color: var(--red); font-weight: 700; }
     td.accent { color: var(--accent); font-weight: 700; }
 
-    /* METHODOLOGY */
     .method-section { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 4rem 2rem; }
     .method-inner { max-width: 1100px; margin: 0 auto; }
     .method-hed { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 2.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink); }
@@ -187,7 +179,7 @@
       <div class="chart-title">Fig. 1 Indexed Growth: Home Prices (Nominal) vs. Income (Real), 1985 = 100</div>
       <div class="chart-subtitle">The Home Price Index here is nominal, not inflation-adjusted; the Income Index is real. Fig. 2 restates both the same, real 2024-dollar basis.</div>
       <div class="chart-wrap">
-        <img src="images/chart1.png" alt="Line chart: Home Price Index (nominal) vs. Income Index (real), 1985 to 2024" />
+        <img src="chart1.png" alt="Line chart: Home Price Index (nominal) vs. Income Index (real), 1985 to 2024" />
         <p class="chart-note">Source: U.S. Census Bureau (Home Prices, Income). Home Price Index is nominal; Income Index is Census's real (2024-dollar) median household income series. All series indexed to 1985 = 100. Author: Andy Setser.</p>
       </div>
     </div>
@@ -196,7 +188,7 @@
       <div class="chart-title">Fig. 2 Affordability Gap Index vs. Real Home Price Index (1985 = 100)</div>
       <div class="chart-subtitle">Both series in real, 2024 dollars, the affordability gap remains even with the removal of 40 year inflation</div>
       <div class="chart-wrap">
-        <img src="images/chart2.png" alt="Line chart: Affordability Gap Index vs. Real Home Price Index, 1985 to 2024" />
+        <img src="chart2.png" alt="Line chart: Affordability Gap Index vs. Real Home Price Index, 1985 to 2024" />
         <p class="chart-note">Source: BLS CPI-U, U.S. Census Bureau. Real price CPI-adjusted to 2024 dollars, matching the basis of the Census real income series. Author: Andy Setser.</p>
       </div>
     </div>
@@ -205,7 +197,7 @@
       <div class="chart-title">Fig. 3 Price-to-Income Ratio, 1985–2024</div>
       <div class="chart-subtitle">Real median home price divided by real median household income, both in real 2024 dollars, rising from 4.0× to 5.0×</div>
       <div class="chart-wrap">
-        <img src="images/chart3.png" alt="Bar chart: Price-to-Income Ratio, 1985 to 2024" />
+        <img src="chart3.png" alt="Bar chart: Price-to-Income Ratio, 1985 to 2024" />
         <p class="chart-note">Source: U.S. Census Bureau. Ratio = Real Home Price ÷ Real Median Household Income (2024-dollar basis). Author: Andy Setser.</p>
       </div>
     </div>
@@ -214,7 +206,7 @@
       <div class="chart-title">Fig. 4 30-Year Mortgage Rate &amp; Rate Pressure Index, 1985–2024</div>
       <div class="chart-subtitle">Rate pressure index = mortgage rate × real price-to-income ratio</div>
       <div class="chart-wrap">
-        <img src="images/chart4.png" alt="Combo chart: 30-Year Mortgage Rate and Rate Pressure Index, 1985 to 2024" />
+        <img src="chart4.png" alt="Combo chart: 30-Year Mortgage Rate and Rate Pressure Index, 1985 to 2024" />
         <p class="chart-note">Source: FRED (30-year fixed mortgage rate). Rate Pressure Index constructed by author using the real (2024-dollar) price-to-income ratio. Andy Setser.</p>
       </div>
     </div>
@@ -737,7 +729,6 @@
   <a href="index.html#projects">All Projects</a>
   <p>Andy Setser · Economic Data Analyst · Alamosa, Colorado</p>
 </div>
-
 
 </body>
 </html>
