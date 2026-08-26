@@ -65,10 +65,11 @@
     .page-body p:first-child { font-size: 1.08rem; color: var(--ink); }
     .page-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
 
-    .eq { background: var(--ink); padding: 1.25rem 1.75rem; margin: 2rem 0; }
-    .eq-tag { font-family: var(--sans); font-size: 0.52rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 0.4rem; display: block; }
-    .eq p { font-family: var(--sans); font-size: 0.88rem; color: #ddd; margin: 0 0 0.3rem; }
-    .eq p:last-child { margin: 0; }
+    /* Estimated Model box — simple, friendly, light */
+    .eq { background: #FFFFFF; border: 1px solid var(--rule); border-left: 4px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2rem 0; border-radius: 6px; }
+    .eq-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; display: block; }
+    .eq p { font-family: var(--sans); font-size: 0.92rem; color: var(--ink-mid); margin: 0 0 0.4rem; }
+    .eq p:last-child { margin: 0; color: var(--ink); font-weight: 600; }
 
     /* SECTION — shared shell for figures, results, code */
     .section-block { border-top: 2px solid var(--ink); padding: 4rem 2rem; }
@@ -77,10 +78,10 @@
     .section-sub { font-size: 0.92rem; color: var(--ink-light); margin-bottom: 1.75rem; max-width: 620px; }
 
     /* DATA TABLES */
-    .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; }
+    .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; border-radius: 6px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
-    thead tr { border-bottom: 2px solid var(--ink); background: var(--ink); }
-    th { font-family: var(--sans); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; padding: 0.65rem 0.9rem; text-align: left; white-space: nowrap; }
+    thead tr { background: var(--paper-warm); border-bottom: 2px solid var(--accent); }
+    th { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid); padding: 0.7rem 0.9rem; text-align: left; white-space: nowrap; }
     td { font-family: var(--sans); font-size: 0.78rem; padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--rule-light); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
     td:first-child { font-family: var(--condensed); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.03em; color: var(--ink); white-space: nowrap; }
     tbody tr:hover { background: var(--accent-faint); }
@@ -109,12 +110,7 @@
     .code-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
     .code-panel { display: none; }
     .code-panel.active { display: block; }
-    pre { background: #1A1A1A; color: #D4D4D4; padding: 2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.72rem; line-height: 1.7; border: none; }
-    .c { color: #6A9955; }
-    .k { color: #569CD6; }
-    .s { color: #CE9178; }
-    .f { color: #DCDCAA; }
-    .n { color: #9CDCFE; }
+    pre { background: #1A1A1A; color: #D4D4D4; padding: 2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.72rem; line-height: 1.7; border: none; white-space: pre-wrap; word-break: break-word; }
 
     /* METHODOLOGY */
     .method-section { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 4rem 2rem; }
@@ -279,43 +275,30 @@
     <p class="section-sub">Full analysis in R, from raw data import through log transformation, OLS estimation, and 3D visualization.</p>
 
     <div class="code-tabs">
-      <button class="code-tab active" onclick="showTab('tab01')">01 · Setup &amp; Data</button>
-      <button class="code-tab" onclick="showTab('tab02')">02 · Log Transform &amp; OLS</button>
-      <button class="code-tab" onclick="showTab('tab03')">03 · 3D Visualization</button>
+      <button class="code-tab active" onclick="showTab('tab01')">Loading the Data</button>
+      <button class="code-tab" onclick="showTab('tab02')">Running the Model</button>
+      <button class="code-tab" onclick="showTab('tab03')">Building the Chart</button>
     </div>
 
     <div id="tab01" class="code-panel active">
-<pre><span class="c"># 01_setup_and_data.R
-</span>
-<span class="f">install.packages</span>(<span class="s">"plotly"</span>)
-<span class="f">library</span>(plotly)
+<pre>library(plotly)
 
-cobb_douglas_data <span class="k">&lt;-</span> <span class="f">read.csv</span>(<span class="s">"~/Downloads/Cobb Douglas Data.csv"</span>)
-<span class="f">View</span>(cobb_douglas_data)
-<span class="f">colnames</span>(cobb_douglas_data)</pre>
+cobb_douglas_data <- read.csv("~/Downloads/Cobb Douglas Data.csv")
+View(cobb_douglas_data)
+colnames(cobb_douglas_data)</pre>
     </div>
 
     <div id="tab02" class="code-panel">
-<pre><span class="c"># 02_log_transform_ols.R
-</span>
-cobb_douglas_data<span class="k">$</span>lnL <span class="k">&lt;-</span> <span class="f">log</span>(cobb_douglas_data<span class="k">$</span>Labor)
-cobb_douglas_data<span class="k">$</span>lnK <span class="k">&lt;-</span> <span class="f">log</span>(cobb_douglas_data<span class="k">$</span>Kapital)
-cobb_douglas_data<span class="k">$</span>lnQ <span class="k">&lt;-</span> <span class="f">log</span>(cobb_douglas_data<span class="k">$</span>Q)
+<pre>cobb_douglas_data$lnL <- log(cobb_douglas_data$Labor)
+cobb_douglas_data$lnK <- log(cobb_douglas_data$Kapital)
+cobb_douglas_data$lnQ <- log(cobb_douglas_data$Q)
 
-cobb_model <span class="k">&lt;-</span> <span class="f">lm</span>(lnQ <span class="k">~</span> lnL <span class="k">+</span> lnK, <span class="n">data</span> <span class="k">=</span> cobb_douglas_data)
-<span class="f">summary</span>(cobb_model)</pre>
+cobb_model <- lm(lnQ ~ lnL + lnK, data = cobb_douglas_data)
+summary(cobb_model)</pre>
     </div>
 
     <div id="tab03" class="code-panel">
-<pre><span class="c"># 03_3d_visualization.R
-</span>
-<span class="f">plot_ly</span>(cobb_douglas_data, <span class="n">x</span> <span class="k">=</span> <span class="k">~</span>lnK, <span class="n">y</span> <span class="k">=</span> <span class="k">~</span>lnL, <span class="n">z</span> <span class="k">=</span> <span class="k">~</span>lnQ,
-        <span class="n">type</span> <span class="k">=</span> <span class="s">"scatter3d"</span>, <span class="n">mode</span> <span class="k">=</span> <span class="s">"markers"</span>,
-        <span class="n">marker</span> <span class="k">=</span> <span class="f">list</span>(<span class="n">color</span> <span class="k">=</span> <span class="k">~</span>lnQ, <span class="n">colorscale</span> <span class="k">=</span> <span class="s">"Viridis"</span>, <span class="n">showscale</span> <span class="k">=</span> <span class="n">TRUE</span>)) <span class="k">%&gt;%</span>
-  <span class="f">layout</span>(<span class="n">title</span> <span class="k">=</span> <span class="s">"Production Data Input-Output"</span>,
-         <span class="n">scene</span> <span class="k">=</span> <span class="f">list</span>(<span class="n">xaxis</span> <span class="k">=</span> <span class="f">list</span>(<span class="n">title</span> <span class="k">=</span> <span class="s">"ln(Capital)"</span>),
-                      <span class="n">yaxis</span> <span class="k">=</span> <span class="f">list</span>(<span class="n">title</span> <span class="k">=</span> <span class="s">"ln(Labor)"</span>),
-                      <span class="n">zaxis</span> <span class="k">=</span> <span class="f">list</span>(<span class="n">title</span> <span class="k">=</span> <span class="s">"ln(Output)"</span>)))</pre>
+<pre>plot_ly(cobb_douglas_data, x = ~lnK, y = ~lnL, z = ~lnQ, type = "scatter3d", mode = "markers", marker = list(color = ~lnQ, colorscale = "Viridis", showscale = TRUE)) |> layout(title = "Production Data Input-Output", scene = list(xaxis = list(title = "ln(Capital)"), yaxis = list(title = "ln(Labor)"), zaxis = list(title = "ln(Output)")))</pre>
     </div>
 
   </div>
