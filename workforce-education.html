@@ -396,93 +396,37 @@
     <p class="section-sub">Fully reproducible analysis. Data from IPUMS CPS; register and extract at ipums.org/cps.</p>
 
     <div class="code-tabs">
-      <button class="code-tab active" onclick="showTab('tab01')">01 · Data Preparation</button>
-      <button class="code-tab" onclick="showTab('tab02')">02 · OLS Models</button>
-      <button class="code-tab" onclick="showTab('tab03')">03 · Wage Premium Chart</button>
+      <button class="code-tab active" onclick="showTab('tab01')">Cleaning the Data</button>
+      <button class="code-tab" onclick="showTab('tab02')">Running the Models</button>
+      <button class="code-tab" onclick="showTab('tab03')">Building the Chart</button>
     </div>
 
     <div id="tab01" class="code-panel active">
-<pre><span class="kw">library</span>(tidyverse)
-<span class="kw">library</span>(modelsummary)
-<span class="kw">library</span>(scales)
-<span class="kw">library</span>(viridis)
+<pre>library(tidyverse)
+library(modelsummary)
+library(scales)
+library(viridis)
 
-cps <span class="op">&lt;-</span> <span class="fn">read_csv</span>(<span class="str">"cps_00001.csv"</span>)
+cps <- read_csv("cps_00001.csv")
 
-cps_clean <span class="op">&lt;-</span> cps <span class="op">|&gt;</span>
-  <span class="fn">filter</span>(AGE <span class="op">&gt;=</span> <span class="nm">25</span>, AGE <span class="op">&lt;=</span> <span class="nm">64</span>) <span class="op">|&gt;</span>
-  <span class="fn">filter</span>(INCWAGE <span class="op">&gt;</span> <span class="nm">0</span>, INCWAGE <span class="op">&lt;</span> <span class="nm">99999999</span>) <span class="op">|&gt;</span>
-  <span class="fn">filter</span>(UHRSWORKT <span class="op">&gt;=</span> <span class="nm">35</span>, UHRSWORKT <span class="op">&lt;</span> <span class="nm">997</span>) <span class="op">|&gt;</span>
-  <span class="fn">mutate</span>(
-    education <span class="op">=</span> <span class="fn">case_when</span>(
-      EDUC <span class="op">&lt;</span> <span class="nm">73</span>                    <span class="op">~</span> <span class="str">"1. Less than High School"</span>,
-      EDUC <span class="op">==</span> <span class="nm">73</span>                   <span class="op">~</span> <span class="str">"2. High School Diploma"</span>,
-      EDUC <span class="op">%in%</span> <span class="fn">c</span>(<span class="nm">80</span>,<span class="nm">81</span>,<span class="nm">90</span>,<span class="nm">91</span>,<span class="nm">92</span>) <span class="op">~</span> <span class="str">"3. Some College"</span>,
-      EDUC <span class="op">==</span> <span class="nm">111</span>                  <span class="op">~</span> <span class="str">"4. Bachelor's Degree"</span>,
-      EDUC <span class="op">&gt;=</span> <span class="nm">123</span>                  <span class="op">~</span> <span class="str">"5. Graduate Degree"</span>
-    ),
-    gender          <span class="op">=</span> <span class="fn">if_else</span>(SEX <span class="op">==</span> <span class="nm">1</span>, <span class="str">"Male"</span>, <span class="str">"Female"</span>),
-    years_of_school <span class="op">=</span> <span class="fn">case_when</span>(
-      EDUC <span class="op">&lt;</span> <span class="nm">73</span>  <span class="op">~</span> <span class="nm">10</span>, EDUC <span class="op">==</span> <span class="nm">73</span> <span class="op">~</span> <span class="nm">12</span>,
-      EDUC <span class="op">%in%</span> <span class="fn">c</span>(<span class="nm">80</span>,<span class="nm">81</span>,<span class="nm">90</span>,<span class="nm">91</span>,<span class="nm">92</span>) <span class="op">~</span> <span class="nm">14</span>,
-      EDUC <span class="op">==</span> <span class="nm">111</span> <span class="op">~</span> <span class="nm">16</span>, EDUC <span class="op">&gt;=</span> <span class="nm">123</span> <span class="op">~</span> <span class="nm">18</span>
-    ),
-    experience    <span class="op">=</span> AGE <span class="op">-</span> years_of_school <span class="op">-</span> <span class="nm">6</span>,
-    experience_sq <span class="op">=</span> experience<span class="op">^</span><span class="nm">2</span>,
-    log_wage      <span class="op">=</span> <span class="fn">log</span>(INCWAGE),
-    female        <span class="op">=</span> <span class="fn">if_else</span>(SEX <span class="op">==</span> <span class="nm">2</span>, <span class="nm">1</span>, <span class="nm">0</span>),
-    black         <span class="op">=</span> <span class="fn">if_else</span>(RACE <span class="op">==</span> <span class="nm">200</span>, <span class="nm">1</span>, <span class="nm">0</span>),
-    asian         <span class="op">=</span> <span class="fn">if_else</span>(RACE <span class="op">==</span> <span class="nm">651</span>, <span class="nm">1</span>, <span class="nm">0</span>),
-    year_2015     <span class="op">=</span> <span class="fn">if_else</span>(YEAR <span class="op">==</span> <span class="nm">2015</span>, <span class="nm">1</span>, <span class="nm">0</span>),
-    year_2019     <span class="op">=</span> <span class="fn">if_else</span>(YEAR <span class="op">==</span> <span class="nm">2019</span>, <span class="nm">1</span>, <span class="nm">0</span>),
-    year_2021     <span class="op">=</span> <span class="fn">if_else</span>(YEAR <span class="op">==</span> <span class="nm">2021</span>, <span class="nm">1</span>, <span class="nm">0</span>),
-    year_2023     <span class="op">=</span> <span class="fn">if_else</span>(YEAR <span class="op">==</span> <span class="nm">2023</span>, <span class="nm">1</span>, <span class="nm">0</span>)
-  ) <span class="op">|&gt;</span>
-  <span class="fn">filter</span>(<span class="op">!</span><span class="fn">is.na</span>(education), experience <span class="op">&gt;=</span> <span class="nm">0</span>)</pre>
+cps_clean <- cps |> filter(AGE >= 25, AGE <= 64) |> filter(INCWAGE > 0, INCWAGE < 99999999) |> filter(UHRSWORKT >= 35, UHRSWORKT < 997) |> mutate(education = case_when(EDUC < 73 ~ "1. Less than High School", EDUC == 73 ~ "2. High School Diploma", EDUC %in% c(80,81,90,91,92) ~ "3. Some College", EDUC == 111 ~ "4. Bachelor's Degree", EDUC >= 123 ~ "5. Graduate Degree"), gender = if_else(SEX == 1, "Male", "Female"), years_of_school = case_when(EDUC < 73 ~ 10, EDUC == 73 ~ 12, EDUC %in% c(80,81,90,91,92) ~ 14, EDUC == 111 ~ 16, EDUC >= 123 ~ 18), experience = AGE - years_of_school - 6, experience_sq = experience^2, log_wage = log(INCWAGE), female = if_else(SEX == 2, 1, 0), black = if_else(RACE == 200, 1, 0), asian = if_else(RACE == 651, 1, 0), year_2015 = if_else(YEAR == 2015, 1, 0), year_2019 = if_else(YEAR == 2019, 1, 0), year_2021 = if_else(YEAR == 2021, 1, 0), year_2023 = if_else(YEAR == 2023, 1, 0)) |> filter(!is.na(education), experience >= 0)</pre>
     </div>
 
     <div id="tab02" class="code-panel">
-<pre><span class="cm"># Model 1: Education only</span>
-model1 <span class="op">&lt;-</span> <span class="fn">lm</span>(log_wage <span class="op">~</span> education, <span class="va">data</span> <span class="op">=</span> cps_clean)
+<pre># three models, each adding more controls than the one before it
+model1 <- lm(log_wage ~ education, data = cps_clean)
+model2 <- lm(log_wage ~ education + experience + experience_sq + female, data = cps_clean)
+model3 <- lm(log_wage ~ education + experience + experience_sq + female + black + asian + year_2015 + year_2019 + year_2021 + year_2023, data = cps_clean)
 
-<span class="cm"># Model 2: Add experience and gender</span>
-model2 <span class="op">&lt;-</span> <span class="fn">lm</span>(log_wage <span class="op">~</span> education <span class="op">+</span> experience <span class="op">+</span> experience_sq <span class="op">+</span> female,
-             <span class="va">data</span> <span class="op">=</span> cps_clean)
-
-<span class="cm"># Model 3: Full controls</span>
-model3 <span class="op">&lt;-</span> <span class="fn">lm</span>(log_wage <span class="op">~</span> education <span class="op">+</span> experience <span class="op">+</span> experience_sq <span class="op">+</span>
-               female <span class="op">+</span> black <span class="op">+</span> asian <span class="op">+</span>
-               year_2015 <span class="op">+</span> year_2019 <span class="op">+</span> year_2021 <span class="op">+</span> year_2023,
-             <span class="va">data</span> <span class="op">=</span> cps_clean)
-
-<span class="fn">modelsummary</span>(
-  <span class="fn">list</span>(<span class="str">"Model 1"</span> <span class="op">=</span> model1, <span class="str">"Model 2"</span> <span class="op">=</span> model2, <span class="str">"Model 3"</span> <span class="op">=</span> model3),
-  <span class="va">stars</span> <span class="op">=</span> <span class="kw">TRUE</span>, <span class="va">fmt</span> <span class="op">=</span> <span class="nm">3</span>
-)</pre>
+modelsummary(list("Model 1" = model1, "Model 2" = model2, "Model 3" = model3), stars = TRUE, fmt = 3)</pre>
     </div>
 
     <div id="tab03" class="code-panel">
-<pre><span class="cm"># Predict wages for reference worker at each education level</span>
-ref_worker <span class="op">&lt;-</span> <span class="fn">data.frame</span>(
-  education     <span class="op">=</span> <span class="fn">c</span>(<span class="str">"1. Less than High School"</span>, <span class="str">"2. High School Diploma"</span>,
-                    <span class="str">"3. Some College"</span>, <span class="str">"4. Bachelor's Degree"</span>, <span class="str">"5. Graduate Degree"</span>),
-  experience    <span class="op">=</span> <span class="nm">10</span>, experience_sq <span class="op">=</span> <span class="nm">100</span>,
-  female        <span class="op">=</span> <span class="nm">0</span>, black <span class="op">=</span> <span class="nm">0</span>, asian <span class="op">=</span> <span class="nm">0</span>,
-  year_2015     <span class="op">=</span> <span class="nm">0</span>, year_2019 <span class="op">=</span> <span class="nm">1</span>, year_2021 <span class="op">=</span> <span class="nm">0</span>, year_2023 <span class="op">=</span> <span class="nm">0</span>
-)
+<pre>ref_worker <- data.frame(education = c("1. Less than High School", "2. High School Diploma", "3. Some College", "4. Bachelor's Degree", "5. Graduate Degree"), experience = 10, experience_sq = 100, female = 0, black = 0, asian = 0, year_2015 = 0, year_2019 = 1, year_2021 = 0, year_2023 = 0)
 
-ref_worker<span class="op">$</span>predicted_wage <span class="op">&lt;-</span> <span class="fn">exp</span>(<span class="fn">predict</span>(model3, <span class="va">newdata</span> <span class="op">=</span> ref_worker))
+ref_worker$predicted_wage <- exp(predict(model3, newdata = ref_worker))
 
-ref_worker <span class="op">|&gt;</span>
-  <span class="fn">ggplot</span>(<span class="fn">aes</span>(<span class="va">x</span> <span class="op">=</span> <span class="fn">reorder</span>(edu_label, predicted_wage), <span class="va">y</span> <span class="op">=</span> predicted_wage,
-             <span class="va">fill</span> <span class="op">=</span> edu_label)) <span class="op">+</span>
-  <span class="fn">geom_col</span>(<span class="va">width</span> <span class="op">=</span> <span class="nm">0.6</span>, <span class="va">show.legend</span> <span class="op">=</span> <span class="kw">FALSE</span>) <span class="op">+</span>
-  <span class="fn">scale_fill_viridis_d</span>(<span class="va">option</span> <span class="op">=</span> <span class="str">"plasma"</span>) <span class="op">+</span>
-  <span class="fn">coord_flip</span>() <span class="op">+</span>
-  <span class="fn">scale_y_continuous</span>(<span class="va">labels</span> <span class="op">=</span> <span class="fn">dollar_format</span>()) <span class="op">+</span>
-  <span class="fn">labs</span>(<span class="va">title</span> <span class="op">=</span> <span class="str">"The Education Wage Premium"</span>,
-       <span class="va">caption</span> <span class="op">=</span> <span class="str">"Source: IPUMS CPS 2010–2023 | OLS Mincer earnings equation"</span>) <span class="op">+</span>
-  <span class="fn">theme_minimal</span>(<span class="va">base_size</span> <span class="op">=</span> <span class="nm">14</span>)</pre>
+ref_worker |> ggplot(aes(x = reorder(edu_label, predicted_wage), y = predicted_wage, fill = edu_label)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_viridis_d(option = "plasma") + coord_flip() + scale_y_continuous(labels = dollar_format()) + labs(title = "The Education Wage Premium", caption = "Source: IPUMS CPS 2010 to 2023") + theme_minimal(base_size = 14)</pre>
     </div>
 
   </div>
