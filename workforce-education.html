@@ -150,7 +150,7 @@
     <div class="hero-text">
       <p class="hero-tag">R · OLS Regression · Labor Economics</p>
       <h1>The Returns to Education in the U.S. Labor Market, 2010–2023</h1>
-      <p class="hero-dek">A Mincer earnings equation estimated on 263,863 full-time workers — quantifying the wage premium for education, the gender gap, and the experience-earnings profile.</p>
+      <p class="hero-dek">A Mincer earnings equation estimated on 263,863 full-time workers, showing the wage premium for education, the gender gap, and the experience-earnings control.</p>
       <div class="hero-meta-row">
         <div class="meta-pair"><span class="meta-key">Tool</span><span class="meta-val">R · tidyverse · modelsummary</span></div>
         <div class="meta-pair"><span class="meta-key">Data Source</span><span class="meta-val">IPUMS CPS, Version 13.0</span></div>
@@ -181,27 +181,27 @@
 
 <div class="page-body">
 
-  <p>How much is a college degree worth in the U.S. labor market, and does that premium hold after controlling for experience, gender, and race? This analysis estimates a standard Mincer earnings equation on Current Population Survey microdata spanning 2010 to 2023, using log annual wages as the outcome variable and education, experience, and demographic controls as predictors.</p>
+  <p>My attempt through a Mincer Earning equation to understand what a college degree is worth in the U.S. labor market, and does the premium hold after controlling for experience, gender, and race? The analysis estimates a standard Mincer earnings equation on Current Population Survey microdata spanning 2010 to 2023 (2010, 2015, 2019, 2021, 2023), using log annual wages as the outcome variable and education, experience, and demographic controls as predictors.</p>
 
-  <p>The sample is restricted to full-time workers (35+ hours per week) aged 25–64 with positive wage income, yielding 263,863 observations across five survey years. Three nested OLS models are estimated, progressively adding controls to test the stability of the education coefficients.</p>
+  <p>The sample is restricted to full-time workers (35+ hours per week) aged 25–64 with positive wage income, resulting 263,863 datapoints across five survey years. Three OLS models are estimated, progressively adding controls to test the strength of the education coefficients.</p>
 
   <h2>Key Findings</h2>
 
-  <h3>1. The Education Premium Is Large and Stable</h3>
-  <p>Relative to workers with less than a high school diploma, Bachelor's degree holders earn approximately 93% more in log-wage terms in the fully controlled model. Graduate degree holders earn 124% more. These coefficients shift by only 1–2 percentage points when adding experience, gender, and race controls — indicating that the education premium is not driven by selection on observable characteristics.</p>
-  <p>Even a high school diploma carries a meaningful premium: a 34.4% log-wage advantage over those without one, robust across all three specifications.</p>
+  <h3>1. The Education Premium</h3>
+  <p>Relative to workers with less than a high school diploma, Bachelor's degree holders earn approximately 93% more in log-wage terms in the fully controlled model. Graduate degree holders earn 124% more. These coefficients shift by only 1–2 percentage points when adding experience, gender, and race controls. Showing the stability of the premium.</p>
+  <p>Even a high school diploma carries a meaningful premium, of a 34.4% log-wage advantage over those without one, consistent across all three models.</p>
 
-  <h3>2. The Gender Gap Persists After Full Controls</h3>
-  <p>The female coefficient is −0.325 in Model 3, implying a 32.5% unexplained wage gap after controlling for education, experience, race, and year. This is consistent with the broader labor economics literature documenting persistent wage penalties for women that are not explained by human capital differences. Factors like occupational sorting, hours flexibility, and discrimination are candidate explanations not captured here.</p>
+  <h3>2. The Gender Gap, Even After Full Controls</h3>
+  <p>The female coefficient is −0.325 in Model 3, suggesting a 32.5% unexplained wage gap after controlling for education, experience, race, and year. This is consistent with the broader labor economics literature documenting wage penalties for women that are not explained by human capital differences. Factors like hours flexibility and discrimination are explanations not captured in the model, but likely exist.</p>
 
   <h3>3. Experience Has a Concave Profile</h3>
-  <p>The experience coefficient is positive (0.033) and the squared term is negative (−0.001), replicating Mincer's original finding of a concave experience-earnings profile. Wages rise with experience but at a diminishing rate, with peak earnings implied around 25–28 years of experience under these estimates.</p>
+  <p>The experience coefficient is positive (0.033) and the squared term is negative (−0.001), matching Mincer's original finding of a concave experience-earnings profile. Wages rise with experience but at a diminishing rate, with peak earnings being found around 25–28 years of experience under these estimates.</p>
 
   <h3>4. The Racial Wage Gap Is Significant for Black Workers</h3>
-  <p>Black workers face a statistically significant wage penalty of approximately 14.4% relative to White workers with identical education, experience, and year controls. The coefficient for Asian workers is not statistically significant, suggesting no measurable gap after these controls. These are descriptive OLS estimates — they do not identify discrimination, but they document unexplained dispersion that warrants attention.</p>
+  <p>Black workers face a significant wage penalty of approximately 14.4% relative to White workers with identical education, experience, and year controls. The coefficient for Asian workers was not found not statistically significant. Similar to race, these are descriptive OLS estimates and do not identify discrimination, but they document unexplained differences like this one.</p>
 
-  <h3>5. Real Wages Grew Substantially After 2019</h3>
-  <p>Year dummy coefficients show strong real wage growth across the sample period: +4.9% by 2015, +17.0% by 2019, +21.6% by 2021, and +33.6% by 2023 relative to the 2010 reference year. The acceleration post-2019 is consistent with the tight pandemic-era labor market and is one of the largest wage growth periods in the dataset.</p>
+  <h3>5. Real Wages Grew Post Pandemic</h3>
+  <p>Year dummy coefficients show steady real wage growth across the sample period: +4.9% by 2015, +17.0% by 2019, +21.6% by 2021, and +33.6% by 2023 relative, indexed to the 2010 reference year. The acceleration post-2019 is explained and matching to the tight pandemic-era labor market and is a period of the largest wage growth in the dataset.</p>
 
 </div>
 
@@ -211,7 +211,7 @@
     <p class="section-sub">Predicted wages, coefficient stability across model specifications, the experience-earnings profile, and year-over-year wage growth.</p>
 
     <div class="chart-block">
-      <div class="chart-title">Fig. 1 — Predicted Annual Wages by Education Level</div>
+      <div class="chart-title">Fig. 1 Predicted Annual Wages by Education Level</div>
       <div class="chart-subtitle">Reference worker: Male, White, 10 years experience, 2019. Derived from Model 3 coefficients.</div>
       <div class="chart-wrap">
         <canvas id="chartWages"></canvas>
