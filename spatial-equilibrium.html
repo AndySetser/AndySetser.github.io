@@ -135,7 +135,7 @@
     <div class="hero-text">
       <p class="hero-tag">R · Census Bureau API · BEA API · Hedonic Regression</p>
       <h1>Spatial Equilibrium</h1>
-      <p class="hero-dek">Every place is a bundle of trade-offs. This tool pulls live Census Bureau and BEA data for any U.S. county or town, runs a hedonic regression across 3,055 counties, and shows what the data actually says — with the source attached to every number.</p>
+      <p class="hero-dek">Understanding that every place has its tradeoffs, I wanted to study and work on a tool that pulls live Census Bureau and BEA data for any U.S. county or town.  What I managed, through the help of a friend who understands html coding, was a tool that can run a hedonic regression across 3,055 counties, and can interpret that data in equations that are useful for understanding the cost of a location.</p>
       <div class="hero-meta-row">
         <div class="meta-pair"><span class="meta-key">Data</span><span class="meta-val">ACS 5-Year · BEA CAINC1 · USDA Natural Amenities</span></div>
         <div class="meta-pair"><span class="meta-key">Coverage</span><span class="meta-val">3,055 U.S. Counties</span></div>
@@ -165,24 +165,23 @@
 
 <div class="page-body">
 
-  <p>I grew up in Wichita, Kansas, and have lived in Alamosa, Colorado since 2019. I have complained about both places equally. These complaints are useful, though, because they say something about how people actually land on a place — and why economists have a framework for it.</p>
+  <p>I grew up in Wichita, Kansas, and have lived in Alamosa, Colorado since 2019. I have complained about both places equally. But, recently have acknowledged that these complaints are useful, because they say something about how we land on a place and why a framework for it exist.</p>
 
-  <h2>The Theory</h2>
+  <h2>Theory</h2>
 
   <h3>Hedonic Pricing</h3>
 
   <div class="aside-pull">
-    <p>The goods you buy aren't really one thing. They are a bundle of characteristics, each with its own cost factored into the listing price.</p>
-    <cite>Sherwin Rosen, 1974</cite>
+
   </div>
 
-  <p>The mechanism goes back further than most people realize. Sherwin Rosen, in 1974, argued that the goods you buy, whether a car or a house, are a bundle of characteristics, each with its own cost factored into the listing price.<sup>1</sup> A house is not just a house. It is square footage, a school district, a commute, a climate, a view, all priced separately even though only one number shows face.</p>
+  <p>Sherwin Rosen, in 1974, argued that the goods you buy, whether a car or a house, are a bundle of characteristics, each with its own cost factored into the listing price.<sup>1</sup> A house is not just a house. It is square footage, a school district, a commute, a climate, a view, all priced separately even though only one number shows face.</p>
 
-  <p>Jennifer Roback (1982) took that idea and applied it to entire places.<sup>2</sup> A location, in her framework, is a bundle of wages, amenities, and taxes. This settles into what economists call spatial equilibrium: a condition where the advantage of a desirable place weakens until the resident is indifferent between staying or leaving. Enough people compete for places worth living that the benefits eventually get outbid. My version of a perfect place has good coffee, breweries, and fewer mosquitoes. But the market already knows these are desirable traits, and will charge me for them if I ever decide to move toward them.</p>
+  <p>Jennifer Roback (1982) took that idea and applied it to entire places.<sup>2</sup> A location, in her framework, is a bundle of wages, amenities, and taxes. This settles into what economists call spatial equilibrium: a condition where the advantage of a desirable place weakens until the resident is indifferent between staying or leaving. Enough people compete for places worth living that the benefits eventually get outbid. My version of a perfect place has good running trails, coffee, breweries, and fewer mosquitoes. But the market already knows these are desirable traits, and will charge me for them if I ever decide to move toward them.</p>
 
-  <h3>Two Markets at Once</h3>
+  <h3>Labour and housing markets</h3>
 
-  <p>Roback's key insight is that amenities show up in two separate markets simultaneously: the labor market and the housing market, and they can push in opposite directions. If a place is pleasant to live in, workers should be willing to accept lower wages because the amenity is part of their compensation. At the same time, everyone else wants to live there too, which bids up rent. A true consumption amenity should show up as lower wages and higher rents together.</p>
+  <p>Roback's key insight is that amenities show up in two separate markets at the same time. The labor market and the housing market, and they can push in opposite directions. If a place is pleasant to live in, workers should be willing to accept lower wages because the amenity is part of their compensation. At the same time, everyone else wants to live there too, which bids up rent. A true consumption amenity should show up as lower wages and higher rents together.</p>
 
   <p>A production amenity, something that makes workers more productive rather than happier, like proximity to other skilled workers, tends to raise both wages and rents at once. You can tell the difference between "this place makes you productive" and "this place makes you happy" by watching which direction wages move relative to rent. Blomquist, Berger, and Hoehn (1988) used this two-equation approach to rank the dollar value of quality of life across hundreds of U.S. cities.<sup>3</sup></p>
 
@@ -190,19 +189,19 @@
 
   <p>Adam Smith (1776) noticed that unpleasant or dangerous work commands a wage premium, what economists now call a compensating differential.<sup>4</sup> Mining pays more than an equally skilled desk job because someone has to be paid to accept the risk. The same relationship applies to locations, only in reverse. A location with disadvantages, hard winters, isolation, a thin labor market, should in theory require higher pay to keep people there. In practice, rural places like the one I live in often pay less, which is one of the harder questions in regional economics. Part of the answer is that low wages get offset by an even lower cost of living. Part of it is that people are not entirely economically rational about where they stay. Family and inertia absorb some of the wage gap that theory would predict.</p>
 
-  <h3>Voting With Their Feet</h3>
+  <h3>Local Government</h3>
 
-  <p>Charles Tiebout (1956) added one more layer: people do not only sort by wages and rent, they also sort by local government.<sup>5</sup> Different jurisdictions offer different bundles of taxes, schools, parks, and services, and people move toward the bundle that suits them. A good school district is a policy choice that the housing market prices the same way it prices a mountain view.</p>
+  <p>Charles Tiebout (1956) added an additional more layer; people do not only sort by wages and rent, they also sort by local government.<sup>5</sup> Different jurisdictions offer different bundles of taxes, schools, parks, and services, and people move toward the bundle that suits them. A good school district is a policy choice that the housing market prices the same way it prices a mountain view.</p>
 
   <div class="eq">
-    <span class="eq-tag">Hedonic Regression — National Fit (n = 3,055 counties)</span>
+    <span class="eq-tag">Hedonic Regression, United State's Counties (n = 3,055 counties)</span>
     <p>Home Value = α + β₁ · (Median Household Income) + β₂ · (Natural Amenity Score) + ε</p>
     <p>β₁ = $5,814 per $1,000 income &nbsp;&nbsp; β₂ = $25,261 per amenity point</p>
   </div>
 
-  <h3>What the Regression Does Not Capture</h3>
+  <h3>What the Regression Misses</h3>
 
-  <p>The model intentionally stays simple. It leaves out zoning rules, school quality, crime rates, and broadband access. It also leaves out proximity to family, which hedonic models handle poorly because it resists quantification. For most people, family quietly outbids every quality-of-life index and cost-of-living calculator out there. Social capital is real and hard to price. Relocating and rebuilding it somewhere new takes longer and costs more than any regression can account for.</p>
+  <p>The model is quite simple and misses many other factors. It leaves out zoning rules, school quality, crime rates, and broadband access. It also leaves out proximity to family, which hedonic models always handle poorly because it resists quantification. For most people, family outbids every quality-of-life index and cost-of-living calculator out there. Social capital is real, just hard to price. Relocating and rebuilding it somewhere new takes longer and costs more than any regression can account for.</p>
 
 </div>
 
@@ -211,7 +210,7 @@
     <h2 class="tool-hed">Try the Tool</h2>
     <p class="tool-sub">Pull live Census Bureau and BEA data for any U.S. county or city. Compare two places side by side. Every number includes its source table and definition.</p>
     <div class="tool-frame">
-      <div class="tool-bar">Live · Spatial Equilibrium · Census and BEA APIs</div>
+      <div class="tool-bar">Spatial Equilibrium · Census and BEA APIs</div>
       <iframe
         src="https://andysetser.github.io/Spatial-Equilibrium/"
         title="Spatial Equilibrium — Hedonic Pricing Tool"
@@ -228,21 +227,21 @@
     <h2 class="method-hed">Methodology</h2>
     <div class="method-cols">
       <div class="method-block">
-        <h4>Model Specification</h4>
+        <h4>Model</h4>
         <ul>
           <li>OLS regression of median home value on median household income and USDA natural amenity score</li>
           <li>Fit across all 3,055 U.S. counties with data for both variables</li>
-          <li>Residual shows how far each county's home value deviates from the national pattern</li>
-          <li>Falls back to income-only model when amenity score is missing</li>
+          <li>Residual shows how far each county's home value differs from the national pattern</li>
+          <li>Goes back to income-only model when amenity score is missing</li>
         </ul>
       </div>
       <div class="method-block">
         <h4>Data Sources</h4>
         <ul>
           <li>ACS 5-year estimates, vintage 2020–2024 (Census Bureau API)</li>
-          <li>BEA Regional Data, CAINC1 — per-capita personal income (BEA API)</li>
-          <li>USDA ERS Natural Amenities Scale — static embed, county level</li>
-          <li>Rent burden derived: median rent divided by renter household income (B25119)</li>
+          <li>BEA Regional Data, CAINC1, per-capita personal income (BEA API)</li>
+          <li>USDA ERS Natural Amenities Scale, county level only</li>
+          <li>Rent burden is from median rent divided by renter household income (B25119)</li>
         </ul>
       </div>
       <div class="method-block">
@@ -255,12 +254,12 @@
         </ul>
       </div>
       <div class="method-block">
-        <h4>Known Limitations</h4>
+        <h4>Limitations</h4>
         <ul>
           <li>ACS 5-year estimates lag 2 to 7 years behind real time</li>
-          <li>Model omits zoning, school quality, crime, broadband access</li>
-          <li>City and town mode covers only incorporated places and CDPs</li>
-          <li>Small geographies carry wider margins of error than the display implies</li>
+          <li>Model lacks zoning, school quality, crime, broadband access</li>
+          <li>City and town mode covers only places reported in Census Bureau</li>
+          <li>Small geographies carry wider margins of error </li>
         </ul>
       </div>
     </div>
