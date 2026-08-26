@@ -160,7 +160,7 @@
     <div class="hero-text">
       <p class="hero-tag">R · Difference-in-Differences · Water Economics</p>
       <h1>The Economics of Voluntary Water Restrictions in Kansas</h1>
-      <p class="hero-dek">A staggered difference-in-differences event study across four Kansas Local Enhanced Management Areas — asking whether locally-governed aquifer restrictions slow groundwater decline without collapsing farm income.</p>
+      <p class="hero-dek">Practice of a staggered difference-in-differences event study across four Kansas Local Enhanced Management Areas with the goal to see whether locally-governed aquifer restrictions slow groundwater decline without destroying farm income.</p>
       <div class="hero-meta-row">
         <div class="meta-pair"><span class="meta-key">Method</span><span class="meta-val">Staggered DiD · TWFE Event Study</span></div>
         <div class="meta-pair"><span class="meta-key">Data Sources</span><span class="meta-val">KGS WIZARD · USDA NASS · BEA REIS</span></div>
@@ -191,21 +191,19 @@
 
 <div class="page-body">
 
-  <p>I have never really thought about a place's water as much as I have in my time in the San Luis Valley. Every livable place needs it. Yet here it is closer to a livelihood than a resource. Nearly a third of the Valley's economic base is accounted for by agriculture that depends on a high-alpine aquifer being slowly drained. That reality is what sent me east, to Kansas, where a decade-old experiment in voluntary water governance has now accumulated enough data to say something real.</p>
+  <p>I have never really thought about a place's water as much as I have in my time in the San Luis Valley. It is the areas most fragile resource. Nearly a third of the Valley's economic base is accounted for by agriculture that depends on a high-alpine aquifer being slowly drained. That reality is what led me to study the economics of water regulations, my study will focus on my homestate of Kansas, where decent public data exist around a decade-old experiment in voluntary water governance.</p>
 
-  <p>The Kansas Local Enhanced Management Area (LEMA) program gives Groundwater Management Districts the authority to write their own conservation plans, letting farmers set their own pumping caps rather than wait for state-imposed cuts. Sheridan County farmers were the first to act on that authority in 2013, agreeing to hold each irrigator to a five-year allocation of 55 acre-inches. Three more LEMAs followed across northwestern Kansas. Together they form a natural staggered experiment: four adoption cohorts, fourteen counties, and years of outcome data now available from public sources.</p>
+  <p>The Kansas Local Enhanced Management Area (LEMA) program gives Groundwater Management Districts the authority to write their own water conservation plans, letting farmers set their own pumping caps rather than wait for state-imposed cuts. Sheridan County farmers were the first to act on that authority in 2013, agreeing to hold each irrigator to a five-year allocation of 55 acre-inches. Three more LEMAs followed across northwestern Kansas. Together I can use them to form a staggered experiment with four adoption cohorts, fourteen counties, and later years of outcome data now available from public sources.</p>
 
   <div class="aside-pull">
-    <p>"The water table was falling about 0.38 feet per year before these restrictions. Post-adoption, that rate fell to 0.15 feet per year, roughly a 60 percent slowdown in the rate of aquifer decline."</p>
-    <cite>Author's TWFE estimate</cite>
   </div>
 
   <h2>The Four LEMA Cohorts</h2>
 
-  <p>Each LEMA was established through a signed Chief Engineer order from the Kansas Division of Water Resources. The four adoption events used as treatment dates in this analysis are:</p>
+  <p>Each LEMA was established through a signed Chief Engineer order from the Kansas Division of Water Resources. The four adoption events used as treatment dates in this analysis are listed below:</p>
 
   <div class="eq">
-    <span class="eq-tag">Event Study — Groundwater Decline Rate</span>
+    <span class="eq-tag">Groundwater Decline Rate</span>
     <p>Slope (ft/yr) = α + β · Post(t) + County FE + Cohort FE + ε</p>
     <p>β = −0.14 ft/yr &nbsp;&nbsp; p ≈ 0.10 &nbsp;&nbsp; n = 22 (11 counties × 2 periods)</p>
   </div>
@@ -215,7 +213,7 @@
 <div class="section-block">
   <div class="section-inner">
     <h2 class="section-hed">LEMA Adoption Timeline</h2>
-    <p class="section-sub">Each LEMA order sets the treatment date used in the event study, and defines the five-year allocation period for irrigators within its boundary.</p>
+    <p class="section-sub">Each LEMA order sets the treatment date used in the event study, and the five-year allocation period for irrigators within its boundary.</p>
     <div class="data-table-wrap">
       <table>
         <thead>
@@ -259,33 +257,33 @@
 
 <div class="page-body" style="padding-top: 3rem;">
 
-  <h2>Understanding a Water Cut</h2>
+  <h2>Why Water Cuts exist</h2>
 
-  <p>Limiting groundwater pumping doesn't happen at the press of a button. It goes through a legal process established by Kansas's 2012 Groundwater Management District Act, which allows GMDs to propose plans to be approved by the Kansas Chief Engineer. Once adopted, the district board, in the case of the GMD4 LEMA, the Northwest Kansas Groundwater Management District, notifies every water right holder within 30 days, spelling out each right's five-year allocation.</p>
+  <p>Limiting groundwater goes through a legal process established by Kansas's 2012 Groundwater Management District Act, which allows GMDs to propose plans to be approved by the Kansas Chief Engineer. Once adopted, the district board, in the case of the GMD4 LEMA, the Northwest Kansas Groundwater Management District, notifies every water right holder within 30 days, explaininh each right's five-year allocation.</p>
 
-  <p>For the farmers involved, that means treating water like a budget rather than a tap. A fixed allocation may redirect historically corn-heavy acres toward less water-intensive crops like grain sorghum, which demands noticeably less irrigation. These are choices made by individual operators trying to live within a shared number. The multiplier implications run wide: less irrigation means less seed, fertilizer, and chemical inputs bought from local ag retailers. In Sheridan County, one early study estimated seed and chemical spending fell by roughly 20 percent in the years after restriction took effect.</p>
+  <p> A fixed allocation may redirect historically corn-heavy acres toward less water-intensive crops like grain sorghum, which takes far less irrigation. These are choices made by individual operators trying to live within a shared regulation. The multiplier implications runs through these communities, as less irrigation means less seed, fertilizer, and chemical inputs bought from local ag retailers. In Sheridan County, one early study estimated seed and chemical spending fell by roughly 20 percent in the years after restriction took effect.</p>
 
-  <h2>Variable 1 — Groundwater</h2>
+  <h2>Variable 1 Groundwater</h2>
 
-  <p>The most important variable and the most useful in the data. Rather than comparing average water levels, which conflates secular aquifer decline with any treatment effect, this analysis estimates the <em>slope</em> (feet per year) of water table decline for each county's monitoring wells in the ten years before and ten years after each LEMA adoption, then compares those slopes.</p>
+  <p>The most important variable and most useful in the data. This analysis estimates the <em>slope</em> (feet per year) of water table decline for each county's monitoring wells in the ten years before and ten years after each LEMA adoption, then compares those slopes.</p>
 
-  <p>Across eleven counties with sufficient well data, the average decline rate fell from 0.38 ft/yr before adoption to 0.15 ft/yr after, a 60 percent slowdown. The sharpest individual result was Sheridan County itself: from 0.63 ft/yr pre-adoption to 0.08 ft/yr after. Nearly a steady water table after more than a decade of restrictions. Wichita County, a more recent adopter (2021), moved from 0.29 to 0.06 ft/yr.</p>
+  <p>Across eleven counties with sufficient well data, the average decline rate fell from 0.38 ft/yr before adoption to 0.15 ft/yr after, a 60 percent slowdown. The sharpest individual result was Sheridan County, going from 0.63 ft/yr pre-adoption to 0.08 ft/yr after. Almost achieving a steady water table after more than a decade of restrictions. Wichita County, a more recent adopter (2021), moved from 0.29 to 0.06 ft/yr.</p>
 
-  <p>Not every county fits the pattern. Sherman, Thomas, and Wallace are still losing groundwater each year, just somewhat slower. Graham, Logan, and Cheyenne actually show slightly faster decline post-adoption. These are changes of a few hundredths of a foot per year, small enough to be driven by weather variation rather than policy reversal. Lane, Scott, and Greeley were excluded from the groundwater comparison entirely: monitoring well counts in those counties dropped so sharply after their 2023 adoption that estimating a meaningful trend wasn't possible.</p>
+  <p>Not every county fits the pattern though. Sherman, Thomas, and Wallace are still losing groundwater each year, just somewhat slower. Graham, Logan, and Cheyenne actually show slightly faster decline post-adoption. These are changes of a few hundredths of a foot per year, small enough to be driven by weather variation rather than policy reversal. Lane, Scott, and Greeley were excluded from the groundwater comparison entirely because monitoring well counts in those counties dropped so much after their 2023 adoption that I could not form a meaningful trend.</p>
 
-  <p>The TWFE regression, controlling for county fixed effects and adoption cohort fixed effects, estimates that LEMA adoption is associated with a 0.14 ft/yr reduction in the groundwater decline rate (p ≈ 0.10). With only 22 observations (11 counties × 2 periods), that result should be treated as directionally consistent with the pre/post comparison rather than a precise causal estimate.</p>
+  <p>The Two-way fixed effects regression, controlling for county fixed effects and adoption cohort fixed effects, estimated that LEMA adoption is associated with a 0.14 ft/yr reduction in the groundwater decline rate (p ≈ 0.10). However, With the data, I only had 22 observations (11 counties × 2 periods), therefore, that result should be treated as just consistent with the pre/post comparison rather than a precise estimate.</p>
 
-  <h2>Variable 2 — Crop Mix</h2>
+  <h2>Variable 2 Crop Mix</h2>
 
-  <p>One response to a water budget is to grow less thirsty crops. If restrictions were driving real behavioral change, we'd expect to see cropland shift away from corn, which requires heavy irrigation, toward grain sorghum, which can be grown on significantly less water. Sorghum's share of total tracked cropland across LEMA counties rose from about 10.3 percent before adoption to 14.5 percent after, a 41 percent relative increase.</p>
+  <p>The first response to a water budget is to grow less water demanding crops. If restrictions were driving real behavioral change, we'd expect to see cropland shift away from corn, which requires heavy irrigation, toward grain sorghum, which can be grown on significantly less water. Sorghum's share of total tracked cropland across LEMA counties rose from about 10.3 percent before adoption to 14.5 percent after, a 41 percent relative increase.</p>
 
-  <p>That finding comes with a real data caveat. USDA's NASS suppresses county-level crop acreage when too few farms are reporting, to protect farm privacy. The sorghum numbers are built on a thinner set of county-year observations than the groundwater or income data, skewed toward the years and counties where enough farms reported to publish. The crop mix shift is consistent with the expected behavioral response to water restrictions, but should be read as suggestive rather than definitive.</p>
+  <p>That finding again though has data limitations. USDA's NASS suppresses county-level crop acreage when too few farms are reporting, to protect farm privacy. Studying rural communities, the sorghum numbers are built on a thinner set of county-year observations than the groundwater or income data, skewed toward the years and counties where enough farms reported to publish. The crop mix shift though is what we'd expect in response to water restrictions, but should again only be read as suggestive until more data can be used.</p>
 
-  <h2>Variable 3 — Farm Income</h2>
+  <h2>Variable 3 Farm Income</h2>
 
-  <p>Average farm proprietors' income across the fourteen counties ran about $30,700 per year before LEMA adoption and $28,400 afterward, a modest decline. In the TWFE event-study specification, however, none of the year-by-year income coefficients reached statistical significance. The variation in farm income across this panel is dominated by commodity price cycles and drought years, not the policy event.</p>
+  <p>Average farm proprietors' income across the fourteen counties was at about $30,700 per year before LEMA adoption and $28,400 afterward, showing a slight drop. In the Two way fixed effects event-study specification, however, none of the year-by-year income coefficients reached statistical significant levels. The variation in farm income across this panel is most likely impacted greater by commodity price cycles and years of drought, not the Lema adoptions.</p>
 
-  <p>This is also where the sub-county boundary limitation bites hardest. County-level BEA income figures blend farms inside the LEMA boundary with farms entirely outside it. If restriction reduced income for farms actually subject to the cap, that effect would be diluted across the full county total. The null farm income result is consistent with either a true null effect, or a real effect that the available data simply cannot resolve at county scale.</p>
+  <p>This is also where the sub-county boundary limitation fall in. County-level BEA income figures blend farms inside the LEMA boundary with farms entirely outside it. If restriction reduced income for farms actually subject to the cap, that effect would be diluted across the full county total. Another limitation that I ran into with sourcing free and publically sourced data. </p>
 
 </div>
 
@@ -295,7 +293,7 @@
     <p class="section-sub">Groundwater trends, before/after comparisons, and the crop mix shift, plotted from the cleaned county panel.</p>
 
     <div class="figure-block">
-      <div class="figure-title">Fig. 1 — Aquifer Decline Rate by County, Before and After LEMA Adoption</div>
+      <div class="figure-title">Fig. 1 Aquifer Decline Rate by County, Before and After LEMA Adoption</div>
       <div class="figure-subtitle">Most counties show a slower decline post-adoption; Lane, Scott, and Greeley excluded due to well attrition</div>
       <div class="figure-img-wrap">
         <img src="AquiferDeclinebyCounty.png" alt="Dot plot showing before and after LEMA adoption groundwater decline rates by county" />
@@ -304,7 +302,7 @@
     </div>
 
     <div class="figure-block">
-      <div class="figure-title">Fig. 2 — Average Aquifer Decline Rate, Before vs. After LEMA</div>
+      <div class="figure-title">Fig. 2 Average Aquifer Decline Rate, Before vs. After LEMA</div>
       <div class="figure-subtitle">Across 11 counties with sufficient data, the average decline slowed by roughly 60 percent</div>
       <div class="figure-img-wrap">
         <img src="WaterTableBeforeAfter.png" alt="Bar chart comparing average aquifer decline rate before and after LEMA adoption" />
@@ -313,8 +311,8 @@
     </div>
 
     <div class="figure-block">
-      <div class="figure-title">Fig. 3 — Sorghum Share of Cropland, Before vs. After LEMA Adoption</div>
-      <div class="figure-subtitle">Sorghum — a less water-intensive crop — grew its share of tracked cropland by 41% relative to baseline</div>
+      <div class="figure-title">Fig. 3 Sorghum Share of Cropland, Before vs. After LEMA Adoption</div>
+      <div class="figure-subtitle">Sorghum, a less water-intensive crop grew its share of tracked cropland by 41% relative to baseline before adoption</div>
       <div class="figure-img-wrap">
         <img src="CropMixShift.png" alt="Bar chart showing sorghum share of cropland before and after LEMA restrictions" />
         <p class="figure-note">Source: USDA NASS QuickStats. County-level sorghum, corn, wheat, and soybean acres. NASS suppression applies where fewer than 3 farms report; included observations skew toward larger counties. Author: Andy Setser.</p>
@@ -491,8 +489,8 @@
 
 <div class="section-block code-section">
   <div class="section-inner">
-    <h2 class="section-hed">R Pipeline</h2>
-    <p class="section-sub">Full analysis pipeline in R. API keys are stored in <code>.Renviron</code> and never hardcoded. Run scripts in order from a fresh session, or jump to any step directly if prior outputs are already saved to <code>data_clean/</code> and <code>data_raw/</code>.</p>
+    <h2 class="section-hed">R Code</h2>
+    <p class="section-sub">Full analysis in R. API keys are stored in <code>.Renviron</code> and not hardcoded. </p>
 
     <div class="code-tabs">
       <button class="code-tab active" onclick="showTab('tab01')">01 · LEMA Timeline</button>
@@ -799,38 +797,38 @@ twfe_income <span class="k">&lt;-</span> <span class="f">feols</span>(
       <div class="method-block">
         <h4>Data Sources</h4>
         <ul>
-          <li>KGS WIZARD — well-level groundwater levels (manual download, all 14 counties)</li>
-          <li>USDA NASS QuickStats — crop acreage by county (rnassqs API)</li>
-          <li>BEA CAINC5N, Line 71 — farm proprietors' income (bea.R API)</li>
-          <li>BEA CAINC1 — personal income and population</li>
+          <li>KGS WIZARD, well-level groundwater levels (manual download, all 14 counties)</li>
+          <li>USDA NASS QuickStats, crop acreage by county (rnassqs API)</li>
+          <li>BEA CAINC5N, farm proprietors' income (bea.R API)</li>
+          <li>BEA CAINC1, personal income and population</li>
         </ul>
       </div>
       <div class="method-block">
-        <h4>Identification Strategy</h4>
+        <h4>Strategy</h4>
         <ul>
           <li>Staggered DiD: four adoption cohorts (2013, 2018, 2021, 2023)</li>
           <li>Event-time window: ±10 years for groundwater; ±6 for income</li>
           <li>Groundwater: well-level OLS slope (ft/yr) pre vs post, then county average</li>
-          <li>TWFE with county and cohort/year fixed effects; heteroskedasticity-robust SE</li>
+          <li>TwoWayFixedEffects with county and cohort/year fixed effects</li>
         </ul>
       </div>
       <div class="method-block">
-        <h4>Critical Limitations</h4>
+        <h4>Limitations</h4>
         <ul>
-          <li>LEMA boundaries are sub-county; county-level data dilutes the treatment signal</li>
+          <li>LEMA boundaries are sub-county; county-level data is not and has to be filtered</li>
           <li>Wallace and Sheridan each fall under two overlapping LEMAs</li>
           <li>Lane, Scott, Greeley excluded from groundwater comparison (well attrition)</li>
-          <li>NASS irrigated corn breakout unavailable from 2019 onward; sorghum suppressed in small-farm counties</li>
-          <li>Farm income null result may reflect data limitation, not true null effect</li>
+          <li>NASS irrigated corn is unavailable from 2019 onward; sorghum data is hidden in small-farm counties</li>
+          <li>Farm income result likely reflect data limitation, not for certain null effect</li>
         </ul>
       </div>
       <div class="method-block">
-        <h4>Framing</h4>
+        <h4>How to interpret</h4>
         <ul>
-          <li>Results framed as "patterns consistent with LEMA adoption," not precise causal estimates</li>
-          <li>Commodity price cycles and drought confound income comparisons</li>
-          <li>All data sources free and publicly available; no NRD/GMD outreach required</li>
-          <li>Full R pipeline above; API keys stored in .Renviron, never hardcoded</li>
+          <li>Should be framed as "patterns consistent with LEMA adoption," not precise estimates</li>
+          <li>Commodity price cycles and drought outweigh income comparisons</li>
+          <li>All data sources free and publicly available; no NRD/GMD outreach occurred</li>
+          <li>Full R code above; API keys stored in .Renviron,not displayed</li>
         </ul>
       </div>
     </div>
