@@ -156,7 +156,7 @@
     <div class="hero-text">
       <p class="hero-tag">R · Production Economics · OLS Regression</p>
       <h1>Estimating a Cobb-Douglas Production Function, 1899–1922</h1>
-      <p class="hero-dek">Using the original Douglas (1928) dataset to estimate a log-linearized production function via OLS — quantifying the elasticities of labour and capital, testing returns to scale, and advising on optimal firm strategy.</p>
+      <p class="hero-dek">Using the original Douglas (1928) dataset to estimate a log-linearized production function through OLS, quantifying the elasticities of labour and capital, testing returns to scale, and giving advice on firm strategy going forward, Labour vs. Capital.</p>
       <div class="hero-meta-row">
         <div class="meta-pair"><span class="meta-key">Method</span><span class="meta-val">Log-Linear OLS · lm()</span></div>
         <div class="meta-pair"><span class="meta-key">Data Source</span><span class="meta-val">Cobb-Douglas (1928) Original Dataset</span></div>
@@ -187,9 +187,9 @@
 
 <div class="page-body">
 
-  <p>The Cobb-Douglas production function is one of the most enduring models in economics — first estimated by Charles Cobb and Paul Douglas in 1928 using U.S. manufacturing data. This project applies that same original dataset to replicate and interpret the estimation using OLS regression in R, recovering the labour and capital elasticities and drawing practical implications for firm strategy.</p>
+  <p>The Cobb-Douglas production function is one of the most common economic models to understand firm production function, it was first estimated by Charles Cobb and Paul Douglas in 1928 using U.S. manufacturing data. To show my understanding I applid their original dataset to replicate and interpret the estimation using OLS regression in R, recovering the labour and capital elasticities and then interpreting the implications for firm strategy. This study can be used on other firm examples that have the minimum data of Proudction (output Y), Amount of labour (L) and amount/value of capital (K). </p>
 
-  <p>The model is log-linearized to allow estimation via ordinary least squares. Taking the natural log of both sides of Q = A · L<sup>β</sup> · K<sup>γ</sup> converts a nonlinear relationship into a tractable linear regression, with the slope coefficients directly interpretable as output elasticities.</p>
+  <p>The model is log-linearized to allow estimation with ordinary least squares. Taking the natural log of both sides of Q = A · L<sup>β</sup> · K<sup>γ</sup> converts a nonlinear relationship into a linear regression, with the slope coefficients directly as output elasticities.</p>
 
   <div class="eq">
     <span class="eq-tag">Estimated Model</span>
@@ -200,27 +200,27 @@
   <h2>Interpretation</h2>
 
   <h3>1. Labour vs. Capital Intensity</h3>
-  <p>Since the coefficient on labour (0.811) is greater than the coefficient on capital (0.231), the firm should be labour intensive. A 1% increase in labour raises output by approximately 0.81%, while a 1% increase in capital only raises output by approximately 0.23%. Labour is more than three times as productive at the margin — capital was a supporting input, not the primary driver of output growth in this era of U.S. manufacturing.</p>
+  <p>Since the coefficient on labour (0.811) is greater than the coefficient on capital (0.231), the firm should be labour intensive. This means that a 1% increase in labour raises output by approximately 0.81%, while a 1% increase in capital only raises output by approximately 0.23%. Labour is more than three times as productive at the margin.  During this period of US manufacturing, capital was a supporting input, but not the primary driver of output growth.</p>
 
   <h3>2. Returns to Scale</h3>
-  <p>β + γ = 0.811 + 0.231 = 1.041. The firm exhibits increasing returns to scale — slightly above 1, meaning a 1% increase in both inputs raises output by about 1.04%. This differs from a firm with decreasing returns, which would face diminishing gains from expansion and a natural optimal size. Here the incentive structure favours growth.</p>
+  <p>β + γ = 0.811 + 0.231 = 1.041. The firm has increasing returns to scale, slightly above 1, meaning a 1% increase in both inputs raises output by about 1.04%. This differs and is better than a firm with decreasing returns, which would face a loss in gains from expansion and a natural optimal size. Here the incentive structure favors growth, however that is not always the case.</p>
 
   <h3>3. Optimal Size Advice</h3>
-  <p>Since the firm has increasing returns to scale, it benefits from growing larger — each unit of expansion yields slightly more than proportional output gains. In the short run, since capital is typically fixed, the firm should focus on adding labour to capture those gains. In the long run, the firm should scale both labour and capital together, prioritizing labour given its much stronger effect on output, to sustain and potentially amplify the increasing returns.</p>
+  <p>Here, since the firm has increasing returns to scale, it would benefit from expanding larger, each unit of expansion results in slightly more output gains. In the short run, since capital is typically fixed, the firm should focus on adding labour to capture those gains. In the long run, the firm should scale both labour and capital investments together, focusing more on labour given its stronger effect on output, to sustain and increase returns.</p>
 
   <h3>4. Model Fit</h3>
-  <p>The R² of 0.9572 means labour and capital explain about 95.7% of the variation in output — a very strong fit. Both coefficients are highly significant (Labour ***, Capital **), and the overall F-statistic p-value of 4.255e-15 confirms the model is solid.</p>
+  <p>The R² of 0.9572 means labour and capital explain about 95.7% of the variation in output. Both coefficients are highly significant (Labour ***, Capital **), and the overall F-statistic p-value of 4.255e-15 confirms this.</p>
 
 </div>
 
 <div class="section-block">
   <div class="section-inner">
     <h2 class="section-hed">Figures</h2>
-    <p class="section-sub">The input-output relationship across all 24 annual observations, plotted in log space.</p>
+    <p class="section-sub">The input-output relationship across all 24 annual observations.</p>
 
     <div class="figure-block">
-      <div class="figure-title">Fig. 1 — Production Data Input-Output</div>
-      <div class="figure-subtitle">3D scatter of ln(Capital) × ln(Labor) → ln(Output), points colored by ln(Output) on a Viridis scale</div>
+      <div class="figure-title">Fig. 1 Production Data Input-Output</div>
+      <div class="figure-subtitle">3D scatter of ln(Capital) × ln(Labor) → ln(Output), points colored by log(Output)</div>
       <div class="figure-img-wrap">
         <img src="Rplot01.png" alt="3D scatter plot of Cobb-Douglas production data — ln(Capital), ln(Labor), ln(Output) with Viridis color scale" />
         <p class="figure-note">Source: Cobb-Douglas (1928) original dataset. Generated in R using plotly. Author: Andy Setser.</p>
@@ -275,8 +275,8 @@
 
 <div class="section-block code-section">
   <div class="section-inner">
-    <h2 class="section-hed">R Pipeline</h2>
-    <p class="section-sub">Full analysis pipeline in R, from raw data import through log transformation, OLS estimation, and 3D visualization.</p>
+    <h2 class="section-hed">R Code</h2>
+    <p class="section-sub">Full analysis in R, from raw data import through log transformation, OLS estimation, and 3D visualization.</p>
 
     <div class="code-tabs">
       <button class="code-tab active" onclick="showTab('tab01')">01 · Setup &amp; Data</button>
@@ -331,7 +331,7 @@ cobb_model <span class="k">&lt;-</span> <span class="f">lm</span>(lnQ <span clas
           <li>Cobb-Douglas: Q = A · L<sup>β</sup> · K<sup>γ</sup></li>
           <li>Log-linearized: ln(Q) = ln(A) + β·ln(L) + γ·ln(K)</li>
           <li>Estimated via OLS using R's lm()</li>
-          <li>Intercept = ln(A) = −4.180; implied A ≈ 0.015</li>
+          <li>Intercept = ln(A) = −4.180; A ≈ 0.015</li>
         </ul>
       </div>
       <div class="method-block">
@@ -356,7 +356,7 @@ cobb_model <span class="k">&lt;-</span> <span class="f">lm</span>(lnQ <span clas
         <h4>Limitations</h4>
         <ul>
           <li>Small sample (n = 24) limits precision</li>
-          <li>Index measures — not physical units</li>
+          <li></li>
           <li>Potential multicollinearity between L and K</li>
           <li>Historical data; context differs from modern firms</li>
         </ul>
