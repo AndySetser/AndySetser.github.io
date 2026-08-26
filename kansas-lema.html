@@ -38,7 +38,6 @@
     .nav-back { font-family: var(--sans); font-size: 0.62rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-light); text-decoration: none; transition: color 0.15s; }
     .nav-back:hover { color: var(--ink); }
 
-    /* HERO — left-heavy editorial, no symmetry */
     .hero { padding: 5rem 2rem 0; border-bottom: 1px solid var(--rule); }
     .hero-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 340px; gap: 6rem; align-items: end; }
     .hero-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; }
@@ -50,14 +49,13 @@
     .meta-val { font-family: var(--sans); font-size: 0.85rem; color: var(--ink-mid); }
     .meta-val a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
 
-    /* sidebar pulls the headline numbers in a sparse way */
     .hero-aside { padding-bottom: 3rem; }
     .aside-figure { margin-bottom: 2rem; border-top: 2px solid var(--ink); padding-top: 1rem; }
     .aside-num { font-family: var(--serif); font-size: 2.6rem; font-weight: 900; line-height: 1; color: var(--ink); }
+    .aside-num.red { color: var(--red); }
     .aside-num.muted { color: var(--ink-faint); font-size: 2rem; }
     .aside-label { font-family: var(--sans); font-size: 0.55rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-light); margin-top: 0.3rem; line-height: 1.5; }
 
-    /* BODY */
     .page-body { max-width: 680px; margin: 0 auto; padding: 4rem 2rem; }
     .page-body h2 { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin: 3.5rem 0 1rem; }
     .page-body h3 { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; margin: 2.5rem 0 0.6rem; color: var(--ink); }
@@ -65,66 +63,46 @@
     .page-body p:first-child { font-size: 1.08rem; color: var(--ink); }
     .page-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); }
 
-    .aside-pull { float: right; width: 240px; margin: 0.5rem 0 1.5rem 2.5rem; border-top: 2px solid var(--ink); padding-top: 0.75rem; }
-    .aside-pull p { font-family: var(--serif); font-size: 1rem; font-style: italic; line-height: 1.55; color: var(--ink); margin: 0; }
-    .aside-pull cite { font-family: var(--sans); font-size: 0.52rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); display: block; margin-top: 0.5rem; font-style: normal; }
+    .eq { background: #FFFFFF; border: 1px solid var(--rule); border-left: 4px solid var(--accent); padding: 1.25rem 1.75rem; margin: 2rem 0; border-radius: 6px; }
+    .eq-tag { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; display: block; }
+    .eq p { font-family: var(--sans); font-size: 0.92rem; color: var(--ink-mid); margin: 0 0 0.4rem; }
+    .eq p:last-child { margin: 0; color: var(--ink); font-weight: 600; }
 
-    .eq { background: var(--ink); padding: 1.25rem 1.75rem; margin: 2rem 0; }
-    .eq-tag { font-family: var(--sans); font-size: 0.52rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-light); margin-bottom: 0.4rem; display: block; }
-    .eq p { font-family: var(--sans); font-size: 0.88rem; color: #ddd; margin: 0 0 0.3rem; }
-    .eq p:last-child { margin: 0; }
-
-    /* SECTION — shared shell for cohort table, figures, results, code */
     .section-block { border-top: 2px solid var(--ink); padding: 4rem 2rem; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-hed { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
     .section-sub { font-size: 0.92rem; color: var(--ink-light); margin-bottom: 1.75rem; max-width: 620px; }
 
-    /* DATA TABLES */
     .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; }
     table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
     thead tr { border-bottom: 2px solid var(--ink); background: var(--ink); }
-    th { font-family: var(--sans); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; padding: 0.65rem 0.9rem; text-align: left; white-space: nowrap; }
-    td { font-family: var(--sans); font-size: 0.78rem; padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--rule-light); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
-    td:first-child { font-family: var(--condensed); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.03em; color: var(--ink); white-space: nowrap; }
-    tbody tr:hover { background: var(--accent-faint); }
+    th { font-family: var(--sans); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; padding: 0.65rem 0.9rem; text-align: right; white-space: nowrap; }
+    th:first-child { text-align: left; min-width: 180px; }
+    td { font-family: var(--sans); font-size: 0.78rem; padding: 0.5rem 0.9rem; text-align: right; border-bottom: 1px solid var(--rule-light); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
+    td:first-child { text-align: left; font-family: var(--serif); font-size: 0.85rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
     .cohort-tag { font-family: var(--sans); font-size: 0.52rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent-faint); color: var(--accent); border: 1px solid var(--accent); padding: 0.15rem 0.4rem; white-space: nowrap; }
 
-    /* results table (right-aligned numeric columns) */
-    .results-table thead th { text-align: right; }
-    .results-table thead th:first-child, .results-table thead th:nth-child(2) { text-align: left; }
-    .results-table td { text-align: right; font-family: var(--sans); font-size: 0.75rem; }
-    .results-table td:first-child { text-align: left; font-family: var(--condensed); font-weight: 600; font-size: 0.85rem; }
-    .results-table td:nth-child(2) { text-align: left; font-size: 0.72rem; color: var(--ink-faint); }
-    td.improved { color: var(--accent); font-weight: 700; }
-    td.worsened { color: var(--amber); font-weight: 700; }
-    td.excluded { color: var(--ink-faint); font-style: italic; }
+    .results-table td.improved { color: var(--accent); font-weight: 700; }
+    .results-table td.worsened { color: var(--amber); font-weight: 700; }
+    .results-table td.excluded { color: var(--ink-faint); font-style: italic; }
     .table-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 0.9rem; line-height: 1.7; }
 
-    /* FIGURES */
-    .figure-block { margin-bottom: 3rem; }
-    .figure-block:last-child { margin-bottom: 0; }
-    .figure-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .figure-subtitle { font-size: 0.9rem; color: var(--ink-light); font-style: italic; margin-bottom: 1rem; max-width: 620px; }
-    .figure-img-wrap { border: 1px solid var(--rule); background: white; padding: 1.5rem; }
-    .figure-img-wrap img { width: 100%; height: auto; display: block; }
-    .figure-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 0.9rem; padding-top: 0.9rem; border-top: 1px solid var(--rule-light); }
+    .chart-block { margin-bottom: 3.5rem; }
+    .chart-block:last-child { margin-bottom: 0; }
+    .chart-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+    .chart-subtitle { font-size: 0.9rem; color: var(--ink-light); font-style: italic; margin-bottom: 1rem; max-width: 620px; }
+    .chart-wrap { background: white; border: 1px solid var(--rule); padding: 2rem; position: relative; }
+    .chart-wrap img { width: 100%; height: auto; display: block; }
+    .chart-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--rule-light); }
 
-    /* R CODE SECTION */
     .code-section { background: var(--paper-warm); }
     .code-tabs { display: flex; flex-wrap: wrap; gap: 0; border-bottom: 2px solid var(--ink); margin-bottom: 0; }
     .code-tab { font-family: var(--sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 0.65rem 1.1rem; cursor: pointer; border: 1px solid var(--rule); border-bottom: none; background: var(--paper-warm); color: var(--ink-faint); transition: background 0.15s, color 0.15s; }
     .code-tab.active { background: var(--ink); color: white; border-color: var(--ink); }
     .code-panel { display: none; }
     .code-panel.active { display: block; }
-    pre { background: #1A1A1A; color: #D4D4D4; padding: 2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.72rem; line-height: 1.7; border: none; }
-    .c { color: #6A9955; }
-    .k { color: #569CD6; }
-    .s { color: #CE9178; }
-    .f { color: #DCDCAA; }
-    .n { color: #9CDCFE; }
+    pre { background: #1A1A1A; color: #D4D4D4; padding: 2rem; overflow-x: auto; font-family: var(--mono); font-size: 0.72rem; line-height: 1.7; border: none; white-space: pre-wrap; word-break: break-word; }
 
-    /* METHODOLOGY */
     .method-section { background: var(--paper-warm); border-top: 1px solid var(--rule); padding: 4rem 2rem; }
     .method-inner { max-width: 1100px; margin: 0 auto; }
     .method-hed { font-family: var(--serif); font-size: 1.5rem; font-weight: 700; margin-bottom: 2.5rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--ink); }
@@ -142,7 +120,6 @@
       .hero-inner { grid-template-columns: 1fr; gap: 2rem; }
       .hero-aside { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; padding-bottom: 0; }
       .method-cols { grid-template-columns: 1fr; gap: 2rem; }
-      .aside-pull { float: none; width: 100%; margin: 0 0 1.5rem; }
     }
   </style>
 </head>
@@ -194,9 +171,6 @@
   <p>I have never really thought about a place's water as much as I have in my time in the San Luis Valley. It is the area's most fragile resource. Nearly a third of the Valley's economic base is accounted for by agriculture that depends on a high-alpine aquifer being slowly drained. That reality is what led me to study the economics of water regulations, my study will focus on my homestate of Kansas, where decent public data exist around a decade-old experiment in voluntary water governance.</p>
 
   <p>The Kansas Local Enhanced Management Area (LEMA) program gives Groundwater Management Districts the authority to write their own water conservation plans, letting farmers set their own pumping caps rather than wait for state-imposed cuts. Sheridan County farmers were the first to act on that authority in 2013, agreeing to hold each irrigator to a five-year allocation of 55 acre-inches. Three more LEMAs followed across northwestern Kansas. Together I can use them to form a staggered experiment with four adoption cohorts, fourteen counties, and later years of outcome data now available from public sources.</p>
-
-  <div class="aside-pull">
-  </div>
 
   <h2>The Four LEMA Cohorts</h2>
 
@@ -261,7 +235,7 @@
 
   <p>Limiting groundwater goes through a legal process established by Kansas's 2012 Groundwater Management District Act, which allows GMDs to propose plans to be approved by the Kansas Chief Engineer. Once adopted, the district board, in the case of the GMD4 LEMA, the Northwest Kansas Groundwater Management District, notifies every water right holder within 30 days, explaining each right's five-year allocation.</p>
 
-  <p> A fixed allocation may redirect historically corn-heavy acres toward less water-intensive crops like grain sorghum, which takes far less irrigation. These are choices made by individual operators trying to live within a shared regulation. The multiplier implications runs through these communities, as less irrigation means less seed, fertilizer, and chemical inputs bought from local ag retailers. In Sheridan County, one early study estimated seed and chemical spending fell by roughly 20 percent in the years after restriction took effect.</p>
+  <p>A fixed allocation may redirect historically corn-heavy acres toward less water-intensive crops like grain sorghum, which takes far less irrigation. These are choices made by individual operators trying to live within a shared regulation. The multiplier implications runs through these communities, as less irrigation means less seed, fertilizer, and chemical inputs bought from local ag retailers. In Sheridan County, one early study estimated seed and chemical spending fell by roughly 20 percent in the years after restriction took effect.</p>
 
   <h2>Variable 1 Groundwater</h2>
 
@@ -283,7 +257,7 @@
 
   <p>Average farm proprietors' income across the fourteen counties was at about $30,700 per year before LEMA adoption and $28,400 afterward, showing a slight drop. In the Two way fixed effects event-study specification, however, none of the year-by-year income coefficients reached statistical significant levels. The variation in farm income across this panel is most likely impacted greater by commodity price cycles and years of drought, not the Lema adoptions.</p>
 
-  <p>This is also where the sub-county boundary limitation fall in. County-level BEA income figures blend farms inside the LEMA boundary with farms entirely outside it. If restriction reduced income for farms actually subject to the cap, that effect would be diluted across the full county total. Another limitation that I ran into with sourcing free and publically sourced data. </p>
+  <p>This is also where the sub-county boundary limitation fall in. County-level BEA income figures blend farms inside the LEMA boundary with farms entirely outside it. If restriction reduced income for farms actually subject to the cap, that effect would be diluted across the full county total. Another limitation that I ran into with sourcing free and publically sourced data.</p>
 
 </div>
 
@@ -292,30 +266,30 @@
     <h2 class="section-hed">Figures</h2>
     <p class="section-sub">Groundwater trends, before/after comparisons, and the crop mix shift, plotted from the cleaned county panel.</p>
 
-    <div class="figure-block">
-      <div class="figure-title">Fig. 1 Aquifer Decline Rate by County, Before and After LEMA Adoption</div>
-      <div class="figure-subtitle">Most counties show a slower decline post-adoption; Lane, Scott, and Greeley excluded due to well attrition</div>
-      <div class="figure-img-wrap">
+    <div class="chart-block">
+      <div class="chart-title">Fig. 1 Aquifer Decline Rate by County, Before and After LEMA Adoption</div>
+      <div class="chart-subtitle">Most counties show a slower decline post-adoption; Lane, Scott, and Greeley excluded due to well attrition</div>
+      <div class="chart-wrap">
         <img src="AquiferDeclinebyCounty.png" alt="Dot plot showing before and after LEMA adoption groundwater decline rates by county" />
-        <p class="figure-note">Source: Kansas Geological Survey WIZARD Water Well Levels Database. Well-level OLS slope (ft/yr) averaged within each county for the 10-year window before and after adoption. Author: Andy Setser.</p>
+        <p class="chart-note">Source: Kansas Geological Survey WIZARD Water Well Levels Database. Well-level OLS slope (ft/yr) averaged within each county for the 10-year window before and after adoption. Author: Andy Setser.</p>
       </div>
     </div>
 
-    <div class="figure-block">
-      <div class="figure-title">Fig. 2 Average Aquifer Decline Rate, Before vs. After LEMA</div>
-      <div class="figure-subtitle">Across 11 counties with sufficient data, the average decline slowed by roughly 60 percent</div>
-      <div class="figure-img-wrap">
+    <div class="chart-block">
+      <div class="chart-title">Fig. 2 Average Aquifer Decline Rate, Before vs. After LEMA</div>
+      <div class="chart-subtitle">Across 11 counties with sufficient data, the average decline slowed by roughly 60 percent</div>
+      <div class="chart-wrap">
         <img src="WaterTableBeforeAfter.png" alt="Bar chart comparing average aquifer decline rate before and after LEMA adoption" />
-        <p class="figure-note">Source: Kansas Geological Survey WIZARD Water Well Levels Database. Simple mean of county-level slopes; 11 counties included. Author: Andy Setser.</p>
+        <p class="chart-note">Source: Kansas Geological Survey WIZARD Water Well Levels Database. Simple mean of county-level slopes; 11 counties included. Author: Andy Setser.</p>
       </div>
     </div>
 
-    <div class="figure-block">
-      <div class="figure-title">Fig. 3 Sorghum Share of Cropland, Before vs. After LEMA Adoption</div>
-      <div class="figure-subtitle">Sorghum, a less water-intensive crop grew its share of tracked cropland by 41% relative to baseline before adoption</div>
-      <div class="figure-img-wrap">
+    <div class="chart-block">
+      <div class="chart-title">Fig. 3 Sorghum Share of Cropland, Before vs. After LEMA Adoption</div>
+      <div class="chart-subtitle">Sorghum, a less water-intensive crop grew its share of tracked cropland by 41% relative to baseline before adoption</div>
+      <div class="chart-wrap">
         <img src="CropMixShift.png" alt="Bar chart showing sorghum share of cropland before and after LEMA restrictions" />
-        <p class="figure-note">Source: USDA NASS QuickStats. County-level sorghum, corn, wheat, and soybean acres. NASS suppression applies where fewer than 3 farms report; included observations skew toward larger counties. Author: Andy Setser.</p>
+        <p class="chart-note">Source: USDA NASS QuickStats. County-level sorghum, corn, wheat, and soybean acres. NASS suppression applies where fewer than 3 farms report; included observations skew toward larger counties. Author: Andy Setser.</p>
       </div>
     </div>
   </div>
@@ -490,301 +464,374 @@
 <div class="section-block code-section">
   <div class="section-inner">
     <h2 class="section-hed">R Code</h2>
-    <p class="section-sub">Full analysis in R. API keys are stored in <code>.Renviron</code> and not hardcoded. </p>
+    <p class="section-sub">Full analysis in R. Copy and paste each tab as its own script. API keys are stored in <code>.Renviron</code> and not hardcoded.</p>
 
     <div class="code-tabs">
       <button class="code-tab active" onclick="showTab('tab01')">01 · LEMA Timeline</button>
       <button class="code-tab" onclick="showTab('tab02')">02 · Groundwater (KGS)</button>
       <button class="code-tab" onclick="showTab('tab03')">03 · NASS Crops</button>
       <button class="code-tab" onclick="showTab('tab04')">04 · BEA Farm Income</button>
-      <button class="code-tab" onclick="showTab('tab05')">05 · Analysis &amp; TWFE</button>
+      <button class="code-tab" onclick="showTab('tab05')">05 · Analysis and TWFE</button>
     </div>
 
     <div id="tab01" class="code-panel active">
-<pre><span class="c"># 01_lema_timeline.R
-</span>
+<pre># 01_lema_timeline.R
+# Just building a simple lookup table of which county was covered by which
+# LEMA, and when that LEMA's order took effect. This becomes the "treatment
+# date" for every county later on.
 
-<span class="f">library</span>(tibble)
+library(tibble)
+library(dplyr)
 
-lema_timeline <span class="k">&lt;-</span> <span class="f">tribble</span>(
-  <span class="k">~</span>lema,                  <span class="k">~</span>county,    <span class="k">~</span>order_date,    <span class="k">~</span>effective_start, <span class="k">~</span>effective_end, <span class="k">~</span>full_or_partial_county,
-  <span class="s">"Sheridan-6"</span>,           <span class="s">"Sheridan"</span>, <span class="s">"2013-04-17"</span>,   <span class="n">2013</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Cheyenne"</span>, <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Rawlins"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Decatur"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Sherman"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Thomas"</span>,   <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Sheridan"</span>, <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>, <span class="c"># overlaps Sheridan-6</span>
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Graham"</span>,   <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Wallace"</span>,  <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>, <span class="c"># also in GMD1</span>
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Logan"</span>,    <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD4 Districtwide"</span>,    <span class="s">"Gove"</span>,     <span class="s">"2018-04-13"</span>,   <span class="n">2018</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"Wichita County"</span>,       <span class="s">"Wichita"</span>,  <span class="s">"2021-02-02"</span>,   <span class="n">2021</span>,             <span class="n">2025</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Greeley"</span>,  <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Lane"</span>,     <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Scott"</span>,    <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>,
-  <span class="s">"GMD1 Four-County"</span>,     <span class="s">"Wallace"</span>,  <span class="s">"2023-04-07"</span>,   <span class="n">2023</span>,             <span class="n">2027</span>,           <span class="s">"partial"</span>  <span class="c"># also in GMD4</span>
+lema_timeline <- tribble(
+  ~lema,               ~county,    ~order_date,   ~effective_start, ~effective_end, ~full_or_partial_county,
+  "Sheridan-6",        "Sheridan", "2013-04-17",  2013,             2027,           "partial",
+  "GMD4 Districtwide", "Cheyenne", "2018-04-13",  2018,             2027,           "partial",
+  "GMD4 Districtwide", "Rawlins",  "2018-04-13",  2018,             2027,           "partial",
+  "GMD4 Districtwide", "Decatur",  "2018-04-13",  2018,             2027,           "partial",
+  "GMD4 Districtwide", "Sherman",  "2018-04-13",  2018,             2027,           "partial",
+  "GMD4 Districtwide", "Thomas",   "2018-04-13",  2018,             2027,           "partial",
+  "GMD4 Districtwide", "Sheridan", "2018-04-13",  2018,             2027,           "partial",  # note: Sheridan overlaps Sheridan-6 above
+  "GMD4 Districtwide", "Graham",   "2018-04-13",  2018,             2027,           "partial",
+  "GMD4 Districtwide", "Wallace",  "2018-04-13",  2018,             2027,           "partial",  # note: Wallace also shows up under GMD1 below
+  "GMD4 Districtwide", "Logan",    "2018-04-13",  2018,             2027,           "partial",
+  "GMD4 Districtwide", "Gove",     "2018-04-13",  2018,             2027,           "partial",
+  "Wichita County",    "Wichita",  "2021-02-02",  2021,             2025,           "partial",
+  "GMD1 Four-County",  "Greeley",  "2023-04-07",  2023,             2027,           "partial",
+  "GMD1 Four-County",  "Lane",     "2023-04-07",  2023,             2027,           "partial",
+  "GMD1 Four-County",  "Scott",    "2023-04-07",  2023,             2027,           "partial",
+  "GMD1 Four-County",  "Wallace",  "2023-04-07",  2023,             2027,           "partial"   # note: Wallace also shows up under GMD4 above
 )
 
-<span class="c"></span>
-dupes <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
-  dplyr<span class="k">::</span><span class="f">count</span>(county) <span class="k">%&gt;%</span>
-  dplyr<span class="k">::</span><span class="f">filter</span>(n <span class="k">&gt;</span> <span class="n">1</span>)
-<span class="f">print</span>(dupes)
+# Quick sanity check - which counties show up more than once?
+# (Sheridan and Wallace should, since they fall under two LEMAs)
+dupes <- lema_timeline %>%
+  count(county) %>%
+  filter(n > 1)
 
-<span class="f">saveRDS</span>(lema_timeline, <span class="s">"data_clean/lema_timeline.rds"</span>)</pre>
+print(dupes)
+
+saveRDS(lema_timeline, "data_clean/lema_timeline.rds")</pre>
     </div>
 
     <div id="tab02" class="code-panel">
-<pre><span class="c"># 02_groundwater_levels.R
-</span>
+<pre># 02_groundwater_levels.R
+# Reading in the raw KGS well data and narrowing it down to just the
+# counties I actually need, using the county list built in script 01.
 
-<span class="f">library</span>(readr)
-<span class="f">library</span>(dplyr)
-<span class="f">library</span>(tigris)
+library(readr)
+library(dplyr)
+library(tigris)
 
-sites <span class="k">&lt;-</span> <span class="f">read_csv</span>(
-  <span class="s">"~/Downloads/kgs_gwl:sites.csv"</span>,
-  col_types <span class="k">=</span> <span class="f">cols</span>(USGS_ID <span class="k">=</span> <span class="f">col_character</span>(), .default <span class="k">=</span> <span class="f">col_guess</span>()),
-  show_col_types <span class="k">=</span> <span class="n">FALSE</span>
-)
-levels <span class="k">&lt;-</span> <span class="f">read_csv</span>(
-  <span class="s">"~/Downloads/kgs_gwl:levels.csv"</span>,
-  col_types <span class="k">=</span> <span class="f">cols</span>(USGS_ID <span class="k">=</span> <span class="f">col_character</span>(), .default <span class="k">=</span> <span class="f">col_guess</span>()),
-  show_col_types <span class="k">=</span> <span class="n">FALSE</span>
+sites <- read_csv(
+  "~/Downloads/kgs_gwl_sites.csv",
+  col_types = cols(USGS_ID = col_character(), .default = col_guess()),
+  show_col_types = FALSE
 )
 
-<span class="c"></span>
-lema_timeline <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>)
-target_counties <span class="k">&lt;-</span> <span class="f">unique</span>(lema_timeline<span class="k">$</span>county)
+levels <- read_csv(
+  "~/Downloads/kgs_gwl_levels.csv",
+  col_types = cols(USGS_ID = col_character(), .default = col_guess()),
+  show_col_types = FALSE
+)
 
-<span class="f">data</span>(fips_codes)
-county_fips <span class="k">&lt;-</span> fips_codes <span class="k">%&gt;%</span>
-  <span class="f">filter</span>(state <span class="k">==</span> <span class="s">"KS"</span>, county <span class="k">%in%</span> <span class="f">paste0</span>(target_counties, <span class="s">" County"</span>)) <span class="k">%&gt;%</span>
-  <span class="f">mutate</span>(county_code_3digit <span class="k">=</span> <span class="f">as.numeric</span>(county_code)) <span class="k">%&gt;%</span>
-  <span class="f">select</span>(county, county_code_3digit)
+lema_timeline <- readRDS("data_clean/lema_timeline.rds")
+target_counties <- unique(lema_timeline$county)
 
-sites_filtered <span class="k">&lt;-</span> sites <span class="k">%&gt;%</span>
-  <span class="f">inner_join</span>(county_fips, by <span class="k">=</span> <span class="f">c</span>(<span class="s">"COUNTY_CODE"</span> <span class="k">=</span> <span class="s">"county_code_3digit"</span>))
+# tigris has a built-in FIPS lookup table, using that instead of typing
+# codes in by hand
+data(fips_codes)
 
-levels_filtered <span class="k">&lt;-</span> levels <span class="k">%&gt;%</span>
-  <span class="f">inner_join</span>(sites_filtered <span class="k">%&gt;%</span> <span class="f">select</span>(USGS_ID, county, COUNTY_CODE,
-                                           LATITUDE, LONGITUDE, AQUIFER_CODE,
-                                           GROUNDWATER_MGMT_DISTRICT),
-             by <span class="k">=</span> <span class="s">"USGS_ID"</span>)
+county_fips <- fips_codes %>%
+  filter(state == "KS", county %in% paste0(target_counties, " County")) %>%
+  mutate(county_code_3digit = as.numeric(county_code)) %>%
+  select(county, county_code_3digit)
 
-<span class="c"></span>
-levels_clean <span class="k">&lt;-</span> levels_filtered <span class="k">%&gt;%</span>
-  <span class="f">mutate</span>(
-    measurement_date <span class="k">=</span> <span class="f">as.Date</span>(MEASUREMENT_DATE_AND_TIME, format <span class="k">=</span> <span class="s">"%m/%d/%Y"</span>),
-    year <span class="k">=</span> <span class="f">as.integer</span>(<span class="f">format</span>(measurement_date, <span class="s">"%Y"</span>)),
-    valid_reading <span class="k">=</span> <span class="f">is.na</span>(STATUS_CODE) <span class="k">&amp;</span> <span class="k">!</span><span class="f">is.na</span>(DEPTH_TO_WATER)
+sites_filtered <- sites %>%
+  inner_join(county_fips, by = c("COUNTY_CODE" = "county_code_3digit"))
+
+levels_filtered <- levels %>%
+  inner_join(
+    sites_filtered %>%
+      select(USGS_ID, county, COUNTY_CODE, LATITUDE, LONGITUDE,
+             AQUIFER_CODE, GROUNDWATER_MGMT_DISTRICT),
+    by = "USGS_ID"
   )
 
-<span class="f">write_csv</span>(levels_clean, <span class="s">"data_raw/kgs_gwl_clean.csv"</span>)</pre>
+# cleaning up the dates and flagging which readings are actually usable
+levels_clean <- levels_filtered %>%
+  mutate(
+    measurement_date = as.Date(MEASUREMENT_DATE_AND_TIME, format = "%m/%d/%Y"),
+    year = as.integer(format(measurement_date, "%Y")),
+    valid_reading = is.na(STATUS_CODE) & !is.na(DEPTH_TO_WATER)
+  )
+
+write_csv(levels_clean, "data_raw/kgs_gwl_clean.csv")</pre>
     </div>
 
     <div id="tab03" class="code-panel">
-<pre><span class="c"># 03_nass_quickstats.R
-</span>
+<pre># 03_nass_quickstats.R
+# Pulling crop acreage by county from the USDA NASS QuickStats API.
+# Wrapped each pull in a small helper function so a failed request
+# doesn't stop the whole script, just prints what went wrong.
 
-<span class="f">library</span>(rnassqs)
-<span class="f">library</span>(dplyr)
+library(rnassqs)
+library(dplyr)
 
-<span class="f">nassqs_auth</span>(key <span class="k">=</span> <span class="f">Sys.getenv</span>(<span class="s">"NASSQS_TOKEN"</span>))
+nassqs_auth(key = Sys.getenv("NASSQS_TOKEN"))
 
-lema_timeline <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>)
-counties <span class="k">&lt;-</span> <span class="f">toupper</span>(<span class="f">unique</span>(lema_timeline<span class="k">$</span>county))
+lema_timeline <- readRDS("data_clean/lema_timeline.rds")
+counties <- toupper(unique(lema_timeline$county))
 
-safe_pull <span class="k">&lt;-</span> <span class="k">function</span>(short_desc, label, years <span class="k">=</span> <span class="n">2000</span><span class="k">:</span><span class="n">2025</span>,
-                       county_filter <span class="k">=</span> <span class="n">TRUE</span>, agg_level <span class="k">=</span> <span class="s">"COUNTY"</span>) {
-  <span class="f">cat</span>(<span class="s">"Attempting:"</span>, label, <span class="s">"...\n"</span>)
-  params <span class="k">&lt;-</span> <span class="f">list</span>(
-    source_desc   <span class="k">=</span> <span class="s">"SURVEY"</span>,
-    state_alpha   <span class="k">=</span> <span class="s">"KS"</span>,
-    short_desc    <span class="k">=</span> short_desc,
-    year          <span class="k">=</span> years,
-    agg_level_desc <span class="k">=</span> agg_level
+safe_pull <- function(short_desc, label, years = 2000:2025,
+                       county_filter = TRUE, agg_level = "COUNTY") {
+
+  cat("Attempting:", label, "...\n")
+
+  params <- list(
+    source_desc    = "SURVEY",
+    state_alpha    = "KS",
+    short_desc     = short_desc,
+    year           = years,
+    agg_level_desc = agg_level
   )
-  <span class="k">if</span> (county_filter) params<span class="k">$</span>county_name <span class="k">&lt;-</span> counties
-  result <span class="k">&lt;-</span> <span class="f">tryCatch</span>(<span class="f">nassqs</span>(params), error <span class="k">=</span> <span class="k">function</span>(e) {
-    <span class="f">cat</span>(<span class="s">"  FAILED:"</span>, <span class="f">conditionMessage</span>(e), <span class="s">"\n"</span>)
-    <span class="n">NULL</span>
-  })
-  <span class="k">if</span> (<span class="k">!</span><span class="f">is.null</span>(result)) <span class="f">cat</span>(<span class="s">"  SUCCESS:"</span>, <span class="f">nrow</span>(result), <span class="s">"rows returned.\n"</span>)
+
+  if (county_filter) {
+    params$county_name <- counties
+  }
+
+  result <- tryCatch(
+    nassqs(params),
+    error = function(e) {
+      cat("  FAILED:", conditionMessage(e), "\n")
+      NULL
+    }
+  )
+
+  if (!is.null(result)) {
+    cat("  SUCCESS:", nrow(result), "rows returned.\n")
+  }
+
   result
 }
 
-irrigated_corn  <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"CORN, GRAIN, IRRIGATED - ACRES HARVESTED"</span>, <span class="s">"irrigated corn"</span>)
-corn_acres      <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"CORN, GRAIN - ACRES HARVESTED"</span>,           <span class="s">"corn total"</span>)
-soybean_acres   <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"SOYBEANS - ACRES HARVESTED"</span>,              <span class="s">"soybeans"</span>)
-wheat_acres     <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"WHEAT, WINTER - ACRES HARVESTED"</span>,         <span class="s">"winter wheat"</span>)
-sorghum_acres   <span class="k">&lt;-</span> <span class="f">safe_pull</span>(<span class="s">"SORGHUM, GRAIN - ACRES HARVESTED"</span>,        <span class="s">"sorghum"</span>)
+irrigated_corn <- safe_pull("CORN, GRAIN, IRRIGATED - ACRES HARVESTED", "irrigated corn")
+corn_acres     <- safe_pull("CORN, GRAIN - ACRES HARVESTED", "corn total")
+soybean_acres  <- safe_pull("SOYBEANS - ACRES HARVESTED", "soybeans")
+wheat_acres    <- safe_pull("WHEAT, WINTER - ACRES HARVESTED", "winter wheat")
+sorghum_acres  <- safe_pull("SORGHUM, GRAIN - ACRES HARVESTED", "sorghum")
 
-<span class="c"></span>
-land_values <span class="k">&lt;-</span> <span class="f">safe_pull</span>(
-  <span class="s">"AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE"</span>,
-  <span class="s">"land values (state-level only)"</span>,
-  county_filter <span class="k">=</span> <span class="n">FALSE</span>,
-  agg_level <span class="k">=</span> <span class="s">"STATE"</span>
+# land values only come back at the state level, not county, so this
+# one needs different arguments than the rest
+land_values <- safe_pull(
+  "AG LAND, INCL BUILDINGS - ASSET VALUE, MEASURED IN $ / ACRE",
+  "land values (state-level only)",
+  county_filter = FALSE,
+  agg_level = "STATE"
 )
 
-results <span class="k">&lt;-</span> <span class="f">list</span>(
-  nass_corn_acres    <span class="k">=</span> corn_acres,
-  nass_wheat_winter  <span class="k">=</span> wheat_acres,
-  nass_sorghum_acres <span class="k">=</span> sorghum_acres,
-  nass_soybean_acres <span class="k">=</span> soybean_acres,
-  nass_land_values   <span class="k">=</span> land_values
+results <- list(
+  nass_corn_acres    = corn_acres,
+  nass_wheat_winter  = wheat_acres,
+  nass_sorghum_acres = sorghum_acres,
+  nass_soybean_acres = soybean_acres,
+  nass_land_values   = land_values
 )
 
-<span class="k">for</span> (name <span class="k">in</span> <span class="f">names</span>(results)) {
-  <span class="k">if</span> (<span class="k">!</span><span class="f">is.null</span>(results[[name]])) {
-    <span class="f">write.csv</span>(results[[name]], <span class="f">paste0</span>(<span class="s">"data_raw/"</span>, name, <span class="s">".csv"</span>), row.names <span class="k">=</span> <span class="n">FALSE</span>)
-    <span class="f">cat</span>(name, <span class="s">": saved,"</span>, <span class="f">nrow</span>(results[[name]]), <span class="s">"rows\n"</span>)
-  } <span class="k">else</span> {
-    <span class="f">cat</span>(name, <span class="s">": FAILED\n"</span>)
+for (name in names(results)) {
+  if (!is.null(results[[name]])) {
+    write.csv(results[[name]], paste0("data_raw/", name, ".csv"), row.names = FALSE)
+    cat(name, ": saved,", nrow(results[[name]]), "rows\n")
+  } else {
+    cat(name, ": FAILED\n")
   }
 }</pre>
     </div>
 
     <div id="tab04" class="code-panel">
-<pre><span class="c"># 04_bea_reis.R
-</span>
+<pre># 04_bea_reis.R
+# Pulling farm income and personal income figures from the BEA Regional
+# Economic Accounts API, county by county.
 
-<span class="f">library</span>(bea.R)
-<span class="f">library</span>(dplyr)
-<span class="f">library</span>(tigris)
+library(bea.R)
+library(dplyr)
+library(tigris)
 
-beaKey <span class="k">&lt;-</span> <span class="f">Sys.getenv</span>(<span class="s">"BEA_API_KEY"</span>)
+beaKey <- Sys.getenv("BEA_API_KEY")
 
-lema_timeline  <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>)
-target_counties <span class="k">&lt;-</span> <span class="f">unique</span>(lema_timeline<span class="k">$</span>county)
+lema_timeline <- readRDS("data_clean/lema_timeline.rds")
+target_counties <- unique(lema_timeline$county)
 
-<span class="f">data</span>(fips_codes)
-county_fips <span class="k">&lt;-</span> fips_codes <span class="k">%&gt;%</span>
-  <span class="f">filter</span>(state <span class="k">==</span> <span class="s">"KS"</span>, county <span class="k">%in%</span> <span class="f">paste0</span>(target_counties, <span class="s">" County"</span>)) <span class="k">%&gt;%</span>
-  <span class="f">mutate</span>(fips <span class="k">=</span> <span class="f">paste0</span>(state_code, county_code)) <span class="k">%&gt;%</span>
-  <span class="f">pull</span>(fips)
+data(fips_codes)
 
-safe_pull_line <span class="k">&lt;-</span> <span class="k">function</span>(table_name, line_code, label) {
-  <span class="f">cat</span>(<span class="s">"Attempting:"</span>, label, <span class="s">"...\n"</span>)
-  <span class="f">tryCatch</span>(
-    <span class="f">beaGet</span>(<span class="f">list</span>(
-      UserID      <span class="k">=</span> beaKey,
-      Method      <span class="k">=</span> <span class="s">"GetData"</span>,
-      DatasetName <span class="k">=</span> <span class="s">"Regional"</span>,
-      TableName   <span class="k">=</span> table_name,
-      LineCode    <span class="k">=</span> line_code,
-      GeoFips     <span class="k">=</span> <span class="f">paste</span>(county_fips, collapse <span class="k">=</span> <span class="s">","</span>),
-      Year        <span class="k">=</span> <span class="s">"ALL"</span>,
-      ResultFormat <span class="k">=</span> <span class="s">"json"</span>
-    )),
-    error <span class="k">=</span> <span class="k">function</span>(e) { <span class="f">cat</span>(<span class="s">"  FAILED:"</span>, <span class="f">conditionMessage</span>(e), <span class="s">"\n"</span>); <span class="n">NULL</span> }
-  )
-}
+county_fips <- fips_codes %>%
+  filter(state == "KS", county %in% paste0(target_counties, " County")) %>%
+  mutate(fips = paste0(state_code, county_code)) %>%
+  pull(fips)
 
-<span class="c"></span>
-pull_cainc1_looped <span class="k">&lt;-</span> <span class="k">function</span>() {
-  results <span class="k">&lt;-</span> <span class="f">lapply</span>(county_fips, <span class="k">function</span>(f) {
-    <span class="f">tryCatch</span>(
-      <span class="f">beaGet</span>(<span class="f">list</span>(
-        UserID <span class="k">=</span> beaKey, Method <span class="k">=</span> <span class="s">"GetData"</span>, DatasetName <span class="k">=</span> <span class="s">"Regional"</span>,
-        TableName <span class="k">=</span> <span class="s">"CAINC1"</span>, LineCode <span class="k">=</span> <span class="s">"ALL"</span>, GeoFips <span class="k">=</span> f,
-        Year <span class="k">=</span> <span class="s">"ALL"</span>, ResultFormat <span class="k">=</span> <span class="s">"json"</span>
-      )),
-      error <span class="k">=</span> <span class="k">function</span>(e) <span class="n">NULL</span>
-    )
+safe_pull_line <- function(table_name, line_code, label) {
+
+  cat("Attempting:", label, "...\n")
+
+  tryCatch({
+    beaGet(list(
+      UserID       = beaKey,
+      Method       = "GetData",
+      DatasetName  = "Regional",
+      TableName    = table_name,
+      LineCode     = line_code,
+      GeoFips      = paste(county_fips, collapse = ","),
+      Year         = "ALL",
+      ResultFormat = "json"
+    ))
+  }, error = function(e) {
+    cat("  FAILED:", conditionMessage(e), "\n")
+    NULL
   })
-  <span class="f">bind_rows</span>(results[<span class="k">!</span><span class="f">sapply</span>(results, is.null)])
 }
 
-personal_income      <span class="k">&lt;-</span> <span class="f">pull_cainc1_looped</span>()
-farm_proprietors_inc <span class="k">&lt;-</span> <span class="f">safe_pull_line</span>(<span class="s">"CAINC5N"</span>, <span class="s">"71"</span>, <span class="s">"farm proprietors' income"</span>)
-farm_earnings        <span class="k">&lt;-</span> <span class="f">safe_pull_line</span>(<span class="s">"CAINC5N"</span>, <span class="s">"81"</span>, <span class="s">"farm earnings"</span>)
+# personal income needs to be pulled one county at a time, so looping
+# through each FIPS code and stacking the results together after
+pull_cainc1_looped <- function() {
 
-<span class="f">write.csv</span>(personal_income,      <span class="s">"data_raw/bea_personal_income.csv"</span>,         row.names <span class="k">=</span> <span class="n">FALSE</span>)
-<span class="f">write.csv</span>(farm_proprietors_inc, <span class="s">"data_raw/bea_farm_proprietors_income.csv"</span>,  row.names <span class="k">=</span> <span class="n">FALSE</span>)
-<span class="f">write.csv</span>(farm_earnings,        <span class="s">"data_raw/bea_farm_earnings.csv"</span>,            row.names <span class="k">=</span> <span class="n">FALSE</span>)</pre>
+  results <- lapply(county_fips, function(f) {
+    tryCatch({
+      beaGet(list(
+        UserID       = beaKey,
+        Method       = "GetData",
+        DatasetName  = "Regional",
+        TableName    = "CAINC1",
+        LineCode     = "ALL",
+        GeoFips      = f,
+        Year         = "ALL",
+        ResultFormat = "json"
+      ))
+    }, error = function(e) NULL)
+  })
+
+  bind_rows(results[!sapply(results, is.null)])
+}
+
+personal_income      <- pull_cainc1_looped()
+farm_proprietors_inc <- safe_pull_line("CAINC5N", "71", "farm proprietors' income")
+farm_earnings        <- safe_pull_line("CAINC5N", "81", "farm earnings")
+
+write.csv(personal_income,      "data_raw/bea_personal_income.csv",        row.names = FALSE)
+write.csv(farm_proprietors_inc, "data_raw/bea_farm_proprietors_income.csv", row.names = FALSE)
+write.csv(farm_earnings,        "data_raw/bea_farm_earnings.csv",           row.names = FALSE)</pre>
     </div>
 
     <div id="tab05" class="code-panel">
-<pre><span class="c"></span>
+<pre># 05_analysis_twfe.R
+# This is where everything comes together: groundwater slopes, crop mix,
+# and farm income, all joined into one panel, then run through the
+# two-way fixed effects models.
 
-<span class="f">library</span>(dplyr)
-<span class="f">library</span>(tidyr)
-<span class="f">library</span>(readr)
-<span class="f">library</span>(ggplot2)
-<span class="f">library</span>(fixest)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(ggplot2)
+library(fixest)
 
-clean_county <span class="k">&lt;-</span> <span class="k">function</span>(x) x <span class="k">|&gt;</span> <span class="f">toupper</span>() <span class="k">|&gt;</span> <span class="f">trimws</span>() <span class="k">|&gt;</span> <span class="f">gsub</span>(<span class="s">" COUNTY$"</span>, <span class="s">""</span>, x <span class="k">=</span> _)
-
-lema_timeline <span class="k">&lt;-</span> <span class="f">readRDS</span>(<span class="s">"data_clean/lema_timeline.rds"</span>) <span class="k">%&gt;%</span>
-  <span class="f">mutate</span>(county_key <span class="k">=</span> <span class="f">clean_county</span>(county))
-
-county_treatment <span class="k">&lt;-</span> lema_timeline <span class="k">%&gt;%</span>
-  <span class="f">group_by</span>(county_key) <span class="k">%&gt;%</span>
-  <span class="f">summarise</span>(
-    first_lema           <span class="k">=</span> lema[<span class="f">which.min</span>(effective_start)],
-    first_treatment_year <span class="k">=</span> <span class="f">min</span>(effective_start),
-    n_lemas              <span class="k">=</span> <span class="f">n_distinct</span>(lema),
-    .groups <span class="k">=</span> <span class="s">"drop"</span>
-  )
-
-<span class="c"></span>
-gw_raw <span class="k">&lt;-</span> <span class="f">read_csv</span>(<span class="s">"data_raw/kgs_gwl_clean.csv"</span>, show_col_types <span class="k">=</span> <span class="n">FALSE</span>)
-
-get_well_slopes <span class="k">&lt;-</span> <span class="k">function</span>(county_name_key, anchor_year, window <span class="k">=</span> <span class="n">10</span>, min_n <span class="k">=</span> <span class="n">3</span>) {
-  gw_raw <span class="k">%&gt;%</span>
-    <span class="f">filter</span>(valid_reading, <span class="f">clean_county</span>(county) <span class="k">==</span> county_name_key) <span class="k">%&gt;%</span>
-    <span class="f">mutate</span>(period <span class="k">=</span> <span class="f">case_when</span>(
-      year <span class="k">&gt;=</span> anchor_year <span class="k">-</span> window <span class="k">&amp;</span> year <span class="k">&lt;</span> anchor_year <span class="k">~</span> <span class="s">"pre"</span>,
-      year <span class="k">&gt;=</span> anchor_year <span class="k">&amp;</span> year <span class="k">&lt;=</span> anchor_year <span class="k">+</span> window <span class="k">~</span> <span class="s">"post"</span>,
-      <span class="n">TRUE</span> <span class="k">~</span> <span class="n">NA_character_</span>
-    )) <span class="k">%&gt;%</span>
-    <span class="f">filter</span>(<span class="k">!</span><span class="f">is.na</span>(period)) <span class="k">%&gt;%</span>
-    <span class="f">group_by</span>(period, USGS_ID) <span class="k">%&gt;%</span>
-    <span class="f">filter</span>(<span class="f">n</span>() <span class="k">&gt;=</span> min_n) <span class="k">%&gt;%</span>
-    <span class="f">summarise</span>(slope <span class="k">=</span> <span class="f">coef</span>(<span class="f">lm</span>(DEPTH_TO_WATER <span class="k">~</span> year))[<span class="n">2</span>], .groups <span class="k">=</span> <span class="s">"drop"</span>) <span class="k">%&gt;%</span>
-    <span class="f">group_by</span>(period) <span class="k">%&gt;%</span>
-    <span class="f">summarise</span>(avg_slope_ft_per_yr <span class="k">=</span> <span class="f">mean</span>(slope, na.rm <span class="k">=</span> <span class="n">TRUE</span>),
-              n_wells <span class="k">=</span> <span class="f">n</span>(), .groups <span class="k">=</span> <span class="s">"drop"</span>) <span class="k">%&gt;%</span>
-    <span class="f">mutate</span>(county_key <span class="k">=</span> county_name_key)
+# small helper so county names match up cleanly across all the different
+# data sources (some say "County", some don't, capitalization varies, etc.)
+clean_county <- function(x) {
+  x <- toupper(x)
+  x <- trimws(x)
+  x <- gsub(" COUNTY$", "", x)
+  x
 }
 
-gw_slopes_by_county <span class="k">&lt;-</span> <span class="f">bind_rows</span>(<span class="f">lapply</span>(<span class="f">seq_len</span>(<span class="f">nrow</span>(county_treatment)), <span class="k">function</span>(i) {
-  <span class="f">get_well_slopes</span>(county_treatment<span class="k">$</span>county_key[i], county_treatment<span class="k">$</span>first_treatment_year[i])
-}))
+lema_timeline <- readRDS("data_clean/lema_timeline.rds") %>%
+  mutate(county_key = clean_county(county))
 
-<span class="c"></span>
-gw_reg <span class="k">&lt;-</span> gw_slopes_by_county <span class="k">%&gt;%</span>
-  <span class="f">mutate</span>(post_indicator <span class="k">=</span> <span class="f">ifelse</span>(period <span class="k">==</span> <span class="s">"post"</span>, <span class="n">1</span>, <span class="n">0</span>)) <span class="k">%&gt;%</span>
-  <span class="f">left_join</span>(county_treatment <span class="k">%&gt;%</span> <span class="f">select</span>(county_key, first_treatment_year),
-            by <span class="k">=</span> <span class="s">"county_key"</span>) <span class="k">%&gt;%</span>
-  <span class="f">filter</span>(<span class="k">!</span>county_key <span class="k">%in%</span> <span class="f">c</span>(<span class="s">"LANE"</span>, <span class="s">"SCOTT"</span>, <span class="s">"GREELEY"</span>))
-
-twfe_gw <span class="k">&lt;-</span> <span class="f">feols</span>(avg_slope_ft_per_yr <span class="k">~</span> post_indicator <span class="k">|</span> county_key <span class="k">+</span> first_treatment_year,
-                 data <span class="k">=</span> gw_reg, vcov <span class="k">=</span> <span class="s">"hetero"</span>)
-<span class="f">etable</span>(twfe_gw)
-
-<span class="c"></span>
-master_panel <span class="k">&lt;-</span> county_treatment <span class="k">%&gt;%</span>
-  <span class="f">left_join</span>(crop_panel, by <span class="k">=</span> <span class="s">"county_key"</span>) <span class="k">%&gt;%</span>
-  <span class="f">left_join</span>(bea_panel,  by <span class="k">=</span> <span class="f">c</span>(<span class="s">"county_key"</span>, <span class="s">"year"</span>)) <span class="k">%&gt;%</span>
-  <span class="f">filter</span>(<span class="k">!</span><span class="f">is.na</span>(year)) <span class="k">%&gt;%</span>
-  <span class="f">mutate</span>(
-    event_time    <span class="k">=</span> year <span class="k">-</span> first_treatment_year,
-    sorghum_share <span class="k">=</span> sorghum <span class="k">/</span> (corn_total <span class="k">+</span> wheat_winter <span class="k">+</span> sorghum <span class="k">+</span> soybeans)
+# collapsing down to one row per county: what's the first LEMA a county
+# fell under, and what year did it start
+county_treatment <- lema_timeline %>%
+  group_by(county_key) %>%
+  summarise(
+    first_lema           = lema[which.min(effective_start)],
+    first_treatment_year = min(effective_start),
+    n_lemas              = n_distinct(lema),
+    .groups = "drop"
   )
 
-twfe_income <span class="k">&lt;-</span> <span class="f">feols</span>(
-  farm_proprietors_income <span class="k">~</span> <span class="f">i</span>(event_time, ref <span class="k">=</span> <span class="k">-</span><span class="n">1</span>) <span class="k">|</span> county_key <span class="k">+</span> year,
-  data  <span class="k">=</span> master_panel <span class="k">%&gt;%</span> <span class="f">filter</span>(event_time <span class="k">&gt;=</span> <span class="k">-</span><span class="n">6</span>, event_time <span class="k">&lt;=</span> <span class="n">6</span>),
-  vcov  <span class="k">=</span> <span class="s">"hetero"</span>
-)
-<span class="f">etable</span>(twfe_income)
+gw_raw <- read_csv("data_raw/kgs_gwl_clean.csv", show_col_types = FALSE)
 
-<span class="f">write_csv</span>(master_panel,         <span class="s">"output/master_panel.csv"</span>)
-<span class="f">write_csv</span>(gw_slopes_by_county,  <span class="s">"output/groundwater_slopes_by_county.csv"</span>)</pre>
+# for one county, this calculates the average well-level slope (ft/yr)
+# separately for the 10 years before and 10 years after that county's
+# treatment year
+get_well_slopes <- function(county_name_key, anchor_year, window = 10, min_n = 3) {
+
+  gw_raw %>%
+    filter(valid_reading, clean_county(county) == county_name_key) %>%
+    mutate(period = case_when(
+      year >= anchor_year - window & year < anchor_year ~ "pre",
+      year >= anchor_year & year <= anchor_year + window ~ "post",
+      TRUE ~ NA_character_
+    )) %>%
+    filter(!is.na(period)) %>%
+    group_by(period, USGS_ID) %>%
+    filter(n() >= min_n) %>%
+    summarise(slope = coef(lm(DEPTH_TO_WATER ~ year))[2], .groups = "drop") %>%
+    group_by(period) %>%
+    summarise(
+      avg_slope_ft_per_yr = mean(slope, na.rm = TRUE),
+      n_wells = n(),
+      .groups = "drop"
+    ) %>%
+    mutate(county_key = county_name_key)
+}
+
+gw_slopes_by_county <- bind_rows(
+  lapply(seq_len(nrow(county_treatment)), function(i) {
+    get_well_slopes(
+      county_treatment$county_key[i],
+      county_treatment$first_treatment_year[i]
+    )
+  })
+)
+
+# excluding Lane, Scott, and Greeley here - too few wells left in the
+# post period to trust a slope estimate from them
+gw_reg <- gw_slopes_by_county %>%
+  mutate(post_indicator = ifelse(period == "post", 1, 0)) %>%
+  left_join(
+    county_treatment %>% select(county_key, first_treatment_year),
+    by = "county_key"
+  ) %>%
+  filter(!county_key %in% c("LANE", "SCOTT", "GREELEY"))
+
+twfe_gw <- feols(
+  avg_slope_ft_per_yr ~ post_indicator | county_key + first_treatment_year,
+  data = gw_reg,
+  vcov = "hetero"
+)
+
+etable(twfe_gw)
+
+# now building the full panel, joining crop mix and farm income onto the
+# treatment table, and adding event_time (years relative to that
+# county's own treatment year) so the event study lines up correctly
+master_panel <- county_treatment %>%
+  left_join(crop_panel, by = "county_key") %>%
+  left_join(bea_panel, by = c("county_key", "year")) %>%
+  filter(!is.na(year)) %>%
+  mutate(
+    event_time    = year - first_treatment_year,
+    sorghum_share = sorghum / (corn_total + wheat_winter + sorghum + soybeans)
+  )
+
+twfe_income <- feols(
+  farm_proprietors_income ~ i(event_time, ref = -1) | county_key + year,
+  data = master_panel %>% filter(event_time >= -6, event_time <= 6),
+  vcov = "hetero"
+)
+
+etable(twfe_income)
+
+write_csv(master_panel,        "output/master_panel.csv")
+write_csv(gw_slopes_by_county, "output/groundwater_slopes_by_county.csv")</pre>
     </div>
 
   </div>
@@ -828,7 +875,7 @@ twfe_income <span class="k">&lt;-</span> <span class="f">feols</span>(
           <li>Should be framed as "patterns consistent with LEMA adoption," not precise estimates</li>
           <li>Commodity price cycles and drought outweigh income comparisons</li>
           <li>All data sources free and publicly available; no NRD/GMD outreach occurred</li>
-          <li>Full R code above; API keys stored in .Renviron,not displayed</li>
+          <li>Full R code above; API keys stored in .Renviron, not displayed</li>
         </ul>
       </div>
     </div>
