@@ -6,7 +6,6 @@
   <title>The Returns to Education in the U.S. Labor Market — Andy Setser</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
   <style>
     :root {
       --ink: #0D0D0D;
@@ -73,6 +72,7 @@
     .chart-subtitle { font-size: 0.9rem; color: var(--ink-light); font-style: italic; margin-bottom: 1rem; max-width: 620px; }
     .chart-wrap { background: white; border: 1px solid var(--rule); padding: 2rem; position: relative; }
     .chart-wrap canvas { max-height: 380px; }
+    .chart-wrap img { width: 100%; height: auto; display: block; }
     .chart-note { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.04em; color: var(--ink-faint); margin-top: 1rem; padding-top: 0.9rem; border-top: 1px solid var(--rule-light); }
 
     .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; }
@@ -201,7 +201,7 @@
       <div class="chart-title">Fig. 1 Predicted Annual Wages by Education Level</div>
       <div class="chart-subtitle">Reference worker: Male, White, 10 years experience, 2019. Derived from Model 3 coefficients.</div>
       <div class="chart-wrap">
-        <canvas id="chartWages"></canvas>
+        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/fig1_wages.png" alt="Predicted annual wages by education level">
         <p class="chart-note">Source: IPUMS CPS 2010–2023. OLS Mincer earnings equation. Predicted wages = exp(log-wage fitted value) for reference worker profile. Author: Andy Setser.</p>
       </div>
     </div>
@@ -210,7 +210,7 @@
       <div class="chart-title">Fig. 2 — Education Coefficients Across Model Specifications</div>
       <div class="chart-subtitle">Coefficient stability demonstrates the premium is not driven by omitted variable bias from experience or demographics</div>
       <div class="chart-wrap">
-        <canvas id="chartCoefs"></canvas>
+        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/fig2_coefs.png" alt="Education coefficients across model specifications">
         <p class="chart-note">Source: IPUMS CPS 2010–2023. Reference category: Less than High School. Bars show log-wage coefficient; all estimates significant at p &lt; 0.001. Author: Andy Setser.</p>
       </div>
     </div>
@@ -219,7 +219,7 @@
       <div class="chart-title">Fig. 3 — Experience-Earnings Profile (Model 3)</div>
       <div class="chart-subtitle">Fitted log-wage by years of experience — the classic concave Mincerian profile, holding education and demographics constant</div>
       <div class="chart-wrap">
-        <canvas id="chartExp"></canvas>
+        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/fig3_experience.png" alt="Experience earnings profile">
         <p class="chart-note">Source: IPUMS CPS 2010–2023. Profile computed holding education = Bachelor's Degree, Female = 0, Black = 0, Asian = 0, Year = 2019. Author: Andy Setser.</p>
       </div>
     </div>
@@ -228,7 +228,7 @@
       <div class="chart-title">Fig. 4 — Real Wage Growth Over Time (Year Fixed Effects, Model 3)</div>
       <div class="chart-subtitle">Year dummy coefficients relative to 2010 baseline — the post-2019 labor market acceleration is clearly visible</div>
       <div class="chart-wrap">
-        <canvas id="chartYear"></canvas>
+        <img src="https://raw.githubusercontent.com/USERNAME/REPO/main/fig4_growth.png" alt="Real wage growth over time">
         <p class="chart-note">Source: IPUMS CPS 2010–2023. Year dummies relative to 2010 reference. All coefficients significant at p &lt; 0.001. Author: Andy Setser.</p>
       </div>
     </div>
@@ -418,7 +418,7 @@ ref_worker$predicted_wage <- exp(predict(model3, newdata = ref_worker))
 
 ref_worker |> ggplot(aes(x = reorder(education, predicted_wage), y = predicted_wage, fill = education)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_manual(values = c("#1E4D2B73", "#1E4D2B94", "#1E4D2BB3", "#1E4D2BD6", "#1E4D2B")) + coord_flip() + scale_y_continuous(labels = dollar_format()) + labs(title = "Predicted Annual Wages by Education Level", x = NULL, y = "Predicted Annual Wage, 2019 USD") + theme_minimal(base_size = 13)
 
-ggsave("wages_by_education.png", width = 9, height = 4.5, dpi = 200)</pre>
+ggsave("fig1_wages.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
 
     <div id="tab04" class="code-panel">
@@ -427,7 +427,7 @@ coef_data <- tibble(education = rep(c("High School Diploma", "Some College", "Ba
 
 coef_data |> ggplot(aes(x = education, y = coefficient, fill = model)) + geom_col(position = "dodge", width = 0.7) + scale_fill_manual(values = c("#1A4A7A99", "#A8791F99", "#1E4D2BD1")) + labs(title = "Education Coefficients Across Model Specifications", x = NULL, y = "Log Wage Coefficient", fill = NULL) + theme_minimal(base_size = 13)
 
-ggsave("coefficients_by_model.png", width = 9, height = 4.5, dpi = 200)</pre>
+ggsave("fig2_coefs.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
 
     <div id="tab05" class="code-panel">
@@ -435,7 +435,7 @@ ggsave("coefficients_by_model.png", width = 9, height = 4.5, dpi = 200)</pre>
 
 exp_profile |> ggplot(aes(x = experience, y = log_wage)) + geom_line(color = "#1E4D2B", linewidth = 1.2) + geom_area(fill = "#1E4D2B12") + labs(title = "Experience Earnings Profile, Model 3", x = "Years of Experience", y = "Fitted Log Annual Wage") + theme_minimal(base_size = 13)
 
-ggsave("experience_profile.png", width = 9, height = 4.5, dpi = 200)</pre>
+ggsave("fig3_experience.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
 
     <div id="tab06" class="code-panel">
@@ -443,7 +443,7 @@ ggsave("experience_profile.png", width = 9, height = 4.5, dpi = 200)</pre>
 
 year_data |> ggplot(aes(x = year, y = change, fill = year)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_manual(values = c("#90909099", "#1E4D2B80", "#1E4D2BA6", "#1E4D2BCC", "#1E4D2B")) + labs(title = "Real Wage Growth Over Time, Year Fixed Effects", x = NULL, y = "Log Wage Change vs 2010") + theme_minimal(base_size = 13)
 
-ggsave("wage_growth_by_year.png", width = 9, height = 4.5, dpi = 200)</pre>
+ggsave("fig4_growth.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
 
   </div>
@@ -521,111 +521,6 @@ function showTab(id) {
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
 }
-
-Chart.defaults.font.family = "'Inter', system-ui, sans-serif";
-Chart.defaults.font.size = 11;
-Chart.defaults.color = '#4D4D4D';
-const gridOpts = { color: '#E8E5DE', lineWidth: 1 };
-const tickOpts = { color: '#909090', font: { size: 10 } };
-
-const eduLabels = ['Less than\nHigh School', 'High School\nDiploma', 'Some\nCollege', "Bachelor's\nDegree", 'Graduate\nDegree'];
-const predictedWages = [27038, 37040, 44938, 68668, 91262];
-new Chart(document.getElementById('chartWages'), {
-  type: 'bar',
-  data: {
-    labels: eduLabels,
-    datasets: [{
-      label: 'Predicted Annual Wage',
-      data: predictedWages,
-      backgroundColor: ['rgba(30,77,43,0.45)','rgba(30,77,43,0.58)','rgba(30,77,43,0.70)','rgba(30,77,43,0.84)','rgba(30,77,43,1.0)'],
-      borderColor: 'transparent',
-      borderRadius: 2,
-    }]
-  },
-  options: {
-    indexAxis: 'y',
-    responsive: true, maintainAspectRatio: true,
-    plugins: {
-      legend: { display: false },
-      tooltip: { enabled: false }
-    },
-    scales: {
-      x: { grid: gridOpts, ticks: { ...tickOpts, callback: v => '$' + (v/1000).toFixed(0) + 'k' }, title: { display: true, text: 'Predicted Annual Wage (2019 USD)', color: '#909090', font: { size: 10 } } },
-      y: { grid: { display: false }, ticks: tickOpts }
-    }
-  }
-});
-
-const eduCats = ['High School\nDiploma', 'Some\nCollege', "Bachelor's\nDegree", 'Graduate\nDegree'];
-new Chart(document.getElementById('chartCoefs'), {
-  type: 'bar',
-  data: {
-    labels: eduCats,
-    datasets: [
-      { label: 'Model 1: Education Only', data: [0.307, 0.467, 0.830, 1.132], backgroundColor: 'rgba(26,74,122,0.6)', borderColor: 'transparent', borderRadius: 2 },
-      { label: 'Model 2: + Experience & Gender', data: [0.347, 0.556, 0.954, 1.265], backgroundColor: 'rgba(168,121,31,0.6)', borderColor: 'transparent', borderRadius: 2 },
-      { label: 'Model 3: Full Controls', data: [0.344, 0.553, 0.933, 1.237], backgroundColor: 'rgba(30,77,43,0.82)', borderColor: 'transparent', borderRadius: 2 }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: true,
-    plugins: { legend: { position: 'top', labels: { usePointStyle: true, font: { size: 11 } } }, tooltip: { enabled: false } },
-    scales: {
-      x: { grid: { display: false }, ticks: tickOpts },
-      y: { grid: gridOpts, ticks: { ...tickOpts, callback: v => v.toFixed(2) }, title: { display: true, text: 'Log-Wage Coefficient', color: '#909090', font: { size: 10 } } }
-    }
-  }
-});
-
-const expYears = Array.from({length: 41}, (_, i) => i);
-const expWages = expYears.map(e => 9.691 + 0.933 + 0.033*e - 0.001*e*e + 0.170);
-new Chart(document.getElementById('chartExp'), {
-  type: 'line',
-  data: {
-    labels: expYears,
-    datasets: [{
-      label: "Log-Wage (Bachelor's, 2019)",
-      data: expWages,
-      borderColor: '#1E4D2B',
-      backgroundColor: 'rgba(30,77,43,0.07)',
-      borderWidth: 2.5,
-      pointRadius: 0,
-      pointHoverRadius: 0,
-      fill: true,
-      tension: 0.4
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: true,
-    plugins: { legend: { display: false }, tooltip: { enabled: false } },
-    scales: {
-      x: { grid: gridOpts, ticks: tickOpts, title: { display: true, text: 'Years of Experience', color: '#909090', font: { size: 10 } } },
-      y: { grid: gridOpts, ticks: tickOpts, title: { display: true, text: 'Fitted Log Annual Wage', color: '#909090', font: { size: 10 } } }
-    }
-  }
-});
-
-new Chart(document.getElementById('chartYear'), {
-  type: 'bar',
-  data: {
-    labels: ['2010\n(ref)', '2015', '2019', '2021', '2023'],
-    datasets: [{
-      label: 'Log-Wage Change vs. 2010',
-      data: [0, 0.049, 0.170, 0.216, 0.336],
-      backgroundColor: ['rgba(144,144,144,0.3)', 'rgba(30,77,43,0.5)', 'rgba(30,77,43,0.65)', 'rgba(30,77,43,0.8)', 'rgba(30,77,43,1.0)'],
-      borderColor: 'transparent',
-      borderRadius: 2
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: true,
-    plugins: { legend: { display: false }, tooltip: { enabled: false } },
-    scales: {
-      x: { grid: { display: false }, ticks: tickOpts },
-      y: { grid: gridOpts, ticks: tickOpts, title: { display: true, text: 'Log-Wage Coefficient (vs. 2010)', color: '#909090', font: { size: 10 } } }
-    }
-  }
-});
 </script>
 </body>
 </html>
