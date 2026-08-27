@@ -73,15 +73,18 @@
     .section-hed { font-family: var(--serif); font-size: 1.6rem; font-weight: 700; margin-bottom: 0.5rem; }
     .section-sub { font-size: 0.92rem; color: var(--ink-light); margin-bottom: 1.75rem; max-width: 620px; }
 
-    .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; }
+    .data-table-wrap { overflow-x: auto; border: 1px solid var(--rule); background: white; border-radius: 6px; }
     table { width: 100%; border-collapse: collapse; font-size: 0.84rem; }
-    thead tr { border-bottom: 2px solid var(--ink); background: var(--ink); }
-    th { font-family: var(--sans); font-size: 0.52rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: white; padding: 0.65rem 0.9rem; text-align: right; white-space: nowrap; }
-    th:first-child { text-align: left; min-width: 180px; }
-    td { font-family: var(--sans); font-size: 0.78rem; padding: 0.5rem 0.9rem; text-align: right; border-bottom: 1px solid var(--rule-light); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
-    td:first-child { text-align: left; font-family: var(--serif); font-size: 0.85rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+    thead tr { background: var(--paper-warm); border-bottom: 2px solid var(--accent); }
+    th { font-family: var(--sans); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-mid); padding: 0.7rem 0.9rem; text-align: left; white-space: nowrap; }
+    td { font-family: var(--sans); font-size: 0.78rem; padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--rule-light); color: var(--ink-mid); vertical-align: top; line-height: 1.5; }
+    td:first-child { font-family: var(--condensed); font-size: 0.85rem; font-weight: 600; letter-spacing: 0.03em; color: var(--ink); white-space: nowrap; }
     .cohort-tag { font-family: var(--sans); font-size: 0.52rem; letter-spacing: 0.08em; text-transform: uppercase; background: var(--accent-faint); color: var(--accent); border: 1px solid var(--accent); padding: 0.15rem 0.4rem; white-space: nowrap; }
 
+    .results-table thead th { text-align: right; }
+    .results-table thead th:first-child { text-align: left; }
+    .results-table td { text-align: right; font-family: var(--sans); font-size: 0.75rem; }
+    .results-table td:first-child { text-align: left; font-family: var(--condensed); font-weight: 600; font-size: 0.85rem; }
     .results-table td.improved { color: var(--accent); font-weight: 700; }
     .results-table td.worsened { color: var(--amber); font-weight: 700; }
     .results-table td.excluded { color: var(--ink-faint); font-style: italic; }
@@ -464,17 +467,55 @@
 <div class="section-block code-section">
   <div class="section-inner">
     <h2 class="section-hed">R Code</h2>
-    <p class="section-sub">Full analysis in R. Copy and paste each tab as its own script. API keys are stored in <code>.Renviron</code> and not hardcoded.</p>
+    <p class="section-sub">Full pipeline in R, split into one script per step. Drop each tab into its own file under <code>R/</code> named to match, then either source them one at a time or just run <code>00_run_everything.R</code> straight through. API keys live in <code>.Renviron</code>, not hardcoded.</p>
 
     <div class="code-tabs">
-      <button class="code-tab active" onclick="showTab('tab01')">01 · LEMA Timeline</button>
+      <button class="code-tab active" onclick="showTab('tab00')">00 · Run Everything</button>
+      <button class="code-tab" onclick="showTab('tab01')">01 · LEMA Timeline</button>
       <button class="code-tab" onclick="showTab('tab02')">02 · Groundwater (KGS)</button>
       <button class="code-tab" onclick="showTab('tab03')">03 · NASS Crops</button>
       <button class="code-tab" onclick="showTab('tab04')">04 · BEA Farm Income</button>
       <button class="code-tab" onclick="showTab('tab05')">05 · Analysis and TWFE</button>
+      <button class="code-tab" onclick="showTab('tab06')">06 · Figures</button>
     </div>
 
-    <div id="tab01" class="code-panel active">
+    <div id="tab00" class="code-panel active">
+<pre># 00_run_everything.R
+# Master script - runs the whole project front to back in order.
+# Mostly here so future me doesn't have to remember the sequence.
+
+# STEP 1: set the working directory (do this every time I open a new session)
+setwd("~/Documents/kansas_lema_econ")
+
+# STEP 2: install packages, only need to do this once ever
+install.packages(c("dplyr", "readr", "tigris", "tidyverse", "fixest"))
+
+# STEP 3: build the county -> LEMA -> treatment year lookup table
+source("R/01_lema_timeline.R")
+
+# STEP 4: load and clean the groundwater well data
+source("R/02_groundwater_levels.R")
+
+# STEP 5: pull crop acreage from USDA NASS (NASSQS_TOKEN needs to be set in .Renviron)
+library(rnassqs)
+nassqs_auth(key = Sys.getenv("NASSQS_TOKEN"))
+source("R/03_nass_quickstats.R")
+
+# STEP 6: pull farm income from BEA (BEA_API_KEY needs to be set in .Renviron)
+library(bea.R)
+source("R/04_bea_reis.R")
+
+# STEP 7: merge everything into master_panel and run the TWFE models
+source("R/05_analysis_twfe.R")
+
+# STEP 8: build the three charts used in the writeup
+source("R/06_figures.R")
+
+# done - output/ has the panel + regression tables, and the three PNGs
+# land in the project root, ready to drop into the Substack post.</pre>
+    </div>
+
+    <div id="tab01" class="code-panel">
 <pre># 01_lema_timeline.R
 # Just building a simple lookup table of which county was covered by which
 # LEMA, and when that LEMA's order took effect. This becomes the "treatment
@@ -810,6 +851,27 @@ twfe_gw <- feols(
 
 etable(twfe_gw)
 
+# turning the raw NASS pulls into one wide county x year crop panel -
+# each pull came back long (one row per county/year for that crop) so
+# stacking them and renaming Value to something readable
+crop_panel <- bind_rows(
+  read_csv("data_raw/nass_corn_acres.csv", show_col_types = FALSE)    %>% transmute(county_key = clean_county(county_name), year, corn_total   = as.numeric(Value)),
+  read_csv("data_raw/nass_wheat_winter.csv", show_col_types = FALSE)  %>% transmute(county_key = clean_county(county_name), year, wheat_winter = as.numeric(Value)),
+  read_csv("data_raw/nass_sorghum_acres.csv", show_col_types = FALSE) %>% transmute(county_key = clean_county(county_name), year, sorghum      = as.numeric(Value)),
+  read_csv("data_raw/nass_soybean_acres.csv", show_col_types = FALSE) %>% transmute(county_key = clean_county(county_name), year, soybeans     = as.numeric(Value))
+) %>%
+  group_by(county_key, year) %>%
+  summarise(across(c(corn_total, wheat_winter, sorghum, soybeans), ~ sum(.x, na.rm = TRUE)), .groups = "drop")
+
+# same deal for farm income - BEA's GeoName column has the state name
+# tacked on ("Sheridan, KS") so clean_county() needs to strip that too
+bea_panel <- read_csv("data_raw/bea_farm_proprietors_income.csv", show_col_types = FALSE) %>%
+  transmute(
+    county_key               = clean_county(gsub(", KS$", "", GeoName)),
+    year                     = as.integer(TimePeriod),
+    farm_proprietors_income  = as.numeric(DataValue)
+  )
+
 # now building the full panel, joining crop mix and farm income onto the
 # treatment table, and adding event_time (years relative to that
 # county's own treatment year) so the event study lines up correctly
@@ -832,6 +894,66 @@ etable(twfe_income)
 
 write_csv(master_panel,        "output/master_panel.csv")
 write_csv(gw_slopes_by_county, "output/groundwater_slopes_by_county.csv")</pre>
+    </div>
+
+    <div id="tab06" class="code-panel">
+<pre># 06_figures.R
+# Making the three charts for the writeup. The summary bars just have the
+# final numbers typed in directly from the tables above - not worth
+# recomputing them from master_panel every time I tweak a plot label.
+
+library(tidyverse)
+
+# dot plot, before/after decline rate by county
+gw <- tibble(
+  county   = c("Sheridan","Wichita","Decatur","Gove","Thomas","Sherman","Wallace","Rawlins","Logan","Graham","Cheyenne"),
+  before   = c(0.629,0.288,0.135,0.200,0.650,0.983,1.40,0.261,0.035,0.023,0.285),
+  after    = c(0.079,0.056,0.075,0.064,0.420,0.758,1.29,0.179,0.112,0.031,0.331),
+  improved = c(TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,TRUE,FALSE,FALSE,FALSE)
+) |> mutate(county = fct_reorder(county, before))
+
+ggplot(gw) +
+  geom_segment(aes(x = after, xend = before, y = county, yend = county), color = "grey80", linewidth = 1.2) +
+  geom_point(aes(x = before, y = county), color = "#73726c", size = 3.5) +
+  geom_point(aes(x = after, y = county, color = improved), size = 3.5) +
+  scale_color_manual(values = c("TRUE" = "#2a78d6", "FALSE" = "#e34948"),
+                      labels = c("TRUE" = "Slower decline", "FALSE" = "Faster decline"),
+                      name = "After LEMA") +
+  labs(x = "Decline rate (ft/yr)", y = NULL,
+       title = "Aquifer decline slowed in most counties after LEMA adoption",
+       caption = "Gray = before . Color = after . Lane, Scott & Greeley excluded") +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "bottom", panel.grid.major.y = element_blank())
+
+ggsave("AquiferDeclinebyCounty.png", width = 9, height = 6, dpi = 200)
+
+# bar chart, overall average decline rate before vs after
+summary_gw <- tibble(period = c("Before LEMA","After LEMA"), decline = c(0.376, 0.151))
+
+ggplot(summary_gw, aes(x = period, y = decline, fill = period)) +
+  geom_col(width = 0.5) +
+  scale_fill_manual(values = c("Before LEMA" = "#73726c", "After LEMA" = "#2a78d6")) +
+  labs(y = "Avg. decline rate (ft/yr)", x = NULL,
+       title = "Water table declining 60% slower after restrictions") +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "none")
+
+ggsave("WaterTableBeforeAfter.png", width = 7, height = 6, dpi = 200)
+
+# bar chart, sorghum share of cropland before vs after
+crops <- tibble(period = c("Before LEMA", "After LEMA"), sorghum_pct = c(10.3, 14.5))
+
+ggplot(crops, aes(x = period, y = sorghum_pct, fill = period)) +
+  geom_col(width = 0.5) +
+  scale_fill_manual(values = c("Before LEMA" = "#73726c", "After LEMA" = "#2a78d6")) +
+  scale_y_continuous(labels = function(x) paste0(x, "%"), limits = c(0, 20)) +
+  labs(y = "Sorghum share of cropland", x = NULL,
+       title = "Farmers shifted toward less water-intensive crops",
+       caption = "Note: county-level crop data is incomplete where too few farms report") +
+  theme_minimal(base_size = 13) +
+  theme(legend.position = "none")
+
+ggsave("CropMixShift.png", width = 7, height = 6, dpi = 200)</pre>
     </div>
 
   </div>
