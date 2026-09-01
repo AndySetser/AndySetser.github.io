@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>The Returns to Education in the U.S. Labor Market — Andy Setser</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --ink: #0D0D0D;
       --ink-mid: #222222;
       --ink-light: #4D4D4D;
       --ink-faint: #909090;
-      --paper: #FAFAF8;
-      --paper-warm: #FAFAF8;
-      --rule: #D4D0C8;
-      --rule-light: #E8E5DE;
-      --accent: #A3491C;
-      --accent-light: #C25E2A;
-      --accent-faint: #F3E4D8;
+      --paper: #F3F5F6;
+      --paper-warm: #F3F5F6;
+      --rule: #C6CBCE;
+      --rule-light: #E3E7E9;
+      --accent: #DD4B1F;
+      --accent-light: #E8683F;
+      --accent-faint: #FBE4DC;
       --amber: #A8791F;
       --red: #A23B2E;
-      --serif: 'Fraunces', Georgia, serif;
-      --sans: 'Inter', system-ui, sans-serif;
+      --serif: 'IBM Plex Serif', Georgia, serif;
+      --sans: 'IBM Plex Sans', system-ui, sans-serif;
       --condensed: 'Barlow Condensed', system-ui, sans-serif;
       --mono: 'Space Mono', monospace;
     }
@@ -416,7 +416,7 @@ modelsummary(list("Model 1" = model1, "Model 2" = model2, "Model 3" = model3), s
 
 ref_worker$predicted_wage <- exp(predict(model3, newdata = ref_worker))
 
-ref_worker |> ggplot(aes(x = reorder(education, predicted_wage), y = predicted_wage, fill = education)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_manual(values = c("#A3491C73", "#A3491C94", "#A3491CB3", "#A3491CD6", "#A3491C")) + coord_flip() + scale_y_continuous(labels = dollar_format()) + labs(title = "Predicted Annual Wages by Education Level", x = NULL, y = "Predicted Annual Wage, 2019 USD") + theme_minimal(base_size = 13)
+ref_worker |> ggplot(aes(x = reorder(education, predicted_wage), y = predicted_wage, fill = education)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_manual(values = c("#DD4B1F73", "#DD4B1F94", "#DD4B1FB3", "#DD4B1FD6", "#DD4B1F")) + coord_flip() + scale_y_continuous(labels = dollar_format()) + labs(title = "Predicted Annual Wages by Education Level", x = NULL, y = "Predicted Annual Wage, 2019 USD") + theme_minimal(base_size = 13)
 
 ggsave("fig1_wages.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
@@ -425,7 +425,7 @@ ggsave("fig1_wages.png", width = 9, height = 4.5, dpi = 200)</pre>
 <pre># same four education levels, shown across all three models so you can see how stable the estimates are
 coef_data <- tibble(education = rep(c("High School Diploma", "Some College", "Bachelor's Degree", "Graduate Degree"), 3), model = rep(c("Model 1: Education Only", "Model 2: Plus Experience and Gender", "Model 3: Full Controls"), each = 4), coefficient = c(0.307, 0.467, 0.830, 1.132, 0.347, 0.556, 0.954, 1.265, 0.344, 0.553, 0.933, 1.237))
 
-coef_data |> ggplot(aes(x = education, y = coefficient, fill = model)) + geom_col(position = "dodge", width = 0.7) + scale_fill_manual(values = c("#1A4A7A99", "#A8791F99", "#A3491CD1")) + labs(title = "Education Coefficients Across Model Specifications", x = NULL, y = "Log Wage Coefficient", fill = NULL) + theme_minimal(base_size = 13)
+coef_data |> ggplot(aes(x = education, y = coefficient, fill = model)) + geom_col(position = "dodge", width = 0.7) + scale_fill_manual(values = c("#1A4A7A99", "#A8791F99", "#DD4B1FD1")) + labs(title = "Education Coefficients Across Model Specifications", x = NULL, y = "Log Wage Coefficient", fill = NULL) + theme_minimal(base_size = 13)
 
 ggsave("fig2_coefs.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
@@ -433,7 +433,7 @@ ggsave("fig2_coefs.png", width = 9, height = 4.5, dpi = 200)</pre>
     <div id="tab05" class="code-panel">
 <pre>exp_profile <- tibble(experience = 0:40) |> mutate(log_wage = 9.691 + 0.933 + 0.033 * experience - 0.001 * experience^2 + 0.170)
 
-exp_profile |> ggplot(aes(x = experience, y = log_wage)) + geom_line(color = "#A3491C", linewidth = 1.2) + geom_area(fill = "#A3491C12") + labs(title = "Experience Earnings Profile, Model 3", x = "Years of Experience", y = "Fitted Log Annual Wage") + theme_minimal(base_size = 13)
+exp_profile |> ggplot(aes(x = experience, y = log_wage)) + geom_line(color = "#DD4B1F", linewidth = 1.2) + geom_area(fill = "#DD4B1F12") + labs(title = "Experience Earnings Profile, Model 3", x = "Years of Experience", y = "Fitted Log Annual Wage") + theme_minimal(base_size = 13)
 
 ggsave("fig3_experience.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
@@ -441,7 +441,7 @@ ggsave("fig3_experience.png", width = 9, height = 4.5, dpi = 200)</pre>
     <div id="tab06" class="code-panel">
 <pre>year_data <- tibble(year = c("2010", "2015", "2019", "2021", "2023"), change = c(0, 0.049, 0.170, 0.216, 0.336))
 
-year_data |> ggplot(aes(x = year, y = change, fill = year)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_manual(values = c("#90909099", "#A3491C80", "#A3491CA6", "#A3491CCC", "#A3491C")) + labs(title = "Real Wage Growth Over Time, Year Fixed Effects", x = NULL, y = "Log Wage Change vs 2010") + theme_minimal(base_size = 13)
+year_data |> ggplot(aes(x = year, y = change, fill = year)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_manual(values = c("#90909099", "#DD4B1F80", "#DD4B1FA6", "#DD4B1FCC", "#DD4B1F")) + labs(title = "Real Wage Growth Over Time, Year Fixed Effects", x = NULL, y = "Log Wage Change vs 2010") + theme_minimal(base_size = 13)
 
 ggsave("fig4_growth.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
