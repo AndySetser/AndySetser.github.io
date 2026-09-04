@@ -481,13 +481,13 @@
 
     <div id="tab00" class="code-panel active">
 <pre># 00_run_everything.R
-# Master script - runs the whole project front to back in order.
+# main script that runs the whole project.
 # Mostly here so future me doesn't have to remember the sequence.
 
-# STEP 1: set the working directory (do this every time I open a new session)
+# STEP 1: set the working directory 
 setwd("~/Documents/kansas_lema_econ")
 
-# STEP 2: install packages, only need to do this once ever
+# STEP 2: install packages
 install.packages(c("dplyr", "readr", "tigris", "tidyverse", "fixest"))
 
 # STEP 3: build the county -> LEMA -> treatment year lookup table
@@ -496,30 +496,28 @@ source("R/01_lema_timeline.R")
 # STEP 4: load and clean the groundwater well data
 source("R/02_groundwater_levels.R")
 
-# STEP 5: pull crop acreage from USDA NASS (NASSQS_TOKEN needs to be set in .Renviron)
+# STEP 5: pull crop acreage from USDA NASS (NASSQS_TOKEN API needs to be set in .Renviron)
 library(rnassqs)
 nassqs_auth(key = Sys.getenv("NASSQS_TOKEN"))
 source("R/03_nass_quickstats.R")
 
-# STEP 6: pull farm income from BEA (BEA_API_KEY needs to be set in .Renviron)
+# STEP 6: pull farm income from BEA (BEA_API_KEY needs to be set in .Renviron or manual entered)
 library(bea.R)
 source("R/04_bea_reis.R")
 
-# STEP 7: merge everything into master_panel and run the TWFE models
+# STEP 7: merge everything into main script and run the TWFE models
 source("R/05_analysis_twfe.R")
 
-# STEP 8: build the three charts used in the writeup
+# STEP 8: build the three charts / visual
 source("R/06_figures.R")
 
-# done - output/ has the panel + regression tables, and the three PNGs
-# land in the project root, ready to drop into the Substack post.</pre>
+# Final output should have the panel and regression tables, and the three PNGs
+</pre>
     </div>
 
     <div id="tab01" class="code-panel">
 <pre># 01_lema_timeline.R
-# Just building a simple lookup table of which county was covered by which
-# LEMA, and when that LEMA's order took effect. This becomes the "treatment
-# date" for every county later on.
+# Just building a simple lookup table of which county was covered by which regulation, partial or full LEMA cohort, and when that LEMA's order took effect. date for every county later on.
 
 library(tibble)
 library(dplyr)
@@ -544,8 +542,7 @@ lema_timeline <- tribble(
   "GMD1 Four-County",  "Wallace",  "2023-04-07",  2023,             2027,           "partial"   # note: Wallace also shows up under GMD4 above
 )
 
-# Quick sanity check - which counties show up more than once?
-# (Sheridan and Wallace should, since they fall under two LEMAs)
+# Note which counties show up more than once? (Sheridan and Wallace should, since they fall under two LEMAs)
 dupes <- lema_timeline %>%
   count(county) %>%
   filter(n > 1)
@@ -557,8 +554,7 @@ saveRDS(lema_timeline, "data_clean/lema_timeline.rds")</pre>
 
     <div id="tab02" class="code-panel">
 <pre># 02_groundwater_levels.R
-# Reading in the raw KGS well data and narrowing it down to just the
-# counties I actually need, using the county list built in script 01.
+# Reading in the raw KGS well data and narrowing it down to just the counties I actually need, using the county list built in script 01.
 
 library(readr)
 library(dplyr)
@@ -579,8 +575,7 @@ levels <- read_csv(
 lema_timeline <- readRDS("data_clean/lema_timeline.rds")
 target_counties <- unique(lema_timeline$county)
 
-# tigris has a built-in FIPS lookup table, using that instead of typing
-# codes in by hand
+# tigris has a built-in FIPS lookup table, for counties lookup vs typing codes in by hand
 data(fips_codes)
 
 county_fips <- fips_codes %>%
@@ -612,9 +607,7 @@ write_csv(levels_clean, "data_raw/kgs_gwl_clean.csv")</pre>
 
     <div id="tab03" class="code-panel">
 <pre># 03_nass_quickstats.R
-# Pulling crop acreage by county from the USDA NASS QuickStats API.
-# Wrapped each pull in a small helper function so a failed request
-# doesn't stop the whole script, just prints what went wrong.
+# Pulling crop acreage by county from the USDA NASS QuickStats API. Wrapped each pull in a small helper function so a failed request doesn't stop the whole script, just prints what went wrong.
 
 library(rnassqs)
 library(dplyr)
