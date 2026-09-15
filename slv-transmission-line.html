@@ -133,24 +133,24 @@
 <header class="hero">
   <div class="hero-inner">
     <div class="hero-text">
-      <p class="hero-tag">R · Benefit-Cost Analysis · Energy Economics</p>
+   
       <h1>A Cost-Benefit Analysis of a New San Luis Valley Transmission Line</h1>
-      <p class="hero-dek">A 30-year discounted cash-flow model comparing two proposed transmission routes out of the San Luis Valley, built from federal reliability data, USDA land values, and NREL's JEDI economic impact model.</p>
+      <p class="hero-dek">As a San Luis Valley resident, I recognize how important our utility infrastructure is.  Out of curiosity and need of practice, I pulle data from multipl sourced to run a discounted cash flow model over a 30 year period. The model compares two different proposed transmission routes within the Valley. Built from federal reliability data, USDA land values, & NREL’s JEDI economic impact model.</p>
       <div class="hero-meta-row">
         <div class="meta-pair"><span class="meta-key">Tool</span><span class="meta-val">R · dplyr · ggplot2</span></div>
         <div class="meta-pair"><span class="meta-key">Data Sources</span><span class="meta-val">EIA-861, USDA NASS, FSA, BEA, LBNL, NREL JEDI</span></div>
-        <div class="meta-pair"><span class="meta-key">Scope</span><span class="meta-val">2 routes, 12 scenarios</span></div>
-        <div class="meta-pair"><span class="meta-key">Analysis Period</span><span class="meta-val">30 years, 2026 base dollars</span></div>
+        <div class="meta-pair"><span class="meta-key">Scope</span><span class="meta-val">2 routes with different levels of improvement</span></div>
+        <div class="meta-pair"><span class="meta-key">Analysis Period</span><span class="meta-val">30 years, 2026 converted dollars</span></div>
       </div>
     </div>
     <aside class="hero-aside">
       <div class="aside-figure">
         <div class="aside-num">4.67</div>
-        <div class="aside-label">Benefit-cost ratio<br>Poncha Pass route</div>
+        <div class="aside-label">cost-benefit ratio<br>Poncha Pass route</div>
       </div>
       <div class="aside-figure">
         <div class="aside-num">2.55</div>
-        <div class="aside-label">Benefit-cost ratio<br>Pueblo/La Veta Pass route</div>
+        <div class="aside-label">cost-benefit ratio<br>Pueblo/La Veta Pass route</div>
       </div>
       <div class="aside-figure">
         <div class="aside-num red">$61.7M</div>
@@ -166,40 +166,40 @@
 
 <div class="page-body">
 
-  <p>This analysis estimates whether a new high-voltage transmission line out of Colorado's San Luis Valley would pay for itself. Two candidate routes are modeled, a 70-mile line over Poncha Pass tying into existing substation infrastructure, and a 136-mile line over La Veta Pass to a new interconnection at the Comanche Substation in Pueblo. Both are evaluated as a standard benefit-cost problem: capital cost against a discounted stream of future benefits, run over a 30-year horizon.</p>
+  <p>This cash flow model looks at whether the cost of a new high-voltage transmission line would be outweighed by the benefit and by which route and timeline. Route one is a 70-mile line over Poncha Pass connecting into an existing substation, and route two is a 136-mile line over La Veta Pass to a new interconnection at the Comanche Substation in Pueblo. Both use a standard cost-benefit problem looking at capital cost vs a discounted amount of future benefits, run over a 30-year period.</p>
 
-  <p>Costs and benefits are built entirely from public data. Capital costs are cross-validated using two independent methods, a per-mile benchmark from three comparable Colorado 230kV projects and NREL's JEDI economic impact model. Benefits are limited to two quantifiable streams: avoided outage cost, calculated from each utility's actual reliability performance, and land value uplift, the gap between current agricultural rent and an estimated solar lease rate. Every dollar figure is standardized to 2026 terms using a BLS CPI-U deflator before being discounted.</p>
+  <p>Both the cost and benefits within the model are built from completely free and public data.. Building costs use a per-mile benchmark from three similar Colorado 230kV projects and NREL's JEDI economic impact model. Benefits are summed up from the avoided outage cost, which is calculated from each utility's posted reliability performance, and land value uplift, what the solar lease rate would pay different than the current farming rent. Every dollar figure is converted to 2026 values using a BLS CPI-U deflator before then using a discount rate over the 30-year period.</p>
 
   <h2>Key Findings</h2>
 
-  <h3>1. Capital Cost by Route</h3>
-  <p>The Poncha Pass route costs an estimated $134.8 million in 2026 dollars; the Pueblo/La Veta Pass route costs $246.2 million. The cost difference is driven almost entirely by distance, 70 miles against 136, and by the fact that Poncha connects to an existing substation (Poncha Springs, in service since the 1980s) while La Veta would require entirely new interconnection infrastructure. Two independent cost methods, a per-mile benchmark and NREL's JEDI model, converge within the same range for both routes.</p>
+  <h3>1. Route cost</h3>
+  <p>The Poncha Pass route costs an estimated $134.8 million in 2026 dollars; the Pueblo/La Veta Pass route costs $246.2 million. The main difference is influenced mostly by distance, 70 miles for Poncha against 136 for La Veta, and also since Poncha connects to an already existing substation (Poncha Springs, operating since 1980s), while La Veta would need new interconnection infrastructure since one does not currently exist.</p>
 
-  <h3>2. Two Benefit Streams</h3>
-  <p>Avoided outage cost is calculated using LBNL's Interruption Cost Estimate (ICE) Calculator, fed with each utility's actual SAIDI/SAIFI reliability data and real customer counts. Combined across both utilities serving the Valley, current annual outage cost totals $61.7 million, of which non-residential customers, primarily agricultural operations, account for the overwhelming majority. Land value uplift is the difference between current cash rent for irrigated cropland and an estimated solar lease rate, applied across the acreage required for 794 MW of solar currently sitting active in the region's interconnection queue, roughly 3,335 acres. This second benefit stream is small relative to the first, contributing about $1.9 million annually against $61.7 million from avoided outages.</p>
+  <h3>2. Benefit Channels</h3>
+  <p>Avoided outage cost is summed using LBNL's Interruption Cost Estimate (ICE) Calculator, fed with each utility's SAIDI/SAIFI reliability data and actual customer counts. Looking at both utility companies in the Valley, the annual outage cost is roughly $61.7 million a year, with non-residential customers, mainly agricultural businesses accounting for the majority of that cost. The difference between cash rent currently for acres of cropland and the estimated solar lease rate that could be had is the land value uplift. Currently there is 794 MW of solar sitting active in the region’s interconnection queue, which is about 3,335 acres. The difference between irrigated cropland lease and solar lease is small compared to the outage cost, only contributing $1.9 million annually to the $61.7 M figure from avoiding outages, but would likely be much bigger if we could quantify the environmental effect of not draining the aquifer as much with irrigation practices, as solar demands far less water. </p>
 
-  <h3>3. Net Present Value Across Twelve Scenarios</h3>
-  <p>Because a new line would not eliminate every outage, three reliability-improvement scenarios were tested (30%, 60%, and 90% of current outage cost avoided), crossed with two construction timelines (a 9-year realistic case and a 5-year optimistic case). All twelve combinations return positive net present value, ranging from $62.1 million to $778.9 million over 30 years. Poncha outperforms La Veta in every matched scenario, by roughly $53 to $95 million, reflecting its lower cost.</p>
+  <h3>3. Net Present Value through different scenarios</h3>
+  <p>I used different reliability improvement scenarios, both optimistic and pessimistic, avoiding current outage cost by 30%, 60%, and 90%. I also used two separate construction timelines for how long it would take to build, a 9-year realistic case and a 5-year optimistic case.  All twelve combinations return positive net present value compared to cost, ranging from $62.1 million to $778.9 million over 30 years.  Poncha had better ratios in every scenario which reflects its lower amount of miles and cost to build. </p>
 
-  <h3>4. Benefit-Cost Ratios</h3>
-  <p>At the standard federal discount rate (3.1% real) and the moderate reliability scenario, Poncha returns $4.67 in present-value benefit per $1 spent; La Veta returns $2.55. The two routes share an identical total benefit ($477.9 million in present value), since the benefit calculation does not vary by route, only the cost, the denominator, differs. Poncha's higher ratio is a function of being shorter and cheaper to build, not of delivering a larger total benefit.</p>
+  <h3>4. Cost-Benefit Ratios</h3>
+  <p>Using the standard federal discount rate (3.1% real) and the moderate reliability scenario of 60%, Poncha returns $4.67 in present-value benefit per $1 spent; La Veta returns $2.55. The two routes share an identical total benefit ($477.9 million in present value), since the benefit calculation did not vary by route, only the cost (denominator) differs. Poncha's higher ratio is a function of being shorter and cheaper to build, not due to pulling greater benefits. The problem that this model does not capture is that we need redundancy with the lines; having two lines going in and out on the same route would likely affect reliability because one disaster along the identically run route, means both lines likely being affected.</p>
 
-  <h3>5. Discount Rate Sensitivity</h3>
-  <p>Doubling the discount rate to a conservative 7% reduces Poncha's net benefit from $375.4 million to $175.1 million, and La Veta's from $290.8 million to $114.5 million. Both remain solidly positive under the tougher rate, indicating the result is not dependent on a favorable discounting assumption.</p>
+  <h3>5. Using a harsher discount rate</h3>
+  <p>I also tested a much higher 7% discount rate to show that the benefit is not being only driven by a more generous rate of what future value will be. A 7% rate  reduced Poncha's net benefit from $375.4 million to $175.1 million, and La Veta's from $290.8 million to $114.5 million. Both, however, remain  positive even under the tougher rate, proving that the result is not dependent on a favorable discount rate.</p>
 
-  <h3>6. What the Model Does Not Price</h3>
-  <p>The largest limitation in this analysis is that both routes are assigned the same reliability-improvement benefit, treating them as equally effective at reducing outage risk. This is very likely incorrect. A second line through Poncha Pass shares the same physical mountain corridor as the existing line, exposing both to the same wildfire, avalanche, and weather-driven failure risk. A line through La Veta Pass is a geographically separate corridor and does not share that exposure. The model has no mechanism to price the value of failure independence between two routes, since it was built to value discounted dollars, not resilience against a shared point of failure. This limitation should be weighed alongside the benefit-cost ratios, not instead of them.</p>
+  <h3>6. Where the analysis lacks</h3>
+  <p>The largest limitation in the model is that both routes are given the same reliability improvement benefit, treating them as equally effective at limiting outages. Which would not be the case. A second line through Poncha Pass shares the same physical mountain corridor as the existing line, exposing both to the same failure risk. A new line route through La Veta Pass is a geographically separate corridor and would have a separate and independent exposure. The model struggled to price the value of failure independence between two routes, since it instead values discounted dollars, and not resilience on a shared point of breakdown.</p>
 
 </div>
 
 <div class="section-block">
   <div class="section-inner">
     <h2 class="section-hed">Figures</h2>
-    <p class="section-sub">Net present value across scenarios, the interconnection queue history behind the demand assumption, real income trends providing regional context, and the land value comparison behind the solar-lease benefit.</p>
+    <p class="section-sub">Net present value on different optimism and buildtime, interconnection queue history, SLV income trends, and the land rent value comparison with the solar-lease benefit.</p>
 
     <div class="chart-block">
-      <div class="chart-title">Fig. 1 Net Present Value by Route and Scenario</div>
-      <div class="chart-subtitle">30-year analysis period, 3.1% real discount rate. Dashed line marks the no-build baseline.</div>
+      <div class="chart-title">Fig. 1 Net Present Value for different routes, reliability improvement, and timeline</div>
+      <div class="chart-subtitle">a 30-year analysis period, using the federal 3.1% real discount rate. The dashed line is the current no build baseline.</div>
       <div class="chart-wrap">
         <img src="chart_1_headline_value.png" alt="NPV comparison across routes, timelines, and reliability scenarios">
         <p class="chart-note">Source: Author's calculation. Capital costs from NREL JEDI model runs and comparable-project benchmarks; benefits from LBNL ICE Calculator and USDA NASS land rent data. Author: Andy Setser.</p>
@@ -207,8 +207,8 @@
     </div>
 
     <div class="chart-block">
-      <div class="chart-title">Fig. 2 Solar Interconnection Requests Withdrawn Since 2008</div>
-      <div class="chart-subtitle">Withdrawals persisted across two distinct solar-market eras, indicating a structural rather than cyclical constraint</div>
+      <div class="chart-title">Fig. 2 Solar Interconnection Withdrawn Since 2008</div>
+      <div class="chart-subtitle">Withdrawals over two separate solar booms</div>
       <div class="chart-wrap">
         <img src="chart_2_solar_turned_away.png" alt="MW of solar withdrawn from SLV interconnection queue by era">
         <p class="chart-note">Source: Lawrence Berkeley National Laboratory, "Queued Up" interconnection queue dataset, through 2025. Filtered to San Luis Valley counties. Author: Andy Setser.</p>
@@ -216,7 +216,7 @@
     </div>
 
     <div class="chart-block">
-      <div class="chart-title">Fig. 3 Real Per Capita Personal Income, San Luis Valley Counties</div>
+      <div class="chart-title">Fig. 3 Real Per Capita Personal Income within San Luis Valley Counties</div>
       <div class="chart-subtitle">Inflation-adjusted to 2026 dollars; most counties peaked in 2021</div>
       <div class="chart-wrap">
         <img src="chart_3_real_income_trend.png" alt="Real per capita income trend by county, 2015 to 2024">
@@ -225,7 +225,7 @@
     </div>
 
     <div class="chart-block">
-      <div class="chart-title">Fig. 4 Land Value Comparison: Current Use vs. Solar Lease Potential</div>
+      <div class="chart-title">Fig. 4 Comparing Solar Lease Potential vs CPR amount vs current farming rent (2026 dollars)</div>
       <div class="chart-subtitle">Dollars per acre per year, 2026 dollars</div>
       <div class="chart-wrap">
         <img src="chart_4_land_value_comparison.png" alt="Cash rent, CRP rate, and estimated solar lease rate by county">
@@ -238,7 +238,7 @@
 <div class="section-block">
   <div class="section-inner">
     <h2 class="section-hed">Results Tables</h2>
-    <p class="section-sub">Net present value across all twelve modeled scenarios, benefit-cost ratios, and the discount rate sensitivity check.</p>
+    <p class="section-sub">Net present value listed for each of the twelve scenarios, showing cost benefit ratios, and the discount rates both used.</p>
 
     <div class="data-table-wrap">
       <table>
@@ -290,7 +290,7 @@
             <th>Route</th>
             <th>PV Total Cost</th>
             <th>PV Total Benefit</th>
-            <th>Benefit-Cost Ratio</th>
+            <th>cost-benefit Ratio</th>
           </tr>
         </thead>
         <tbody>
@@ -337,8 +337,8 @@
     </div>
 
     <p class="table-note">
-      All figures in 2026 dollars, discounted to present value. NPV = Net Present Value of benefits minus costs over the 30-year analysis period. Benefit-cost ratio = PV total benefit ÷ PV total cost.<br>
-      Reliability-improvement scenarios represent the share of current annual outage cost assumed to be avoided once the new line is operational, since a second line would not eliminate every outage.
+      All figures in 2026 dollars, discounted to present value. cost-benefit ratio = PV total benefit ÷ PV total cost.<br>
+      
     </p>
   </div>
 </div>
@@ -346,14 +346,14 @@
 <div class="section-block code-section">
   <div class="section-inner">
     <h2 class="section-hed">R Code</h2>
-    <p class="section-sub">Fully reproducible analysis. Requires a free API key from USDA NASS Quick Stats, NREL, and BEA, plus manually downloaded files from USDA FSA, LBNL, and EIA (linked in Methodology below).</p>
+    <p class="section-sub">The code is made to be copy and pasted and run through R. It will require a free API key from USDA NASS Quick Stats, NREL, and BEA, also for downloads from USDA FSA, LBNL, and EIA (any sources are linked below for your usage).</p>
 
     <div class="code-tabs">
       <button class="code-tab active" onclick="showTab('tab01')">Data Collection</button>
       <button class="code-tab" onclick="showTab('tab02')">Inflation Adjustment</button>
       <button class="code-tab" onclick="showTab('tab03')">Timeline &amp; Cash Flow</button>
       <button class="code-tab" onclick="showTab('tab04')">NPV Sensitivity</button>
-      <button class="code-tab" onclick="showTab('tab05')">Benefit-Cost Ratio</button>
+      <button class="code-tab" onclick="showTab('tab05')">cost-benefit Ratio</button>
       <button class="code-tab" onclick="showTab('tab06')">Charts</button>
     </div>
 
@@ -619,7 +619,7 @@ saveRDS(npv_full_summary, "npv_full_summary.rds")</pre>
     </div>
 
     <div id="tab05" class="code-panel">
-<pre># --- Benefit-cost ratio: for every $1 spent, how many dollars are returned? (moderate scenario, realistic timeline) ---
+<pre># --- cost-benefit ratio: for every $1 spent, how many dollars are returned? (moderate scenario, realistic timeline) ---
 compute_pv_cost_benefit <- function(timeline, build_cost, inservice_year, reliability_share, discount_rate) {
   cf <- build_cashflow_table(timeline, build_cost, inservice_year, reliability_share, discount_rate)
   tibble::tibble(
@@ -734,7 +734,7 @@ chart_land_value <- ggplot(land_value_chart_data, aes(x = county_upper, y = doll
 ggsave("chart_4_land_value_comparison.png", chart_land_value, width = 9, height = 6, dpi = 300)
 
 # --- Print results ---
-cat("\n===== BENEFIT-COST RATIO (moderate scenario) =====\n")
+cat("\n===== cost-benefit RATIO (moderate scenario) =====\n")
 print(benefit_cost_ratio_summary)
 cat("\n===== FULL RESULTS TABLE =====\n")
 print(npv_full_summary)
@@ -764,41 +764,38 @@ print(npv_discount_sensitivity)</pre>
         </ul>
       </div>
       <div class="method-block">
-        <h4>Key Assumptions</h4>
+        <h4>Assumptions</h4>
         <ul>
-          <li>30-year analysis period, 2026 base dollars</li>
+          <li>30-year period, and converted values to 2026 dollars</li>
           <li>3.1% real discount rate (OMB Circular A-94 default)</li>
-          <li>9-year realistic / 5-year optimistic in-service timeline</li>
-          <li>2-year lag between line completion and solar buildout</li>
-          <li>Reliability improvement modeled at 30% / 60% / 90%, not assumed at 100%</li>
-          <li>Solar lease rate ($500–1,000/acre/yr) is a market estimate, not SLV-confirmed</li>
+          <li>9-year realistic construction, 5-year is optimistic for timeline</li>
+          <li>There is a 2-year lag between completion and solar buildout</li>
+          <li>Reliability improvement modeled at 30% , 60% , 90%</li>
+          <li>Solar lease rate of $500–1,000/acre/yr is a market estimate and not specific to SLV</li>
         </ul>
       </div>
       <div class="method-block">
-        <h4>Constructed Variables</h4>
+        <h4>Variables</h4>
         <ul>
-          <li>inflate_to_base() — CPI-based dollar-year converter</li>
-          <li>build_timeline() — year-by-year in-service flags</li>
-          <li>build_cashflow_table() — annual cost/benefit engine</li>
-          <li>yearly_outage_savings — from LBNL ICE Calculator</li>
-          <li>yearly_land_value_gain — solar lease minus cash rent, × acreage</li>
-          <li>compute_pv_cost_benefit() — benefit-cost ratio calculator</li>
+          <li>inflate_to_base()  (CPI-based dollar-year calculator)</li>
+          <li>build_timeline() (yearly construction timeline)</li>
+          <li>build_cashflow_table() (annual cost/benefit)</li>
+          <li>yearly_outage_savings (Found from LBNL ICE Calculator)</li>
+          <li>yearly_land_value_gain (solar lease minus cash rent, × acreage)</li>
+          <li>compute_pv_cost_benefit() (cost benefit ratio calculator)</li>
         </ul>
       </div>
       <div class="method-block">
         <h4>Limitations</h4>
         <ul>
-          <li>Both routes assigned equal reliability benefit; a shared-corridor Poncha line likely offers less true redundancy than the geographically separate La Veta route</li>
-          <li>Outage cost captures routine annual outages, not rare catastrophic events</li>
-          <li>Solar lease rate is a national/regional estimate, not SLV-specific</li>
-          <li>New Mexico and Four Corners routes excluded for lack of published cost data</li>
-          <li>Xcel's SLV-specific residential/non-residential customer split is estimated, not independently confirmed</li>
+          <li>Both routes share the same reliability benefit; even though the shared Poncha line corridor offers less redundancy and likely worse reliability.</li>
+          <li>Solar lease rate is a national estimate</li>
         </ul>
       </div>
     </div>
 
     <div class="citation-box">
-      <h4>Primary Data Citations</h4>
+      <h4> Data Citations</h4>
       <p>U.S. Department of Agriculture, National Agricultural Statistics Service. <em>Quick Stats</em> [dataset]. <a href="https://quickstats.nass.usda.gov" target="_blank">quickstats.nass.usda.gov</a></p>
       <p>U.S. Department of Agriculture, Farm Service Agency. <em>Conservation Reserve Program County Average Rental Rates</em>. <a href="https://www.fsa.usda.gov" target="_blank">fsa.usda.gov</a></p>
       <p>U.S. Energy Information Administration. <em>Form EIA-861, Annual Electric Power Industry Report</em>. <a href="https://www.eia.gov/electricity/data/eia861/" target="_blank">eia.gov/electricity/data/eia861</a></p>
@@ -807,7 +804,7 @@ print(npv_discount_sensitivity)</pre>
       <p>National Renewable Energy Laboratory. <em>Jobs and Economic Development Impact (JEDI) Models</em>. <a href="https://www.nrel.gov/analysis/jedi" target="_blank">nrel.gov/analysis/jedi</a></p>
       <p>U.S. Bureau of Economic Analysis. <em>Regional Economic Accounts, Table CAINC1</em>. <a href="https://apps.bea.gov/regional/" target="_blank">apps.bea.gov/regional</a></p>
       <p>U.S. Bureau of Labor Statistics. <em>Consumer Price Index for All Urban Consumers (CPI-U)</em>. <a href="https://www.bls.gov/cpi/" target="_blank">bls.gov/cpi</a></p>
-      <p>U.S. Office of Management and Budget. <em>Circular A-94: Guidelines and Discount Rates for Benefit-Cost Analysis of Federal Programs</em>.</p>
+      <p>U.S. Office of Management and Budget. <em>Circular A-94: Guidelines and Discount Rates for cost-benefit Analysis of Federal Programs</em>.</p>
     </div>
   </div>
 </div>
