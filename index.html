@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Andy Setser — Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -13,13 +14,13 @@
       --ink-light: #4D4D4D;
       --ink-faint: #909090;
       --paper: #F3F5F6;
-      ---paper-warm: #F3F5F6;
+      --paper-warm: #F3F5F6;
       --rule: #C6CBCE;
       --rule-light: #E3E7E9;
       --accent: #DD4B1F;
       --accent-light: #E8683F;
       --accent-faint: #FBE4DC;
-      --serif: 'IBM Plex Serif', Georgia, serif;/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;0,700;1,400&family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+      --serif: 'IBM Plex Serif', Georgia, serif;
       --sans: 'IBM Plex Sans', system-ui, sans-serif;
       --condensed: 'Barlow Condensed', system-ui, sans-serif;
     }
@@ -75,13 +76,17 @@
     .sidebar-block ul { list-style: none; }
     .sidebar-block li { font-family: var(--sans); font-size: 0.8rem; font-weight: 400; color: var(--ink-light); padding: 0.28rem 0; border-bottom: 1px solid var(--rule-light); }
 
+    /* ABOUT PHOTO (community) */
+    .about-photo { margin-bottom: 1.75rem; }
+    .about-photo img { width: 100%; aspect-ratio: 4/3; object-fit: cover; object-position: center; display: block; border: 1px solid var(--rule); filter: grayscale(12%); }
+    .about-photo figcaption { font-family: var(--sans); font-size: 0.58rem; letter-spacing: 0.07em; color: var(--ink-faint); margin-top: 0.6rem; text-align: right; }
+
     /* PROJECTS */
     .projects-intro { font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--ink-light); max-width: 640px; margin-bottom: 2.5rem; padding-left: 1.25rem; border-left: 2.5px solid var(--accent); line-height: 1.7; }
     .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--rule); }
     .project-card { padding: 1.75rem; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
     .project-card:nth-child(3n) { border-right: none; }
-    .project-card:nth-child(4) { border-right: 1px solid var(--rule); }
-    .project-card:last-child { border-bottom: none; }
+    .project-card:nth-last-child(-n+3) { border-bottom: none; }
     .project-tool { font-family: var(--sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 0.04em; color: var(--accent); display: inline-block; margin-bottom: 0.85rem; }
     .project-card h3 { font-family: var(--serif); font-size: 1.08rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.7rem; }
     .project-card p { font-family: var(--sans); font-size: 0.8rem; color: var(--ink-light); line-height: 1.62; margin-bottom: 1rem; }
@@ -160,9 +165,12 @@
       .hero-photo-wrap::before { display: none; }
       section { padding: 3rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo { max-width: 420px; }
       .projects-grid { grid-template-columns: 1fr 1fr; }
       .project-card:nth-child(3n) { border-right: 1px solid var(--rule); }
       .project-card:nth-child(2n) { border-right: none; }
+      .project-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--rule); }
+      .project-card:nth-last-child(-n+2) { border-bottom: none; }
       .writing-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .resume-layout { grid-template-columns: 1fr; gap: 2rem; }
       .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
@@ -175,6 +183,8 @@
       .hero-meta a { font-size: 0.6rem; padding: 0.4rem 0.8rem; }
       .projects-grid { grid-template-columns: 1fr; }
       .project-card { border-right: none !important; }
+      .project-card:nth-last-child(-n+2) { border-bottom: 1px solid var(--rule); }
+      .project-card:last-child { border-bottom: none; }
       .writing-item { grid-template-columns: 30px 1fr; gap: 0.85rem; }
       .writing-num { font-size: 1.8rem; }
       .footer-inner { grid-template-columns: 1fr; }
@@ -246,6 +256,15 @@
         <p>My long-term goal is to work as an economist focusing on social issues, researching and using quantitative methods on economic policy questions that can potentially bridge the gap between wellbeing not currently received. To add credibility to areas where my education might not cover, I am building a toolkit in R and Excel currently, with SQL and Stata practice underway through DataCamp. I am enrolling in Linear Algebra and Real Analysis for the Spring 2027 semester to add the quantitative layer onto my current economic foundation and education.</p>
       </div>
       <div class="about-sidebar">
+
+        <!-- COMMUNITY PHOTO: save your image as community.webp in the same folder as this file.
+             Then edit the alt text and caption below to describe the actual event.
+             If community.webp is missing, this figure hides itself instead of showing a broken image. -->
+        <figure class="about-photo">
+          <img src="community.webp" alt="Andy Setser at a San Luis Valley community event" loading="lazy" onerror="this.closest('figure').style.display='none'" />
+          <figcaption>Community engagement, San Luis Valley</figcaption>
+        </figure>
+
         <div class="sidebar-block">
           <h4>Education</h4>
           <ul>
@@ -297,7 +316,6 @@
     </div>
     <h2 class="section-title">Data Projects</h2>
     <br>
-    <p </p>
     <div class="projects-grid">
 
       <div class="project-card">
@@ -336,19 +354,14 @@
       </div>
 
       <div class="project-card">
-  <span class="project-tool">Built in R</span>
-  <h3>A Cost-Benefit Analysis of a New San Luis Valley Transmission Line</h3>
-  <p>A 30-year discounted cash-flow model comparing two proposed transmission routes out of the San Luis Valley, built from EIA reliability data, USDA land values, LBNL interconnection queue data, and NREL's JEDI economic impact model.</p>
-  <a class="project-link" href="slv-transmission-line.html">Read Analysis →</a>
-</div>
-
-      <div class="project-card">
-        
+        <span class="project-tool">Built in R</span>
+        <h3>A Cost-Benefit Analysis of a New San Luis Valley Transmission Line</h3>
+        <p>A 30-year discounted cash-flow model comparing two proposed transmission routes out of the San Luis Valley, built from EIA reliability data, USDA land values, LBNL interconnection queue data, and NREL's JEDI economic impact model.</p>
+        <a class="project-link" href="slv-transmission-line.html">Read Analysis →</a>
       </div>
 
     </div>
     <div class="rule-ornament">— ◆ —</div>
-    <p style="font-family:var(--sans); font-size:0.82rem; color:var(--ink-faint); font-style:italic; text-align:center;"></p>
   </div>
 </section>
 
@@ -419,8 +432,6 @@
           <h4>Uneven Ground on Substack</h4>
           <p>Essays on economics and the data behind policy decisions that shape communities.</p>
           <a href="https://substack.com/@andysetser" target="_blank">Subscribe →</a>
-        </div>
-          </div>
         </div>
       </div>
     </div>
