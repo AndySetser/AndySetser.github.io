@@ -134,29 +134,29 @@
     <div class="hero-text">
       <p class="hero-tag">R · OLS Regression · Labor Economics</p>
       <h1>The Returns to Education in the U.S. Labor Market, 2010–2023</h1>
-      <p class="hero-dek">A Mincer earnings equation estimated on 263,863 full-time workers from IMPUMS CPS's montly labor force survey dating, showing the wage premium for education, the gender gap, and the experience-earnings control.</p>
+      <p class="hero-dek">A Mincer earnings equation estimated on 248,526 full-time workers from IMPUMS CPS's montly labor force survey dating, showing the wage premium for education, the gender gap, and the experience-earnings control.</p>
       <div class="hero-meta-row">
         <div class="meta-pair"><span class="meta-key">Tool</span><span class="meta-val">R · tidyverse · modelsummary</span></div>
         <div class="meta-pair"><span class="meta-key">Data Source</span><span class="meta-val">IPUMS CPS, Version 13.0</span></div>
-        <div class="meta-pair"><span class="meta-key">Sample</span><span class="meta-val">263,863 observations</span></div>
+        <div class="meta-pair"><span class="meta-key">Sample</span><span class="meta-val">248,526 observations</span></div>
         <div class="meta-pair"><span class="meta-key">Period</span><span class="meta-val">2010, 2015, 2019, 2021, 2023</span></div>
       </div>
     </div>
     <aside class="hero-aside">
       <div class="aside-figure">
-        <div class="aside-num">+93%</div>
+        <div class="aside-num">+79%</div>
         <div class="aside-label">Log-wage premium<br>Bachelor's vs. No Diploma</div>
       </div>
       <div class="aside-figure">
-        <div class="aside-num">+124%</div>
+        <div class="aside-num">+108%</div>
         <div class="aside-label">Log-wage premium<br>Graduate vs. No Diploma</div>
       </div>
       <div class="aside-figure">
-        <div class="aside-num red">−32.5%</div>
+        <div class="aside-num red">−29.1%</div>
         <div class="aside-label">Unexplained gender<br>wage gap (women)</div>
       </div>
       <div class="aside-figure">
-        <div class="aside-num muted">+33.6%</div>
+        <div class="aside-num muted">+28.7%</div>
         <div class="aside-label">Real wage growth<br>2010 → 2023</div>
       </div>
     </aside>
@@ -167,25 +167,25 @@
 
   <p>My attempt through a Mincer Earning equation. Asking the question of what what a college degree is worth in the U.S. labor market, and is the premium still remaining even after controlling for experience, gender, and race? The analysis estimates a standard Mincer earnings equation on Current Population Survey microdata spanning 2010 to 2023 (2010, 2015, 2019, 2021, 2023), using log annual wages as the outcome variable and education, experience, and demographic controls as predictors.</p>
 
-  <p>The sample is restricted to full-time workers (35+ hours per week) aged 25–64 with positive wage income, resulting 263,863 datapoints across five survey years. Three OLS models are estimated, adding controls to test the strength of the education coefficients.</p>
+  <p>The sample is restricted to full-time workers (35+ hours per week) aged 25–64 with wage income above $15,000, resulting 248,526 datapoints across five survey years. Three OLS models are estimated, adding controls to test the strength of the education coefficients.</p>
 
   <h2>Key Findings</h2>
 
   <h3>1. The Education Premium</h3>
-  <p>Relative to workers with less than a high school diploma, Bachelor's degree holders earn approximately 93% more in log-wage terms in the fully controlled model. Graduate degree holders earn 124% more. These coefficients shift by only 1–2 percentage points when adding experience, gender, and race controls. Showing the stability of the education premium.</p>
-  <p>Even a high school diploma carries a meaningful premium, of a 34.4% log-wage advantage over those without one, consistent across all three models.</p>
+  <p>Relative to workers with less than a high school diploma, Bachelor's degree holders earn approximately 79% more in log-wage terms in the fully controlled model. Graduate degree holders earn 108% more. These coefficients shift by only 1–2 percentage points when adding experience, gender, and race controls. Showing the stability of the education premium.</p>
+  <p>Even a high school diploma carries a meaningful premium, of a 26.5% log-wage advantage over those without one, consistent across all three models.</p>
 
   <h3>2. The Gender Gap</h3>
-  <p>The female coefficient is −0.325 in Model 3, suggesting a 32.5% unexplained wage gap after controlling for education, experience, race, and year. This matches the a common trend found with wage penalties for women that unforunately go unexplained by human capital differences. Factors like hours flexibility and discrimination are explanations not captured in the model, but likely exist.</p>
+  <p>The female coefficient is −0.291 in Model 3, suggesting a 29.1% unexplained wage gap after controlling for education, experience, race, and year. This matches the a common trend found with wage penalties for women that unforunately go unexplained by human capital differences. Factors like hours flexibility and discrimination are explanations not captured in the model, but likely exist.</p>
 
   <h3>3. Experience Has a Concave Profile</h3>
-  <p>The experience coefficient is positive (0.033) and the squared term is negative (−0.001), matching Mincer's original finding of a concave experience-earnings profile. Wages rise with experience but at a diminishing rate, with peak earnings being found around 25–28 years of experience under these year's estimates.</p>
+  <p>The experience coefficient is positive (0.031) and the squared term is negative (−0.0005), matching Mincer's original finding of a concave experience-earnings profile. Wages rise with experience but at a diminishing rate, with peak earnings being found around 32–33 years of experience under these year's estimates.</p>
 
   <h3>4. The Racial Wage Gap for Black Workers</h3>
-  <p>Black workers face a significant wage penalty of approximately 14.4% relative to White workers with identical education, experience, and year controls. The coefficient for Asian workers was not found not statistically significant. Similar to gender, these are descriptive OLS estimates and do not identify discrimination, but they document unexplained differences like this one.</p>
+  <p>Black workers face a significant wage penalty of approximately 12.4% relative to White workers with identical education, experience, and year controls. The coefficient for Asian workers was not found not statistically significant. Similar to gender, these are descriptive OLS estimates and do not identify discrimination, but they document unexplained differences like this one.</p>
 
   <h3>5. Real Wages Grew Post Pandemic</h3>
-  <p>Year dummy coefficients show steady real wage growth across the sample period: +4.9% by 2015, +17.0% by 2019, +21.6% by 2021, and +33.6% by 2023 relative, indexed to the 2010 reference year. The acceleration post-2019 is explained and matching to the tight pandemic-era labor market and is a period of the largest wage growth in the dataset.</p>
+  <p>Year dummy coefficients show steady real wage growth across the sample period: +4.7% by 2015, +13.8% by 2019, +18.9% by 2021, and +28.7% by 2023 relative, indexed to the 2010 reference year. The acceleration post-2019 is explained and matching to the tight pandemic-era labor market and is a period of the largest wage growth in the dataset.</p>
 
   <h3>6. Card 1995</h3>
   <p>Causality unfortunately lacks in this study. The main limitation is that OLS can't tell us if education leads to higher wages, only that they have some linear movement together. Likely if you pursue a degree, you are already quite driven and intelligent, therefore, maybe you were destined for achieving greater pay even if you had not gone to get an education; we cannot rule out that other factors are driving the higher pay. I reference David Card's study "Using Geographic Variation in College Proximity to Estimate the Return to Schooling" (1995) because he got around this by using distance to college as a stand in for education, since living near a college affects whether someone attends but has no direct effect on their wages. Finding a causal identification strategy similar to Card (1995) would strengthen a study like this. Independent research like this one though has a harder time gathering the data or resources for that kind of causal design. A more in depth study would need to find a similar angle, something that changes a person's odds of getting more education without directly changing their earning potential on its own, and use that to isolate the real effect of what a degree can bring.</p>
@@ -253,53 +253,53 @@
           <tr class="section-divider"><td colspan="4">Education (ref: Less than High School)</td></tr>
           <tr>
             <td>(Intercept)</td>
-            <td class="sig">10.183***</td>
-            <td class="sig">9.822***</td>
-            <td class="sig">9.691***</td>
+            <td class="sig">10.396***</td>
+            <td class="sig">10.062***</td>
+            <td class="sig">9.942***</td>
           </tr>
-          <tr><td></td><td class="se">(0.005)</td><td class="se">(0.008)</td><td class="se">(0.008)</td></tr>
+          <tr><td></td><td class="se">(0.005)</td><td class="se">(0.007)</td><td class="se">(0.007)</td></tr>
           <tr>
             <td>High School Diploma</td>
-            <td class="sig">0.307***</td>
-            <td class="sig">0.347***</td>
-            <td class="sig">0.344***</td>
+            <td class="sig">0.223***</td>
+            <td class="sig">0.264***</td>
+            <td class="sig">0.265***</td>
           </tr>
-          <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+          <tr><td></td><td class="se">(0.005)</td><td class="se">(0.005)</td><td class="se">(0.005)</td></tr>
           <tr>
             <td>Some College</td>
-            <td class="sig">0.467***</td>
-            <td class="sig">0.556***</td>
-            <td class="sig">0.553***</td>
+            <td class="sig">0.360***</td>
+            <td class="sig">0.444***</td>
+            <td class="sig">0.447***</td>
           </tr>
-          <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+          <tr><td></td><td class="se">(0.005)</td><td class="se">(0.005)</td><td class="se">(0.005)</td></tr>
           <tr>
             <td>Bachelor's Degree</td>
-            <td class="sig">0.830***</td>
-            <td class="sig">0.954***</td>
-            <td class="sig">0.933***</td>
+            <td class="sig">0.689***</td>
+            <td class="sig">0.806***</td>
+            <td class="sig">0.793***</td>
           </tr>
-          <tr><td></td><td class="se">(0.006)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+          <tr><td></td><td class="se">(0.005)</td><td class="se">(0.005)</td><td class="se">(0.005)</td></tr>
           <tr>
             <td>Graduate Degree</td>
-            <td class="sig">1.132***</td>
-            <td class="sig">1.265***</td>
-            <td class="sig">1.237***</td>
+            <td class="sig">0.968***</td>
+            <td class="sig">1.095***</td>
+            <td class="sig">1.075***</td>
           </tr>
-          <tr><td></td><td class="se">(0.007)</td><td class="se">(0.006)</td><td class="se">(0.006)</td></tr>
+          <tr><td></td><td class="se">(0.006)</td><td class="se">(0.005)</td><td class="se">(0.005)</td></tr>
 
           <tr class="section-divider"><td colspan="4">Experience</td></tr>
           <tr>
             <td>Experience (years)</td>
             <td>—</td>
-            <td class="sig">0.032***</td>
-            <td class="sig">0.033***</td>
+            <td class="sig">0.029***</td>
+            <td class="sig">0.031***</td>
           </tr>
-          <tr><td></td><td></td><td class="se">(0.001)</td><td class="se">(0.001)</td></tr>
+          <tr><td></td><td></td><td class="se">(0.000)</td><td class="se">(0.000)</td></tr>
           <tr>
             <td>Experience Squared</td>
             <td>—</td>
             <td class="sig">−0.000***</td>
-            <td class="sig">−0.001***</td>
+            <td class="sig">−0.000***</td>
           </tr>
           <tr><td></td><td></td><td class="se">(0.000)</td><td class="se">(0.000)</td></tr>
 
@@ -307,72 +307,72 @@
           <tr>
             <td>Female</td>
             <td>—</td>
-            <td class="sig">−0.332***</td>
-            <td class="sig">−0.325***</td>
+            <td class="sig">−0.296***</td>
+            <td class="sig">−0.291***</td>
           </tr>
-          <tr><td></td><td></td><td class="se">(0.003)</td><td class="se">(0.003)</td></tr>
+          <tr><td></td><td></td><td class="se">(0.002)</td><td class="se">(0.002)</td></tr>
 
           <tr class="section-divider"><td colspan="4">Race (ref: White)</td></tr>
           <tr>
             <td>Black</td>
             <td>—</td>
             <td>—</td>
-            <td class="sig">−0.144***</td>
+            <td class="sig">−0.124***</td>
           </tr>
-          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.003)</td></tr>
           <tr>
             <td>Asian</td>
             <td>—</td>
             <td>—</td>
-            <td>0.007</td>
+            <td class="sig">0.020***</td>
           </tr>
-          <tr><td></td><td></td><td></td><td class="se">(0.005)</td></tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
 
           <tr class="section-divider"><td colspan="4">Year Fixed Effects (ref: 2010)</td></tr>
           <tr>
             <td>Year: 2015</td>
             <td>—</td><td>—</td>
-            <td class="sig">0.049***</td>
+            <td class="sig">0.047***</td>
           </tr>
-          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.003)</td></tr>
           <tr>
             <td>Year: 2019</td>
             <td>—</td><td>—</td>
-            <td class="sig">0.170***</td>
+            <td class="sig">0.138***</td>
           </tr>
-          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.003)</td></tr>
           <tr>
             <td>Year: 2021</td>
             <td>—</td><td>—</td>
-            <td class="sig">0.216***</td>
+            <td class="sig">0.189***</td>
           </tr>
-          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.003)</td></tr>
           <tr>
             <td>Year: 2023</td>
             <td>—</td><td>—</td>
-            <td class="sig">0.336***</td>
+            <td class="sig">0.287***</td>
           </tr>
-          <tr><td></td><td></td><td></td><td class="se">(0.004)</td></tr>
+          <tr><td></td><td></td><td></td><td class="se">(0.003)</td></tr>
 
           <tr class="section-divider"><td colspan="4">Model Fit</td></tr>
           <tr>
             <td>Observations</td>
-            <td>263,863</td><td>263,863</td><td>263,863</td>
+            <td>248,526</td><td>248,526</td><td>248,526</td>
           </tr>
           <tr>
             <td>R²</td>
-            <td>0.172</td><td>0.237</td><td>0.262</td>
+            <td>0.205</td><td>0.283</td><td>0.310</td>
           </tr>
           <tr>
             <td>Adjusted R²</td>
-            <td>0.172</td><td>0.237</td><td>0.262</td>
+            <td>0.205</td><td>0.283</td><td>0.310</td>
           </tr>
         </tbody>
       </table>
     </div>
     <p class="table-note">
       Standard errors in parentheses. Significance: + p &lt; 0.1 &nbsp;|&nbsp; * p &lt; 0.05 &nbsp;|&nbsp; ** p &lt; 0.01 &nbsp;|&nbsp; *** p &lt; 0.001<br>
-      Sample: Full-time workers (UHRSWORKT ≥ 35), ages 25–64, positive wage income. Years: 2010, 2015, 2019, 2021, 2023. Dependent variable: log(INCWAGE).
+      Sample: Full-time workers (UHRSWORKT ≥ 35), ages 25–64, wage income above $15,000. Years: 2010, 2015, 2019, 2021, 2023. Dependent variable: log(INCWAGE).
     </p>
   </div>
 </div>
@@ -399,7 +399,7 @@ library(viridis)
 
 cps <- read_csv("cps_00001.csv")
 
-cps_clean <- cps |> filter(AGE >= 25, AGE <= 64) |> filter(INCWAGE > 0, INCWAGE < 99999999) |> filter(UHRSWORKT >= 35, UHRSWORKT < 997) |> mutate(education = case_when(EDUC < 73 ~ "1. Less than High School", EDUC == 73 ~ "2. High School Diploma", EDUC %in% c(80,81,90,91,92) ~ "3. Some College", EDUC == 111 ~ "4. Bachelor's Degree", EDUC >= 123 ~ "5. Graduate Degree"), gender = if_else(SEX == 1, "Male", "Female"), years_of_school = case_when(EDUC < 73 ~ 10, EDUC == 73 ~ 12, EDUC %in% c(80,81,90,91,92) ~ 14, EDUC == 111 ~ 16, EDUC >= 123 ~ 18), experience = AGE - years_of_school - 6, experience_sq = experience^2, log_wage = log(INCWAGE), female = if_else(SEX == 2, 1, 0), black = if_else(RACE == 200, 1, 0), asian = if_else(RACE == 651, 1, 0), year_2015 = if_else(YEAR == 2015, 1, 0), year_2019 = if_else(YEAR == 2019, 1, 0), year_2021 = if_else(YEAR == 2021, 1, 0), year_2023 = if_else(YEAR == 2023, 1, 0)) |> filter(!is.na(education), experience >= 0)</pre>
+cps_clean <- cps |> filter(AGE >= 25, AGE <= 64) |> filter(INCWAGE > 15000, INCWAGE < 99999999) |> filter(UHRSWORKT >= 35, UHRSWORKT < 997) |> mutate(education = case_when(EDUC < 73 ~ "1. Less than High School", EDUC == 73 ~ "2. High School Diploma", EDUC %in% c(80,81,90,91,92) ~ "3. Some College", EDUC == 111 ~ "4. Bachelor's Degree", EDUC >= 123 ~ "5. Graduate Degree"), gender = if_else(SEX == 1, "Male", "Female"), years_of_school = case_when(EDUC < 73 ~ 10, EDUC == 73 ~ 12, EDUC %in% c(80,81,90,91,92) ~ 14, EDUC == 111 ~ 16, EDUC >= 123 ~ 18), experience = AGE - years_of_school - 6, experience_sq = experience^2, log_wage = log(INCWAGE), female = if_else(SEX == 2, 1, 0), black = if_else(RACE == 200, 1, 0), asian = if_else(RACE == 651, 1, 0), year_2015 = if_else(YEAR == 2015, 1, 0), year_2019 = if_else(YEAR == 2019, 1, 0), year_2021 = if_else(YEAR == 2021, 1, 0), year_2023 = if_else(YEAR == 2023, 1, 0)) |> filter(!is.na(education), experience >= 0)</pre>
     </div>
 
     <div id="tab02" class="code-panel">
@@ -423,23 +423,23 @@ ggsave("fig1_wages.png", width = 9, height = 4.5, dpi = 200)</pre>
 
     <div id="tab04" class="code-panel">
 <pre># same four education levels, shown across all three models so you can see how stable the estimates are
-coef_data <- tibble(education = rep(c("High School Diploma", "Some College", "Bachelor's Degree", "Graduate Degree"), 3), model = rep(c("Model 1: Education Only", "Model 2: Plus Experience and Gender", "Model 3: Full Controls"), each = 4), coefficient = c(0.307, 0.467, 0.830, 1.132, 0.347, 0.556, 0.954, 1.265, 0.344, 0.553, 0.933, 1.237))
+coef_data <- tibble(education = rep(c("High School Diploma", "Some College", "Bachelor's Degree", "Graduate Degree"), 3), model = rep(c("Model 1: Education Only", "Model 2: Plus Experience and Gender", "Model 3: Full Controls"), each = 4), coefficient = c(0.223, 0.360, 0.689, 0.968, 0.264, 0.444, 0.806, 1.095, 0.265, 0.447, 0.793, 1.075)) |> mutate(education = factor(education, levels = c("High School Diploma", "Some College", "Bachelor's Degree", "Graduate Degree")), model = factor(model, levels = c("Model 1: Education Only", "Model 2: Plus Experience and Gender", "Model 3: Full Controls")))
 
-coef_data |> ggplot(aes(x = education, y = coefficient, fill = model)) + geom_col(position = "dodge", width = 0.7) + scale_fill_manual(values = c("#1A4A7A99", "#A8791F99", "#DD4B1FD1")) + labs(title = "Education Coefficients Across Model Specifications", x = NULL, y = "Log Wage Coefficient", fill = NULL) + theme_minimal(base_size = 13)
+coef_data |> ggplot(aes(x = education, y = coefficient, fill = model)) + geom_col(position = "dodge", width = 0.7) + scale_fill_manual(values = c("#1A4A7A99", "#A8791F99", "#DD4B1FD1")) + scale_x_discrete(labels = label_wrap(14)) + labs(title = "Education Coefficients Across Model Specifications", x = NULL, y = "Log Wage Coefficient", fill = NULL) + theme_minimal(base_size = 13) + theme(legend.position = "bottom") + guides(fill = guide_legend(nrow = 1))
 
 ggsave("fig2_coefs.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
 
     <div id="tab05" class="code-panel">
-<pre>exp_profile <- tibble(experience = 0:40) |> mutate(log_wage = 9.691 + 0.933 + 0.033 * experience - 0.001 * experience^2 + 0.170)
+<pre>exp_profile <- tibble(experience = 0:40) |> mutate(log_wage = 9.942 + 0.793 + 0.0306 * experience - 0.000474 * experience^2 + 0.138)
 
-exp_profile |> ggplot(aes(x = experience, y = log_wage)) + geom_line(color = "#DD4B1F", linewidth = 1.2) + geom_area(fill = "#DD4B1F12") + labs(title = "Experience Earnings Profile, Model 3", x = "Years of Experience", y = "Fitted Log Annual Wage") + theme_minimal(base_size = 13)
+exp_profile |> ggplot(aes(x = experience, y = log_wage)) + geom_line(color = "#DD4B1F", linewidth = 1.2) + geom_area(fill = "#DD4B1F12") + coord_cartesian(ylim = c(10.8, 11.5)) + labs(title = "Experience Earnings Profile, Model 3", x = "Years of Experience", y = "Fitted Log Annual Wage") + theme_minimal(base_size = 13)
 
 ggsave("fig3_experience.png", width = 9, height = 4.5, dpi = 200)</pre>
     </div>
 
     <div id="tab06" class="code-panel">
-<pre>year_data <- tibble(year = c("2010", "2015", "2019", "2021", "2023"), change = c(0, 0.049, 0.170, 0.216, 0.336))
+<pre>year_data <- tibble(year = c("2010", "2015", "2019", "2021", "2023"), change = c(0, 0.047, 0.138, 0.189, 0.287))
 
 year_data |> ggplot(aes(x = year, y = change, fill = year)) + geom_col(width = 0.6, show.legend = FALSE) + scale_fill_manual(values = c("#90909099", "#DD4B1F80", "#DD4B1FA6", "#DD4B1FCC", "#DD4B1F")) + labs(title = "Real Wage Growth Over Time, Year Fixed Effects", x = NULL, y = "Log Wage Change vs 2010") + theme_minimal(base_size = 13)
 
@@ -471,7 +471,7 @@ ggsave("fig4_growth.png", width = 9, height = 4.5, dpi = 200)</pre>
         <ul>
           <li>Ages 25–64 (prime working age)</li>
           <li>Full-time workers: UHRSWORKT ≥ 35</li>
-          <li>Positive wage income: INCWAGE &gt; 0</li>
+          <li>Wage income above $15,000: INCWAGE &gt; 15,000</li>
           <li>Excludes top-coded wages (INCWAGE = 99,999,999)</li>
           <li>Drops observations with missing education</li>
           <li>Drops implied negative experience (experience ≥ 0)</li>
